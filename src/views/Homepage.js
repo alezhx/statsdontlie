@@ -15,7 +15,8 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react'
-import Search from '../components/Search'
+// import Search from '../components/Search'
+import PlayerSearch from '../components/PlayerSearch';
 
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
@@ -52,8 +53,8 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Search />
-
+    {/* <Search /> */}
+    <PlayerSearch />
   </Container>
 )
 
