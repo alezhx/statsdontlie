@@ -15,6 +15,7 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react'
+import Search from '../components/Search'
 
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
@@ -32,7 +33,7 @@ const HomepageHeading = ({ mobile }) => (
   <Container text>
     <Header
       as='h1'
-      content='Imagine-a-Company'
+      content='BubbleStats'
       inverted
       style={{
         fontSize: mobile ? '2em' : '4em',
@@ -43,7 +44,7 @@ const HomepageHeading = ({ mobile }) => (
     />
     <Header
       as='h2'
-      content='Do whatever you want when you want to.'
+      content='Search for a player to find detailed NBA bubble stats'
       inverted
       style={{
         fontSize: mobile ? '1.5em' : '1.7em',
@@ -51,10 +52,8 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button primary size='huge'>
-      Get Started
-      <Icon name='right arrow' />
-    </Button>
+    <Search />
+
   </Container>
 )
 
