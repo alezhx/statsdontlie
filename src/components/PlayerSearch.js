@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios'
-import { Search, Grid, Header, Segment } from 'semantic-ui-react'
+import { Search, Grid, Header, } from 'semantic-ui-react'
 import { debounce, isEmpty} from 'lodash'
 
 class PlayerSearch extends Component {
@@ -15,34 +15,32 @@ class PlayerSearch extends Component {
   componentDidMount() {
   }
 
+  handleResultSelect = (e, { result }) => {
+    this.setState({ value: result.title })
+    console.log(this.state);
+  }
+
   handleSearchChange = (e, data) => {
-    console.log('data', data.value)
+    console.log('data1', data.value)
     this.setState({value:data.value})
     this.searchPlayers()
   }
 
   searchPlayers = debounce(async () => {
     const { value } = this.state
-
     if (isEmpty(value) || value.length < 3) {
       return
     }
-
     const { data } = await axios.get('https://www.balldontlie.io/api/v1/players', {
       params: {
         search: value
       }
     })
-
     console.log('response', data)
-    console.log('response', data.data)
-
-
     this.setState({ results: data.data }, ()=> console.log('state res', this.state.results))
   }, 350)
 
   renderResults = (results) => {
-    console.log('abc', results)
      return results.map((item, index) =>
         <Search.Results 
           title={item.first_name + ' ' + item.last_name + '-' + item.team.abbreviation}       
@@ -70,11 +68,11 @@ class PlayerSearch extends Component {
         //   dispatch({ type: 'UPDATE_SELECTION', selection: data })
         // }
         fluid
-        input={{ fluid: true }}
+        input={{ fluid: true, icon: ''}}
         onSearchChange={this.handleSearchChange}
-        // results={this.state.results}
         results={this.sanitizeResults(this.state.results)}
-        value={this.state.value}
+        value={this.state.value || ""}
+        onResultSelect={this.handleResultSelect}
       />    
     )
   }
