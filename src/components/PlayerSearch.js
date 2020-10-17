@@ -8,23 +8,21 @@ class PlayerSearch extends Component {
      super(props);
     this.state = {
       value: null,
-      results: []
+      results: [],
+      //player_id: null,
     }
   };
 
-  componentDidMount() {
-    this.loadPreBubbleStats();
-  }
-
   handleResultSelect = (e, { result }) => {
     this.setState({ value: result.title })
+    this.loadPreBubbleStats(result.player_id)
   }
 
-  loadPreBubbleStats = async() => {
+  loadPreBubbleStats = async(player_id) => {
     const { data } = await axios.get('https://www.balldontlie.io/api/v1/stats', {
       params: {
         seasons: 2019,
-        player_ids: [192],
+        player_ids: [player_id],
         start_date: "2019-10-22",
         end_date: "2020-03-11",
         per_page: 100
@@ -63,7 +61,8 @@ class PlayerSearch extends Component {
     let sanitizedResults = []
     results.map((item,index) => {
       let player = {
-        title: item.first_name + ' ' + item.last_name + ' - ' + item.team.abbreviation
+        title: item.first_name + ' ' + item.last_name + ' - ' + item.team.abbreviation,
+        player_id: item.id
       }
       sanitizedResults.push(player)
     })
