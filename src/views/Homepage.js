@@ -30,7 +30,7 @@ const { MediaContextProvider, Media } = createMedia({
  * HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled
  * components for such things.
  */
-const HomepageHeading = ({ mobile }) => (
+const HomepageHeading = ({ mobile, addPlayerId }) => (
   <Container text>
     <Header
       as='h1'
@@ -54,7 +54,7 @@ const HomepageHeading = ({ mobile }) => (
       }}
     />
     {/* <Search /> */}
-    <PlayerSearch  addPlayerId = {this.props.addPlayerId}/>
+    <PlayerSearch  addPlayerId = {addPlayerId}/>
   </Container>
 )
 
@@ -189,14 +189,14 @@ MobileContainer.propTypes = {
   children: PropTypes.node,
 }
 
-const ResponsiveContainer = ({ children }) => (
+const ResponsiveContainer = ({ children, addPlayerId }) => (
   /* Heads up!
    * For large applications it may not be best option to put all page into these containers at
    * they will be rendered twice for SSR.
    */
   <MediaContextProvider>
-    <DesktopContainer addPlayerId = {this.props.addPlayerId}>{children}</DesktopContainer>
-    <MobileContainer addPlayerId = {this.props.addPlayerId}>{children}</MobileContainer>
+    <DesktopContainer addPlayerId = {addPlayerId}>{children}</DesktopContainer>
+    <MobileContainer addPlayerId = {addPlayerId}>{children}</MobileContainer>
   </MediaContextProvider>
 )
 
@@ -204,8 +204,8 @@ ResponsiveContainer.propTypes = {
   children: PropTypes.node,
 }
 
-const HomepageLayout = () => (
-  <ResponsiveContainer addPlayerId = {this.props.addPlayerId} >
+const HomepageLayout = (props) => (
+  <ResponsiveContainer addPlayerId = {props.addPlayerId} >
 
 
     <Segment style={{ padding: '0em' }} vertical>

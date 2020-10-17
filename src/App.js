@@ -15,19 +15,19 @@ class App extends Component {
 
 
 
-  renderHomePage() {
+  renderHomePage = () => {
     return <HomepageLayout addPlayerId = {this.addPlayerId} />
   }
 
-  addPlayerId(playerId) {
+  addPlayerId = (playerId) => {
     this.setState({playerId})
   }
 
-  removePlayerId() {
+  removePlayerId = () => {
     this.setState({playerId : null})
   }
 
-  renderStatsPage() {
+  renderStatsPage = () => {
     return <PlayerStats removePlayerId = {this.removePlayerId} changePlayerId = {this.addPlayerId} />
   }
 
