@@ -5,7 +5,7 @@ import { debounce, isEmpty} from 'lodash'
 
 class PlayerSearch extends Component {
   constructor(props) {
-    super(props);
+     super(props);
     this.state = {
       value: null,
       results: []
@@ -13,13 +13,25 @@ class PlayerSearch extends Component {
   };
 
   componentDidMount() {
+    this.loadPreBubbleStats();
   }
 
   handleResultSelect = (e, { result }) => {
     this.setState({ value: result.title })
-    console.log(this.state);
   }
 
+  loadPreBubbleStats = async() => {
+    const { data } = await axios.get('https://www.balldontlie.io/api/v1/stats', {
+      params: {
+        seasons: 2019,
+        player_ids: [192],
+        start_date: "2019-10-22",
+        end_date: "2020-03-11",
+        per_page: 100
+      }
+    })
+    console.log("stats", data);
+  }
   handleSearchChange = (e, data) => {
     console.log('data1', data.value)
     this.setState({value:data.value})
@@ -36,7 +48,6 @@ class PlayerSearch extends Component {
         search: value
       }
     })
-    console.log('response', data)
     this.setState({ results: data.data }, ()=> console.log('state res', this.state.results))
   }, 350)
 
