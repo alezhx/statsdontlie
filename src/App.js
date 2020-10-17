@@ -34,7 +34,7 @@ class App extends Component {
   render () {
     return (
     <div>
-      {this.state.playerId ? this.renderHomePage() : this.renderStatsPage()}
+      {this.state.playerId ?  this.renderStatsPage() : this.renderHomePage()}
     </div>
     )
   }

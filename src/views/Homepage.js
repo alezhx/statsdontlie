@@ -54,7 +54,7 @@ const HomepageHeading = ({ mobile }) => (
       }}
     />
     {/* <Search /> */}
-    <PlayerSearch />
+    <PlayerSearch  addPlayerId = {this.props.addPlayerId}/>
   </Container>
 )
 
@@ -110,7 +110,7 @@ class DesktopContainer extends Component {
                 </Menu.Item>
               </Container>
             </Menu>
-            <HomepageHeading />
+            <HomepageHeading addPlayerId = {this.props.addPlayerId} />
           </Segment>
         </Visibility>
 
@@ -174,7 +174,7 @@ class MobileContainer extends Component {
                   </Menu.Item>
                 </Menu>
               </Container>
-              <HomepageHeading mobile />
+              <HomepageHeading mobile addPlayerId = {this.props.addPlayerId} />
             </Segment>
 
             {children}
@@ -195,8 +195,8 @@ const ResponsiveContainer = ({ children }) => (
    * they will be rendered twice for SSR.
    */
   <MediaContextProvider>
-    <DesktopContainer>{children}</DesktopContainer>
-    <MobileContainer>{children}</MobileContainer>
+    <DesktopContainer addPlayerId = {this.props.addPlayerId}>{children}</DesktopContainer>
+    <MobileContainer addPlayerId = {this.props.addPlayerId}>{children}</MobileContainer>
   </MediaContextProvider>
 )
 
@@ -205,7 +205,7 @@ ResponsiveContainer.propTypes = {
 }
 
 const HomepageLayout = () => (
-  <ResponsiveContainer>
+  <ResponsiveContainer addPlayerId = {this.props.addPlayerId} >
 
 
     <Segment style={{ padding: '0em' }} vertical>

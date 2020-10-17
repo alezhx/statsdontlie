@@ -15,7 +15,10 @@ class PlayerSearch extends Component {
 
   handleResultSelect = (e, { result }) => {
     this.setState({ value: result.title })
-    this.loadPreBubbleStats(result.player_id)
+    this.showPlayerStatsPage(result.player_id)
+  }
+  showPlayerStatsPage = (player_id) => {
+    this.props.addPlayerId(player_id)
   }
 
   loadPreBubbleStats = async(player_id) => {
