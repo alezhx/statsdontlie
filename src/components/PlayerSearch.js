@@ -17,6 +17,7 @@ class PlayerSearch extends Component {
     this.setState({ value: result.title })
     this.showPlayerStatsPage(result.player_id)
   }
+  
   showPlayerStatsPage = (player_id) => {
     this.props.addPlayerId(player_id)
   }
@@ -27,7 +28,7 @@ class PlayerSearch extends Component {
         seasons: 2019,
         player_ids: [player_id],
         start_date: "2019-10-22",
-        end_date: "2020-03-11",
+        end_date: "2020-03-12",
         per_page: 100
       }
     })

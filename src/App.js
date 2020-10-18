@@ -13,8 +13,6 @@ class App extends Component {
     }
   };
 
-
-
   renderHomePage = () => {
     return <HomepageLayout addPlayerId = {this.addPlayerId} />
   }
@@ -28,7 +26,7 @@ class App extends Component {
   }
 
   renderStatsPage = () => {
-    return <PlayerStats removePlayerId = {this.removePlayerId} changePlayerId = {this.addPlayerId} />
+    return <PlayerStats playerId = {this.state.playerId} removePlayerId = {this.removePlayerId} changePlayerId = {this.addPlayerId} />
   }
 
   render () {
