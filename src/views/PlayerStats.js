@@ -30,8 +30,18 @@ class PlayerStats extends Component {
   };
 
   componentDidMount = () => {
+    this.loadAllStats()
+  }
+
+  loadAllStats = () => {
     this.loadPreBubbleStats(this.props.playerId)
     this.loadBubbleStats(this.props.playerId)
+  }
+
+  componentDidUpdate = (prevProps, prevState, snapshot) => { 
+    if(prevProps.playerId !== this.props.playerId) {
+      this.loadAllStats()
+    }
   }
 
   loadPreBubbleStats = async(player_id) => {
@@ -98,10 +108,19 @@ class PlayerStats extends Component {
       return compressedStats;
   }
 
+  renderSearchBar = () => {
+    return (
+      <PlayerSearch addPlayerId={this.props.changePlayerId}/>
+    )
+  }
+
 
   render() {
     return (
-      <div>
+      <div key={this.props.playerId}>
+        <Container>
+          {this.renderSearchBar()}
+        </Container>
         <div>
         {JSON.stringify(this.state.preStats)}
         </div>

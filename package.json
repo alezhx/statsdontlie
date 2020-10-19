@@ -9,8 +9,8 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
     "faker": "^5.1.0",
+    "google-images": "^2.1.0",
     "lodash": "^4.17.20",
-    "nba-api-client": "^1.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
@@ -23,6 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:7000",
   "eslintConfig": {
     "extends": "react-app"
   },

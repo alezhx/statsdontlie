@@ -13,26 +13,57 @@ class App extends Component {
     }
   };
 
+  componentDidMount = () => {
+    // this.googleImagesTest()
+    this.expressTest()
+    // this.getList()
+  }
+
+
+  getList = () => {
+    fetch('/api/getList')
+    .then(res => res.json())
+    .then(list => console.log('test',list))
+  }
+
+  expressTest = () => {
+    fetch('/api/images')
+    .then(res => res.json())
+    .then(list => console.log('TESTIMAGES',list))
+  }
+
+  googleImagesTest = () => {
+    const GoogleImages = require('google-images');
+
+    const client = new GoogleImages('6d5cc39ca7f4caaae', 'AIzaSyB63_1kCTgX0KcooqT7CTNbEcmjqR1RAIs');
+
+    client.search('Lebron James site:nba.com', {size:'large', })
+      .then(images => {
+          console.log('images', images)
+      });
+  }
+
   renderHomePage = () => {
     return <HomepageLayout addPlayerId = {this.addPlayerId} />
   }
 
   addPlayerId = (playerId) => {
-    this.setState({playerId})
+    console.log('playerId sent', playerId)
+    this.setState({playerId}, () => console.log('playerId state', this.state.playerId))
   }
 
   removePlayerId = () => {
     this.setState({playerId : null})
   }
 
-  renderStatsPage = () => {
-    return <PlayerStats playerId = {this.state.playerId} removePlayerId = {this.removePlayerId} changePlayerId = {this.addPlayerId} />
+  renderStatsPage = (playerId) => {
+    return <PlayerStats playerId = {playerId} removePlayerId = {this.removePlayerId} changePlayerId = {this.addPlayerId} />
   }
 
   render () {
     return (
     <div>
-      {this.state.playerId ?  this.renderStatsPage() : this.renderHomePage()}
+      {this.state.playerId ?  this.renderStatsPage(this.state.playerId) : this.renderHomePage()}
     </div>
     )
   }
