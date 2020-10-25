@@ -25,7 +25,8 @@ class PlayerStats extends Component {
     super(props);
     this.state = {
       preStats: {},
-      postStats: {}
+      postStats: {},
+      playerImageLink: ''
     }
   };
 
@@ -42,6 +43,7 @@ class PlayerStats extends Component {
   componentDidUpdate = (prevProps, prevState, snapshot) => { 
     if(prevProps.playerId !== this.props.playerId) {
       this.loadAllStats()
+      this.getPlayerImage(this.props.playerName)
     }
   }
 
@@ -117,24 +119,27 @@ class PlayerStats extends Component {
 
   getPlayerImage = async(playerName) => {
     console.log(process.env.REACT_APP_GOOGLE_API_KEY, "environment")
-      let images = await axios.get('https://www.googleapis.com/customsearch/v1?', {
+      const {data} = await axios.get('https://www.googleapis.com/customsearch/v1?', {
         params: {
           key: process.env.REACT_APP_GOOGLE_API_KEY,
           cx: process.env.REACT_APP_GOOGLE_CX,
           imgSize: "XLARGE",
           num: 5,
-          q: playerName + " 2020 site:nba.com",
+          q: playerName,
           safe: "active",
           searchType: "image",
+          dateRestrict: "m[6]"
           // linkSite: "nba.com"
         }
       })
-      console.log(playerName, images);
+      console.log(playerName, data);
+
+      this.setState({playerImageLink: data.items[0].link})
   }
 
   render() {
     return (
-      <div key={this.props.playerId}>
+      <div key={this.props.playerId + this.props.playerName}>
         <Container>
           {this.renderSearchBar()}
         </Container>
@@ -145,7 +150,7 @@ class PlayerStats extends Component {
         {JSON.stringify(this.state.postStats)}
         </div>
         <div>
-          {/* image */}
+          <img src={this.state.playerImageLink} />
         </div>
       </div>
     )
