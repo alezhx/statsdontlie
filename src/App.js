@@ -3,7 +3,11 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import HomepageLayout from './views/Homepage'
 import PlayerStats from './views/PlayerStats'
+import axios from 'axios';
 
+
+
+var gapi = require('gapi');
 
 class App extends Component {
   constructor(props) {
@@ -15,34 +19,24 @@ class App extends Component {
   };
 
   componentDidMount = () => {
-    // this.googleImagesTest()
-    // this.expressTest()
-    // this.getList()
-    // this.imageScraperTest()
+    this.googleImages()
+  }
+  googleImages = async(playerName) => {
+    console.log(process.env.REACT_APP_GOOGLE_API_KEY, "environment")
+      let images = await axios.get('https://www.googleapis.com/customsearch/v1?', {
+        params: {
+          key: process.env.REACT_APP_GOOGLE_API_KEY,
+          cx: process.env.REACT_APP_GOOGLE_CX,
+          imgSize: "XLARGE",
+          num: 5,
+          q: "Lebron James 2020",
+          safe: "active",
+          searchType: "image"
+        }
+      })
+      console.log(images);
   }
 
-  getList = () => {
-    fetch('/api/getList')
-    .then(res => res.json())
-    .then(list => console.log('test',list))
-  }
-
-  // expressTest = () => {
-  //   fetch('/api/images')
-  //   .then(res => res.json())
-  //   .then(list => console.log('TESTIMAGES',list))
-  // }
-
-  googleImagesTest = () => {
-    const GoogleImages = require('google-images');
-
-    const client = new GoogleImages('6d5cc39ca7f4caaae', 'AIzaSyB63_1kCTgX0KcooqT7CTNbEcmjqR1RAIs');
-
-    client.search('Lebron James 2020 site:nba.com', {size:'xxlarge', })
-      .then(images => {
-          console.log('images', images)
-      });
-  }
 
   renderHomePage = () => {
     return <HomepageLayout addPlayerId = {this.addPlayerId} />
@@ -71,6 +65,7 @@ class App extends Component {
     <div>
       {this.state.playerId ?  this.renderStatsPage(this.state.playerId, this.state.playerName) : this.renderHomePage()}
     </div>
+    
     )
   }
 }
