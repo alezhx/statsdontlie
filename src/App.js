@@ -15,24 +15,7 @@ class App extends Component {
   };
 
   componentDidMount = () => {
-    this.googleImages()
   }
-  googleImages = async(playerName) => {
-    console.log(process.env.REACT_APP_GOOGLE_API_KEY, "environment")
-      let images = await axios.get('https://www.googleapis.com/customsearch/v1?', {
-        params: {
-          key: process.env.REACT_APP_GOOGLE_API_KEY,
-          cx: process.env.REACT_APP_GOOGLE_CX,
-          imgSize: "XLARGE",
-          num: 5,
-          q: "Lebron James 2020",
-          safe: "active",
-          searchType: "image"
-        }
-      })
-      console.log(images);
-  }
-
 
   renderHomePage = () => {
     return <HomepageLayout addPlayerId = {this.addPlayerId} />

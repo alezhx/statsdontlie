@@ -114,19 +114,22 @@ class PlayerStats extends Component {
       <PlayerSearch addPlayerId={this.props.changePlayerId}/>
     )
   }
-  
-  getPlayerImage = (playerName) => {
-    let param = JSON.stringify({
-      PlayerName: playerName
-    })
 
-    fetch('/api/images',{
-      method: 'POST',
-      body: param,
-      headers: {"Content-Type": "application/json"}
-    })
-    .then(res => res.json())
-    .then(list => console.log('AAAAAAAAIMAGES',list))
+  getPlayerImage = async(playerName) => {
+    console.log(process.env.REACT_APP_GOOGLE_API_KEY, "environment")
+      let images = await axios.get('https://www.googleapis.com/customsearch/v1?', {
+        params: {
+          key: process.env.REACT_APP_GOOGLE_API_KEY,
+          cx: process.env.REACT_APP_GOOGLE_CX,
+          imgSize: "XLARGE",
+          num: 5,
+          q: playerName + " 2020 site:nba.com",
+          safe: "active",
+          searchType: "image",
+          // linkSite: "nba.com"
+        }
+      })
+      console.log(playerName, images);
   }
 
   render() {

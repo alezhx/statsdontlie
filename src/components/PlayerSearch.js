@@ -16,7 +16,7 @@ class PlayerSearch extends Component {
   handleResultSelect = (e, { result }) => {
     console.log('abcdef', result)
     this.setState({ value: result.title })
-    this.showPlayerStatsPage(result.player_id, result.playerName)
+    this.showPlayerStatsPage(result.player_id, result.player_name)
   }
   
   showPlayerStatsPage = (playerId, playerName) => {
@@ -55,21 +55,14 @@ class PlayerSearch extends Component {
     this.setState({ results: data.data }, ()=> console.log('state res', this.state.results))
   }, 350)
 
-  renderResults = (results) => {
-     return results.map((item, index) =>
-        <Search.Results 
-          title={item.first_name + ' ' + item.last_name + '-' + item.team.abbreviation}    
-        />
-     )
-  }
-
   sanitizeResults = (results) => {
     let sanitizedResults = []
     results.map((item,index) => {
       let player = {
+        key: index,
         title: item.first_name + ' ' + item.last_name + ' - ' + item.team.abbreviation,
         player_id: item.id,
-        playerName: item.first_name + ' ' + item.last_name
+        player_name: item.first_name + ' ' + item.last_name
       }
       sanitizedResults.push(player)
     })
