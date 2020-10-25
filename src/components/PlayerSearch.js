@@ -14,12 +14,13 @@ class PlayerSearch extends Component {
   };
 
   handleResultSelect = (e, { result }) => {
+    console.log('abcdef', result)
     this.setState({ value: result.title })
-    this.showPlayerStatsPage(result.player_id)
+    this.showPlayerStatsPage(result.player_id, result.playerName)
   }
   
-  showPlayerStatsPage = (player_id) => {
-    this.props.addPlayerId(player_id)
+  showPlayerStatsPage = (playerId, playerName) => {
+    this.props.addPlayerId(playerId, playerName)
   }
 
   loadPreBubbleStats = async(player_id) => {
@@ -34,6 +35,7 @@ class PlayerSearch extends Component {
     })
     console.log("stats", data);
   }
+
   handleSearchChange = (e, data) => {
     console.log('data1', data.value)
     this.setState({value:data.value})
@@ -56,7 +58,7 @@ class PlayerSearch extends Component {
   renderResults = (results) => {
      return results.map((item, index) =>
         <Search.Results 
-          title={item.first_name + ' ' + item.last_name + '-' + item.team.abbreviation}       
+          title={item.first_name + ' ' + item.last_name + '-' + item.team.abbreviation}    
         />
      )
   }
@@ -66,7 +68,8 @@ class PlayerSearch extends Component {
     results.map((item,index) => {
       let player = {
         title: item.first_name + ' ' + item.last_name + ' - ' + item.team.abbreviation,
-        player_id: item.id
+        player_id: item.id,
+        playerName: item.first_name + ' ' + item.last_name
       }
       sanitizedResults.push(player)
     })

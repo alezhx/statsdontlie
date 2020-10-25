@@ -31,6 +31,7 @@ class PlayerStats extends Component {
 
   componentDidMount = () => {
     this.loadAllStats()
+    this.getPlayerImage(this.props.playerName)
   }
 
   loadAllStats = () => {
@@ -113,7 +114,20 @@ class PlayerStats extends Component {
       <PlayerSearch addPlayerId={this.props.changePlayerId}/>
     )
   }
+  
+  getPlayerImage = (playerName) => {
+    let param = JSON.stringify({
+      PlayerName: playerName
+    })
 
+    fetch('/api/images',{
+      method: 'POST',
+      body: param,
+      headers: {"Content-Type": "application/json"}
+    })
+    .then(res => res.json())
+    .then(list => console.log('AAAAAAAAIMAGES',list))
+  }
 
   render() {
     return (
@@ -126,6 +140,9 @@ class PlayerStats extends Component {
         </div>
         <div>
         {JSON.stringify(this.state.postStats)}
+        </div>
+        <div>
+          {/* image */}
         </div>
       </div>
     )

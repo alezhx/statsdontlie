@@ -10,6 +10,7 @@
     "axios": "^0.20.0",
     "faker": "^5.1.0",
     "google-images": "^2.1.0",
+    "images-scraper": "^5.0.7",
     "lodash": "^4.17.20",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

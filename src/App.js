@@ -10,15 +10,16 @@ class App extends Component {
     super(props);
     this.state = {
       playerId : null,
+      playerName: '',
     }
   };
 
   componentDidMount = () => {
     // this.googleImagesTest()
-    this.expressTest()
+    // this.expressTest()
     // this.getList()
+    // this.imageScraperTest()
   }
-
 
   getList = () => {
     fetch('/api/getList')
@@ -26,18 +27,18 @@ class App extends Component {
     .then(list => console.log('test',list))
   }
 
-  expressTest = () => {
-    fetch('/api/images')
-    .then(res => res.json())
-    .then(list => console.log('TESTIMAGES',list))
-  }
+  // expressTest = () => {
+  //   fetch('/api/images')
+  //   .then(res => res.json())
+  //   .then(list => console.log('TESTIMAGES',list))
+  // }
 
   googleImagesTest = () => {
     const GoogleImages = require('google-images');
 
     const client = new GoogleImages('6d5cc39ca7f4caaae', 'AIzaSyB63_1kCTgX0KcooqT7CTNbEcmjqR1RAIs');
 
-    client.search('Lebron James site:nba.com', {size:'large', })
+    client.search('Lebron James 2020 site:nba.com', {size:'xxlarge', })
       .then(images => {
           console.log('images', images)
       });
@@ -47,23 +48,28 @@ class App extends Component {
     return <HomepageLayout addPlayerId = {this.addPlayerId} />
   }
 
-  addPlayerId = (playerId) => {
+  addPlayerId = (playerId, playerName) => {
     console.log('playerId sent', playerId)
-    this.setState({playerId}, () => console.log('playerId state', this.state.playerId))
+    this.setState({playerId, playerName}, () => console.log('playerId state', this.state))
   }
 
   removePlayerId = () => {
-    this.setState({playerId : null})
+    this.setState({playerId : null, playerName: ''})
   }
 
-  renderStatsPage = (playerId) => {
-    return <PlayerStats playerId = {playerId} removePlayerId = {this.removePlayerId} changePlayerId = {this.addPlayerId} />
+  renderStatsPage = (playerId, playerName) => {
+    return <PlayerStats 
+            playerId = {playerId} 
+            playerName = {playerName}
+            removePlayerId = {this.removePlayerId} 
+            changePlayerId = {this.addPlayerId} 
+          />
   }
 
   render () {
     return (
     <div>
-      {this.state.playerId ?  this.renderStatsPage(this.state.playerId) : this.renderHomePage()}
+      {this.state.playerId ?  this.renderStatsPage(this.state.playerId, this.state.playerName) : this.renderHomePage()}
     </div>
     )
   }
