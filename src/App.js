@@ -5,10 +5,6 @@ import HomepageLayout from './views/Homepage'
 import PlayerStats from './views/PlayerStats'
 import axios from 'axios';
 
-
-
-var gapi = require('gapi');
-
 class App extends Component {
   constructor(props) {
     super(props);
