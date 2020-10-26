@@ -9,12 +9,10 @@ class PlayerSearch extends Component {
     this.state = {
       value: null,
       results: [],
-      //player_id: null,
     }
   };
 
   handleResultSelect = (e, { result }) => {
-    console.log('abcdef', result)
     this.setState({ value: result.title })
     this.showPlayerStatsPage(result.player_id, result.player_name)
   }
@@ -33,11 +31,9 @@ class PlayerSearch extends Component {
         per_page: 100
       }
     })
-    console.log("stats", data);
   }
 
   handleSearchChange = (e, data) => {
-    console.log('data1', data.value)
     this.setState({value:data.value})
     this.searchPlayers()
   }
@@ -52,7 +48,7 @@ class PlayerSearch extends Component {
         search: value
       }
     })
-    this.setState({ results: data.data }, ()=> console.log('state res', this.state.results))
+    this.setState({ results: data.data })
   }, 350)
 
   sanitizeResults = (results) => {
@@ -66,17 +62,12 @@ class PlayerSearch extends Component {
       }
       sanitizedResults.push(player)
     })
-    console.log('sani', sanitizedResults)
     return sanitizedResults
   }
 
   render () {
     return (
       <Search
-        // loading={loading}
-        // onResultSelect={(e, data) =>
-        //   dispatch({ type: 'UPDATE_SELECTION', selection: data })
-        // }
         fluid
         input={{ fluid: true, icon: ''}}
         onSearchChange={this.handleSearchChange}
