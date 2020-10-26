@@ -132,7 +132,7 @@ class PlayerStats extends Component {
       this.setState({playerImageLink: data.items[0].link})
   }
 
-  render() {
+  renderPlayerStats = () => {
     return (
       <div key={this.props.playerId + this.props.playerName}>
         <Container>
@@ -148,6 +148,23 @@ class PlayerStats extends Component {
           <img src={this.state.playerImageLink} />
         </div>
       </div>
+    )
+  }
+
+  renderNoStatsPage = () => 
+    <div key={this.props.playerId + this.props.playerName}>
+      <Container>
+        {this.renderSearchBar()}
+      </Container>
+      <div>
+        NO STATS TRY AGAIN
+      </div>
+    </div>
+
+
+  render() {
+    return (
+      this.state.postStats.length ? this.renderPlayerStats() : this.renderNoStatsPage()
     )
   }
 }
