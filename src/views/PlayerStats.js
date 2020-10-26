@@ -79,7 +79,7 @@ class PlayerStats extends Component {
     this.setState({postStats:this.getStatAverages(data)}, () => {
       if (!(_.isEmpty(this.state.postStats))) {
         this.getPlayerImage(this.props.playerName)
-        this.getPlayerHighlights(this.playerName)
+        this.getPlayerHighlights(this.props.playerName)
       }
       this.setState({isLoading:false})
     })
@@ -142,11 +142,12 @@ class PlayerStats extends Component {
   }
 
   getPlayerHighlights = async(playerName) => {
+    console.log(playerName)
     const {data} = await axios.get('https://www.googleapis.com/youtube/v3/search', {
       params: {
         key: process.env.REACT_APP_GOOGLE_API_KEY,
         part: "snippet",
-        maxResults: 1,
+        maxResults: 5,
         q: playerName + " 2020 Highlights",
         publishedBefore: "2020-10-26T00:00:00Z",
         publishedAfter: "2020-01-01T00:00:00Z"
@@ -156,7 +157,7 @@ class PlayerStats extends Component {
     this.setState({playerHighlights: "www.youtube.com/watch?v=" + data.items[0].id.videoId}, () => {
       console.log(this.state.playerHighlights)
     })
-}
+  }
 
   renderPlayerStats = () => {
     return (
