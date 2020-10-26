@@ -19,6 +19,7 @@ import {
 import PlayerSearch from '../components/PlayerSearch';
 import axios from 'axios'
 import _ from 'lodash'
+import LoadingSpinner from '../components/LoadingSpinner';
 
 class PlayerStats extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class PlayerStats extends Component {
       postStats: {},
       playerImageLink: '',
 
-      isLoading: false
+      isLoading: true
     }
   };
 
@@ -37,6 +38,8 @@ class PlayerStats extends Component {
   }
 
   loadAllStatActions = () => {
+    // this.setState({isLoading:true})
+
     this.loadBubbleStats(this.props.playerId)
     this.loadPreBubbleStats(this.props.playerId)
   }
@@ -77,6 +80,7 @@ class PlayerStats extends Component {
       if (!(_.isEmpty(this.state.postStats))) {
         this.getPlayerImage(this.props.playerName)
       }
+      this.setState({isLoading:false})
     })
   }
 
@@ -158,17 +162,17 @@ class PlayerStats extends Component {
         NO STATS TRY AGAIN
       </div>
 
-
   render() {
     return (
-      //  ? this.renderPlayerStats() : this.renderNoStatsPage()
       <div key={this.props.playerId + this.props.playerName}>
         <Container>
           {this.renderSearchBar()}
         </Container>
-        <div>
-          {_.isEmpty(this.state.postStats) ? this.renderNoStatsPage() : this.renderPlayerStats()}
-        </div>
+        {this.state.isLoading ? <LoadingSpinner /> :        
+          <div>
+            {_.isEmpty(this.state.postStats) ? this.renderNoStatsPage() : this.renderPlayerStats()}
+          </div>
+        }
       </div>
     )
   }
