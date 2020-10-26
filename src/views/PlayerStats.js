@@ -57,7 +57,6 @@ class PlayerStats extends Component {
         per_page: 100
       }
     })
-    console.log("pre stats", data);
     
     this.setState({preStats:this.getStatAverages(data)})
   }
@@ -73,7 +72,6 @@ class PlayerStats extends Component {
         per_page: 100
       }
     })
-    console.log("post stats", data);
 
     this.setState({postStats:this.getStatAverages(data)})
   }
@@ -118,7 +116,6 @@ class PlayerStats extends Component {
   }
 
   getPlayerImage = async(playerName) => {
-    console.log(process.env.REACT_APP_GOOGLE_API_KEY, "environment")
       const {data} = await axios.get('https://www.googleapis.com/customsearch/v1?', {
         params: {
           key: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -132,8 +129,6 @@ class PlayerStats extends Component {
           // linkSite: "nba.com"
         }
       })
-      console.log(playerName, data);
-
       this.setState({playerImageLink: data.items[0].link})
   }
 
