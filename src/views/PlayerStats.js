@@ -38,8 +38,7 @@ class PlayerStats extends Component {
   }
 
   loadAllStatActions = () => {
-    // this.setState({isLoading:true})
-
+    this.setState({isLoading:true, playerImageLink:""})
     this.loadBubbleStats(this.props.playerId)
     this.loadPreBubbleStats(this.props.playerId)
   }
@@ -148,7 +147,7 @@ class PlayerStats extends Component {
         key: process.env.REACT_APP_GOOGLE_API_KEY,
         part: "snippet",
         maxResults: 5,
-        q: playerName + " 2020 Highlights",
+        q: playerName + " Highlights",
         publishedBefore: "2020-10-26T00:00:00Z",
         publishedAfter: "2020-01-01T00:00:00Z"
       }
