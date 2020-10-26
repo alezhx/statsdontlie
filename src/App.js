@@ -3,7 +3,7 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import HomepageLayout from './views/Homepage'
 import PlayerStats from './views/PlayerStats'
-import axios from 'axios';
+
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +22,8 @@ class App extends Component {
   }
 
   addPlayerId = (playerId, playerName) => {
-    this.setState({playerId, playerName})
+    console.log('playerId sent', playerId)
+    this.setState({playerId, playerName}, () => console.log('playerId state', this.state))
   }
 
   removePlayerId = () => {
@@ -43,7 +44,6 @@ class App extends Component {
     <div>
       {this.state.playerId ?  this.renderStatsPage(this.state.playerId, this.state.playerName) : this.renderHomePage()}
     </div>
-    
     )
   }
 }
