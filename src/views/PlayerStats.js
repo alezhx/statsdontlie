@@ -15,11 +15,11 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react'
-// import Search from '../components/Search'
 import PlayerSearch from '../components/PlayerSearch';
 import axios from 'axios'
 import _ from 'lodash'
 import LoadingSpinner from '../components/LoadingSpinner';
+import ReactPlayer from 'react-player'
 
 class PlayerStats extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class PlayerStats extends Component {
       preStats: {},
       postStats: {},
       playerImageLink: '',
-
+      playerHighlights: '',
       isLoading: true
     }
   };
@@ -79,6 +79,7 @@ class PlayerStats extends Component {
     this.setState({postStats:this.getStatAverages(data)}, () => {
       if (!(_.isEmpty(this.state.postStats))) {
         this.getPlayerImage(this.props.playerName)
+        this.getPlayerHighlights(this.playerName)
       }
       this.setState({isLoading:false})
     })
@@ -135,11 +136,27 @@ class PlayerStats extends Component {
           safe: "active",
           searchType: "image",
           dateRestrict: "m[6]"
-          // linkSite: "nba.com"
         }
       })
       this.setState({playerImageLink: data.items[0].link})
   }
+
+  getPlayerHighlights = async(playerName) => {
+    const {data} = await axios.get('https://www.googleapis.com/youtube/v3/search', {
+      params: {
+        key: process.env.REACT_APP_GOOGLE_API_KEY,
+        part: "snippet",
+        maxResults: 1,
+        q: playerName + " 2020 Highlights",
+        publishedBefore: "2020-10-26T00:00:00Z",
+        publishedAfter: "2020-01-01T00:00:00Z"
+      }
+    })
+    console.log(data);
+    this.setState({playerHighlights: "www.youtube.com/watch?v=" + data.items[0].id.videoId}, () => {
+      console.log(this.state.playerHighlights)
+    })
+}
 
   renderPlayerStats = () => {
     return (
@@ -152,6 +169,10 @@ class PlayerStats extends Component {
         </div>
         <div>
           <img src={this.state.playerImageLink} />
+        </div>
+        <div>
+          <h3> Player Highlights </h3>
+          { this.state.playerHighlights ? <ReactPlayer url = {this.state.playerHighlights}/> : <div/> }
         </div>
       </div>
     )
