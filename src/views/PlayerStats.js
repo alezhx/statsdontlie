@@ -18,7 +18,7 @@ import {
 // import Search from '../components/Search'
 import PlayerSearch from '../components/PlayerSearch';
 import axios from 'axios'
-
+import _ from 'lodash'
 
 class PlayerStats extends Component {
   constructor(props) {
@@ -26,24 +26,24 @@ class PlayerStats extends Component {
     this.state = {
       preStats: {},
       postStats: {},
-      playerImageLink: ''
+      playerImageLink: '',
+
+      isLoading: false
     }
   };
 
   componentDidMount = () => {
-    this.loadAllStats()
-    this.getPlayerImage(this.props.playerName)
+    this.loadAllStatActions()
   }
 
-  loadAllStats = () => {
-    this.loadPreBubbleStats(this.props.playerId)
+  loadAllStatActions = () => {
     this.loadBubbleStats(this.props.playerId)
+    this.loadPreBubbleStats(this.props.playerId)
   }
 
   componentDidUpdate = (prevProps, prevState, snapshot) => { 
     if(prevProps.playerId !== this.props.playerId) {
-      this.loadAllStats()
-      this.getPlayerImage(this.props.playerName)
+      this.loadAllStatActions()
     }
   }
 
@@ -73,7 +73,11 @@ class PlayerStats extends Component {
       }
     })
 
-    this.setState({postStats:this.getStatAverages(data)})
+    this.setState({postStats:this.getStatAverages(data)}, () => {
+      if (!(_.isEmpty(this.state.postStats))) {
+        this.getPlayerImage(this.props.playerName)
+      }
+    })
   }
 
   getStatAverages = (response) => {
@@ -116,6 +120,7 @@ class PlayerStats extends Component {
   }
 
   getPlayerImage = async(playerName) => {
+    console.log("GETTING PLAYER IMAGE")
       const {data} = await axios.get('https://www.googleapis.com/customsearch/v1?', {
         params: {
           key: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -134,10 +139,7 @@ class PlayerStats extends Component {
 
   renderPlayerStats = () => {
     return (
-      <div key={this.props.playerId + this.props.playerName}>
-        <Container>
-          {this.renderSearchBar()}
-        </Container>
+      <div >
         <div>
         {JSON.stringify(this.state.preStats)}
         </div>
@@ -152,19 +154,22 @@ class PlayerStats extends Component {
   }
 
   renderNoStatsPage = () => 
-    <div key={this.props.playerId + this.props.playerName}>
-      <Container>
-        {this.renderSearchBar()}
-      </Container>
       <div>
         NO STATS TRY AGAIN
       </div>
-    </div>
 
 
   render() {
     return (
-      this.state.postStats.length ? this.renderPlayerStats() : this.renderNoStatsPage()
+      //  ? this.renderPlayerStats() : this.renderNoStatsPage()
+      <div key={this.props.playerId + this.props.playerName}>
+        <Container>
+          {this.renderSearchBar()}
+        </Container>
+        <div>
+          {_.isEmpty(this.state.postStats) ? this.renderNoStatsPage() : this.renderPlayerStats()}
+        </div>
+      </div>
     )
   }
 }

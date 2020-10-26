@@ -22,8 +22,7 @@ class App extends Component {
   }
 
   addPlayerId = (playerId, playerName) => {
-    console.log('playerId sent', playerId)
-    this.setState({playerId, playerName}, () => console.log('playerId state', this.state))
+    this.setState({playerId, playerName})
   }
 
   removePlayerId = () => {
