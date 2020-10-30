@@ -87,7 +87,7 @@ class PlayerStats extends Component {
   getStatAverages = (response) => {
       let onlyStats = response.data;
       let compressedStats = {}
-    
+
       for (let i = 0; i < onlyStats.length; i++){
         for (const key in onlyStats[i]) {
           if (key !== 'game' && key !== 'min' && key !== 'player' && key !== 'team' && key !== 'id') {
