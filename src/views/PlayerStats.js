@@ -168,7 +168,7 @@ class PlayerStats extends Component {
         {JSON.stringify(this.state.postStats)}
         </div>
         <div>
-          <img src={this.state.playerImageLink} />
+          <img src={this.state.playerImageLink} loading='lazy'/>
         </div>
         <div>
           <h3> Player Highlights </h3>
