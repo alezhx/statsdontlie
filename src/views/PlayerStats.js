@@ -124,7 +124,6 @@ class PlayerStats extends Component {
   }
 
   getPlayerImage = async(playerName) => {
-    console.log("GETTING PLAYER IMAGE")
       const {data} = await axios.get('https://www.googleapis.com/customsearch/v1?', {
         params: {
           key: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -141,7 +140,6 @@ class PlayerStats extends Component {
   }
 
   getPlayerHighlights = async(playerName) => {
-    console.log(playerName)
     const {data} = await axios.get('https://www.googleapis.com/youtube/v3/search', {
       params: {
         key: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -152,10 +150,7 @@ class PlayerStats extends Component {
         publishedAfter: "2020-01-01T00:00:00Z"
       }
     })
-    console.log(data);
-    this.setState({playerHighlights: "www.youtube.com/watch?v=" + data.items[0].id.videoId}, () => {
-      console.log(this.state.playerHighlights)
-    })
+    this.setState({playerHighlights: "www.youtube.com/watch?v=" + data.items[0].id.videoId})
   }
 
   renderPlayerStats = () => {
