@@ -30,7 +30,13 @@ class PlayerStats extends Component {
       playerImageLink: '',
       playerHighlights: '',
       isLoading: true,
-      imageStatus: 'loading',
+      imageLoaded: false,
+      image: {
+        height: null,
+        width: null,
+        displayH: '100%',
+        displayW: '100%'
+      }
     }
   };
 
@@ -40,6 +46,7 @@ class PlayerStats extends Component {
 
   loadAllStatActions = () => {
     this.setState({isLoading:true, playerImageLink:""})
+    this.deloadImage()
     this.loadBubbleStats(this.props.playerId)
     this.loadPreBubbleStats(this.props.playerId)
   }
@@ -125,6 +132,7 @@ class PlayerStats extends Component {
   }
 
   getPlayerImage = async(playerName) => {
+    try {
       const {data} = await axios.get('https://www.googleapis.com/customsearch/v1?', {
         params: {
           key: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -137,7 +145,16 @@ class PlayerStats extends Component {
           dateRestrict: "m[6]"
         }
       })
-      this.setState({playerImageLink: data.items[0].link})
+      console.log('google Image', data)
+      this.setState({playerImageLink: data.items[0].link,
+        image: {
+          height: data.items[0].image.height,
+          width: data.items[0].image.width
+        }
+      })
+    } catch (error) {
+      console.log('Image API error', error)
+    }
   }
 
   getPlayerHighlights = async(playerName) => {
@@ -153,6 +170,27 @@ class PlayerStats extends Component {
     })
     this.setState({playerHighlights: "www.youtube.com/watch?v=" + data.items[0].id.videoId})
   }
+
+  handleImageLoaded = () => {
+    console.log('imageLoaded')
+    // this.setState({ imageLoaded: true }, () => console.log('imageLoaded', this.state.imageLoaded));
+    if(this.state.image.height > this.state.image.width) {
+      this.setState({image:{
+        displayH: 'auto',
+        displayW: '100%'
+      }})
+    } else {
+      this.setState({image:{
+        displayH: '100%',
+        displayW: 'auto'
+      }})
+    }
+  }
+
+  deloadImage = () => {
+    this.setState({ imageLoaded: false });
+  }
+
 
   renderPlayerStats = () => {
     return (
@@ -182,7 +220,13 @@ class PlayerStats extends Component {
 
         </div>
         <div style={{width:'40%', textAlign:'center', height:'70vh', verticalAlign:'top'}}>
-          <img align='top' src={this.state.playerImageLink} style={{width:'100%', objectFit:'cover'}} loading='lazy'/>
+          <img 
+            onLoad={this.handleImageLoaded}
+            src={this.state.playerImageLink} 
+            style={{width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 0%'}} 
+            // style={{width: this.state.image.displayW, height: this.state.image.displayH, objectFit:'contain'}}
+            loading='lazy'
+          />
         </div>
         {/* <div
           style={{

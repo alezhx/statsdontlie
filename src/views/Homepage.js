@@ -73,13 +73,7 @@ class Homepage extends Component {
               fitted
           />
         </Menu>
-        <div style = {{
-          // backgroundColor: "#1b1c1d",
-          // minHeight: "100vh",
-          // display: 'flex',
-          // justifyContent: 'center',
-          // alignItems: 'center'
-        }}>
+        <div>
           <Container text>
             <Header
               as='h1'
