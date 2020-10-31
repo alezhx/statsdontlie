@@ -2,22 +2,13 @@ import { createMedia } from '@artsy/fresnel'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import {
-  Button,
-  Container,
-  Divider,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  List,
-  Menu,
-  Segment,
-  Sidebar,
-  Visibility,
+  Table,
+
+  Container
 } from 'semantic-ui-react'
 import PlayerSearch from '../components/PlayerSearch';
 import axios from 'axios'
-import _ from 'lodash'
+import _, { keys } from 'lodash'
 import LoadingSpinner from '../components/LoadingSpinner';
 import ReactPlayer from 'react-player'
 
@@ -193,8 +184,41 @@ class PlayerStats extends Component {
 
 
   renderPlayerStats = () => {
+    let statKeys = Object.keys(this.state.preStats);
     return (
-      <div >
+      <div>
+        <Table celled inverted selectable>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell inverted collapsing/>
+              {statKeys.map((key) => {
+                  let stat = key.toUpperCase();
+                  if (stat.includes("_")) {
+                    stat = stat.replace("_","")
+                  }
+                  return <Table.HeaderCell collapsing> {stat} </Table.HeaderCell>
+              })}
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell>
+                Pre-Bubble
+              </Table.Cell>
+              {statKeys.map((key) => {
+                  return <Table.HeaderCell collapsing> {this.state.preStats[key]} </Table.HeaderCell>
+              })}
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>
+                In Bubble
+              </Table.Cell>
+              {statKeys.map((key) => {
+                  return <Table.HeaderCell collapsing> {this.state.postStats[key]} </Table.HeaderCell>
+              })}
+            </Table.Row>
+          </Table.Body>
+        </Table>
         <div>
         {JSON.stringify(this.state.preStats)}
         </div>
@@ -226,6 +250,7 @@ class PlayerStats extends Component {
             style={{width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 0%'}} 
             // style={{width: this.state.image.displayW, height: this.state.image.displayH, objectFit:'contain'}}
             loading='lazy'
+            alt = "brb using imagination since no pics"
           />
         </div>
         {/* <div

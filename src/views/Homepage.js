@@ -36,7 +36,6 @@ class Homepage extends Component {
   render () {
     return (
       <div style = {{
-        // backgroundColor: "#1b1c1d"
           minHeight: "100vh",
           display: 'flex',
           justifyContent: 'center',
@@ -73,7 +72,16 @@ class Homepage extends Component {
               fitted
           />
         </Menu>
+<<<<<<< Updated upstream
         <div>
+=======
+        <div style = {{
+          minHeight: "100VH",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+>>>>>>> Stashed changes
           <Container text>
             <Header
               as='h1'
