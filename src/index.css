@@ -1,4 +1,6 @@
 body {
+  overflow: hidden;
+  background-color:#1b1c1d;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

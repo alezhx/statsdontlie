@@ -114,7 +114,7 @@ class DesktopContainer extends Component {
           </Segment>
         </Visibility>
 
-        {children}
+        {/* {children} */}
       </Media>
     )
   }
@@ -205,6 +205,7 @@ ResponsiveContainer.propTypes = {
 }
 
 const HomepageLayout = (props) => (
+  <body style={{backgroundColor:'black'}}>
   <ResponsiveContainer addPlayerId = {props.addPlayerId} >
 
 
@@ -288,6 +289,7 @@ const HomepageLayout = (props) => (
       </Container>
     </Segment>
   </ResponsiveContainer>
+  </body>
 )
 
 export default HomepageLayout

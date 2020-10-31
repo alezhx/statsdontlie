@@ -29,7 +29,8 @@ class PlayerStats extends Component {
       postStats: {},
       playerImageLink: '',
       playerHighlights: '',
-      isLoading: true
+      isLoading: true,
+      imageStatus: 'loading',
     }
   };
 
@@ -162,14 +163,41 @@ class PlayerStats extends Component {
         <div>
         {JSON.stringify(this.state.postStats)}
         </div>
-        <div>
+        {/* <div>
           <img src={this.state.playerImageLink} loading='lazy'/>
-        </div>
+        </div> */}
+        {this.renderImageQuickStats()}
         <div>
           <h3> Player Highlights </h3>
           { this.state.playerHighlights ? <ReactPlayer url = {this.state.playerHighlights}/> : <div/> }
         </div>
       </div>
+    )
+  }
+
+  renderImageQuickStats = () => {
+    return (
+      <Container style={{width:'80%', display:'flex', justifyContent:'center'}}>
+        <div style={{width:'30%', backgroundColor:'red'}}>
+
+        </div>
+        <div style={{width:'40%', textAlign:'center', height:'70vh', verticalAlign:'top'}}>
+          <img align='top' src={this.state.playerImageLink} style={{width:'100%', objectFit:'cover'}} loading='lazy'/>
+        </div>
+        {/* <div
+          style={{
+            backgroundImage: `url(${this.state.playerImageLink})`,
+            width: '40%',
+            height: '65vh',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        > */}
+
+        <div style={{width:'30%', backgroundColor:'red'}}>
+
+        </div>
+      </Container>
     )
   }
 
@@ -180,7 +208,10 @@ class PlayerStats extends Component {
 
   render() {
     return (
-      <div key={this.props.playerId + this.props.playerName}>
+      <div 
+        key={this.props.playerId + this.props.playerName} 
+        style={{backgroundColor:'#1b1c1d'}}
+      >
         <Container>
           {this.renderSearchBar()}
         </Container>
