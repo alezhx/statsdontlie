@@ -37,8 +37,12 @@ class Homepage extends Component {
     return (
       <div style = {{
         // backgroundColor: "#1b1c1d"
+          minHeight: "100vh",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
       }}>
-        <Menu inverted secondary>
+        <Menu inverted secondary style={{position:'absolute', top:0, right:10}}>
           <Menu.Item
             position = 'right'
             style = {{
@@ -52,7 +56,7 @@ class Homepage extends Component {
             as='a'
             name="Alex"
             href=""
-            fitted = "true"
+            fitted
           />
           <Menu.Item
             style = {{
@@ -66,17 +70,15 @@ class Homepage extends Component {
               name= "Victor"
               as='a'
               href="https://www.google.com"
-              style = {{
-                padding:0.5
-              }}
+              fitted
           />
         </Menu>
         <div style = {{
           // backgroundColor: "#1b1c1d",
-          minHeight: "100VH",
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
+          // minHeight: "100vh",
+          // display: 'flex',
+          // justifyContent: 'center',
+          // alignItems: 'center'
         }}>
           <Container text>
             <Header
