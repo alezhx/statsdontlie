@@ -4,7 +4,6 @@ import 'semantic-ui-css/semantic.min.css'
 import HomepageLayout from './views/Homepage'
 import PlayerStats from './views/PlayerStats'
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +40,7 @@ class App extends Component {
   render () {
     return (
     <div>
-      {this.state.playerId ?  this.renderStatsPage(this.state.playerId, this.state.playerName) : this.renderHomePage()}
+      {this.state.playerId ? this.renderStatsPage(this.state.playerId, this.state.playerName) : this.renderHomePage()}
     </div>
     )
   }
