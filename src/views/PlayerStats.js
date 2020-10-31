@@ -87,7 +87,7 @@ class PlayerStats extends Component {
   getStatAverages = (response) => {
       let onlyStats = response.data;
       let compressedStats = {}
-
+    
       for (let i = 0; i < onlyStats.length; i++){
         for (const key in onlyStats[i]) {
           if (key !== 'game' && key !== 'min' && key !== 'player' && key !== 'team' && key !== 'id') {
@@ -163,7 +163,7 @@ class PlayerStats extends Component {
         {JSON.stringify(this.state.postStats)}
         </div>
         <div>
-          <img src={this.state.playerImageLink} loading='lazy'/>
+          <img src={this.state.playerImageLink} />
         </div>
         <div>
           <h3> Player Highlights </h3>
