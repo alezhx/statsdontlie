@@ -36,7 +36,7 @@ class Homepage extends Component {
   render () {
     return (
       <div style = {{
-        backgroundColor: "#1b1c1d"
+        // backgroundColor: "#1b1c1d"
       }}>
         <Menu inverted secondary>
           <Menu.Item
@@ -67,14 +67,12 @@ class Homepage extends Component {
               as='a'
               href="https://www.google.com"
               style = {{
-                paddingLeft: .5,
-                paddingTop: .5,
-                paddingBottom: .5
+                padding:0.5
               }}
           />
         </Menu>
         <div style = {{
-          backgroundColor: "#1b1c1d",
+          // backgroundColor: "#1b1c1d",
           minHeight: "100VH",
           display: 'flex',
           justifyContent: 'center',
