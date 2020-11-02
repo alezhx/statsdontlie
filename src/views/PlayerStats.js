@@ -7,6 +7,7 @@ import {
   Container
 } from 'semantic-ui-react'
 import PlayerSearch from '../components/PlayerSearch';
+import StatsTable from '../components/StatsTable';
 import axios from 'axios'
 import _, { keys } from 'lodash'
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -184,41 +185,9 @@ class PlayerStats extends Component {
 
 
   renderPlayerStats = () => {
-    let statKeys = Object.keys(this.state.preStats);
+    let statCategories = Object.keys(this.state.preStats);
     return (
       <div>
-        <Table celled inverted selectable>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell inverted collapsing/>
-              {statKeys.map((key) => {
-                  let stat = key.toUpperCase();
-                  if (stat.includes("_")) {
-                    stat = stat.replace("_","")
-                  }
-                  return <Table.HeaderCell collapsing> {stat} </Table.HeaderCell>
-              })}
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            <Table.Row>
-              <Table.Cell>
-                Pre-Bubble
-              </Table.Cell>
-              {statKeys.map((key) => {
-                  return <Table.HeaderCell collapsing> {this.state.preStats[key]} </Table.HeaderCell>
-              })}
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>
-                In Bubble
-              </Table.Cell>
-              {statKeys.map((key) => {
-                  return <Table.HeaderCell collapsing> {this.state.postStats[key]} </Table.HeaderCell>
-              })}
-            </Table.Row>
-          </Table.Body>
-        </Table>
         <div>
         {JSON.stringify(this.state.preStats)}
         </div>
@@ -230,6 +199,7 @@ class PlayerStats extends Component {
         </div> */}
         {this.renderImageQuickStats()}
         <div>
+          <StatsTable statKeys={statCategories} preStats={this.state.preStats} postStats={this.state.postStats}/>
           <h3> Player Highlights </h3>
           { this.state.playerHighlights ? <ReactPlayer url = {this.state.playerHighlights}/> : <div/> }
         </div>
