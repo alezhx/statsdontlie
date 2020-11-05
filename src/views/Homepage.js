@@ -36,10 +36,10 @@ class Homepage extends Component {
   render () {
     return (
       <div style = {{
-          minHeight: "100vh",
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
+        minHeight: "100vh",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}>
         <Menu inverted secondary style={{position:'absolute', top:0, right:10}}>
           <Menu.Item
@@ -72,16 +72,11 @@ class Homepage extends Component {
               fitted
           />
         </Menu>
-        <div style = {{
-          minHeight: "100VH",
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}>
+        <div>
           <Container text>
             <Header
               as='h1'
-              content='BubbleStats'
+              content="stats don't lie 🏀"
               inverted
               style={{
                 fontSize: '4em',
@@ -91,7 +86,7 @@ class Homepage extends Component {
             />
             <Header
               as='h2'
-              content='Search for a player to find detailed NBA bubble stats'
+              content="Search for a player's stats inside and out the NBA bubble"
               inverted
               style={{
                 fontSize: '1.7em',
@@ -109,38 +104,3 @@ class Homepage extends Component {
 }
   
 export default Homepage;
-
-//   render () {
-//     return (
-//       <MediaContextProvider>
-//         <Media greaterThan='mobile'>
-//           <Container text>
-//             <Header
-//               as='h1'
-//               content='BubbleStats'
-//               inverted
-//               style={{
-//                 fontSize: this.props.mobile ? '2em' : '4em',
-//                 fontWeight: 'normal',
-//                 marginBottom: 0,
-//                 marginTop: this.props.mobile ? '1.5em' : '3em',
-//               }}
-//             />
-//             <Header
-//               as='h2'
-//               content='Search for a player to find detailed NBA bubble stats'
-//               inverted
-//               style={{
-//                 fontSize: this.props.mobile ? '1.5em' : '1.7em',
-//                 fontWeight: 'normal',
-//                 marginTop: this.props.mobile ? '0.5em' : '1.5em',
-//               }}
-//             />
-//             <PlayerSearch  addPlayerId = {this.props.addPlayerId}/>
-//           </Container>
-//         </Media>
-//       </MediaContextProvider>
-//     ) 
-//   }
-// }
-

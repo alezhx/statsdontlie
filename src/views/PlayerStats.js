@@ -251,7 +251,7 @@ class PlayerStats extends Component {
         key={this.props.playerId + this.props.playerName} 
         style={{backgroundColor:'#1b1c1d'}}
       >
-        <Container>
+        <Container style={{padding:20}}>
           {this.renderSearchBar()}
         </Container>
         {this.state.isLoading ? <LoadingSpinner /> :        
