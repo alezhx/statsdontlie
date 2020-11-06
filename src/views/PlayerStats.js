@@ -12,6 +12,7 @@ import axios from 'axios'
 import _, { keys } from 'lodash'
 import LoadingSpinner from '../components/LoadingSpinner';
 import ReactPlayer from 'react-player'
+import NoStats from '../components/NoStats';
 
 class PlayerStats extends Component {
   constructor(props) {
@@ -249,9 +250,7 @@ class PlayerStats extends Component {
   }
 
   renderNoStatsPage = () => 
-      <div>
-        NO STATS TRY AGAIN
-      </div>
+      <NoStats/>
 
   render() {
     return (
