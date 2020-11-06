@@ -209,7 +209,9 @@ class PlayerStats extends Component {
 
 
   renderPlayerStats = () => {
-    let statCategories = Object.keys(this.state.preStats);
+    // let statCategories = Object.keys(this.state.preStats);
+    // ["ast", "blk", "dreb", "fg3_pct", "fg3a", "fg3m", "fg_pct", "fga", "fgm", "ft_pct", "fta", "ftm", "oreb", "pf", "pts", "reb", "stl", "turnover"]
+    let statCategories = ["fga", "fgm", "fg_pct", "fg3a", "fg3m", "fg3_pct", "fta", "ftm", "ft_pct", "oreb", "reb", "ast", "blk", "stl", "pf", "turnover", "pts"]
     console.log('keys',statCategories)
     return (
       <div>
