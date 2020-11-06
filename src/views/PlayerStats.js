@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import {
   Table,
-
+  Header,
   Container
 } from 'semantic-ui-react'
 import PlayerSearch from '../components/PlayerSearch';
@@ -119,7 +119,30 @@ class PlayerStats extends Component {
 
   renderSearchBar = () => {
     return (
-      <PlayerSearch addPlayerId={this.props.changePlayerId}/>
+      <Container style={{position:'static', paddingTop:20, paddingBottom:25, display:'flex', justifyContent:'center'}}>
+        <div 
+          style={{
+            display:'block',
+            color:'white', 
+            fontSize:'2em'
+          }}
+        >
+          stats don't lie 🏀
+        </div>
+        <div style={{width:'80%', display:'inline-block'}}>
+        {/* <div 
+          style={{
+            display:"block",
+
+            color:'white', 
+            fontSize:'2em'
+          }}
+        >
+          stats don't lie
+        </div> */}
+        <PlayerSearch addPlayerId={this.props.changePlayerId}/>
+        </div>
+      </Container>
     )
   }
 
@@ -186,14 +209,9 @@ class PlayerStats extends Component {
 
   renderPlayerStats = () => {
     let statCategories = Object.keys(this.state.preStats);
+    console.log('keys',statCategories)
     return (
       <div>
-        <div>
-        {JSON.stringify(this.state.preStats)}
-        </div>
-        <div>
-        {JSON.stringify(this.state.postStats)}
-        </div>
         {/* <div>
           <img src={this.state.playerImageLink} loading='lazy'/>
         </div> */}
@@ -211,7 +229,7 @@ class PlayerStats extends Component {
     return (
       <Container style={{width:'80%', display:'flex', justifyContent:'center'}}>
         <div style={{width:'30%', backgroundColor:'red'}}>
-
+          {JSON.stringify(this.state.preStats)}
         </div>
         <div style={{width:'40%', textAlign:'center', height:'70vh', verticalAlign:'top'}}>
           <img 
@@ -223,18 +241,8 @@ class PlayerStats extends Component {
             alt = "brb using imagination since no pics"
           />
         </div>
-        {/* <div
-          style={{
-            backgroundImage: `url(${this.state.playerImageLink})`,
-            width: '40%',
-            height: '65vh',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }}
-        > */}
-
         <div style={{width:'30%', backgroundColor:'red'}}>
-
+          {JSON.stringify(this.state.postStats)}
         </div>
       </Container>
     )
@@ -251,9 +259,7 @@ class PlayerStats extends Component {
         key={this.props.playerId + this.props.playerName} 
         style={{backgroundColor:'#1b1c1d'}}
       >
-        <Container style={{padding:20}}>
-          {this.renderSearchBar()}
-        </Container>
+        {this.renderSearchBar()}
         {this.state.isLoading ? <LoadingSpinner /> :        
           <div>
             {_.isEmpty(this.state.postStats) ? this.renderNoStatsPage() : this.renderPlayerStats()}
