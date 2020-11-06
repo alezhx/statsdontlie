@@ -128,19 +128,10 @@ class PlayerStats extends Component {
             fontSize:'2em'
           }}
         >
-          stats don't lie 🏀
+          stats don't lie <span role="img" aria-label="baskeball">🏀</span>
         </div>
-        <div style={{width:'80%', display:'inline-block'}}>
-        {/* <div 
-          style={{
-            display:"block",
 
-            color:'white', 
-            fontSize:'2em'
-          }}
-        >
-          stats don't lie
-        </div> */}
+        <div style={{width:'80%', display:'inline-block'}}>
         <PlayerSearch addPlayerId={this.props.changePlayerId}/>
         </div>
       </Container>
@@ -160,8 +151,7 @@ class PlayerStats extends Component {
           searchType: "image",
           dateRestrict: "m[6]"
         }
-      })
-      console.log('google Image', data)
+      }) 
       this.setState({playerImageLink: data.items[0].link,
         image: {
           height: data.items[0].image.height,
@@ -188,8 +178,6 @@ class PlayerStats extends Component {
   }
 
   handleImageLoaded = () => {
-    console.log('imageLoaded')
-    // this.setState({ imageLoaded: true }, () => console.log('imageLoaded', this.state.imageLoaded));
     if(this.state.image.height > this.state.image.width) {
       this.setState({image:{
         displayH: 'auto',
@@ -210,7 +198,6 @@ class PlayerStats extends Component {
 
   renderPlayerStats = () => {
     let statCategories = Object.keys(this.state.preStats);
-    console.log('keys',statCategories)
     return (
       <div>
         {/* <div>
@@ -237,7 +224,6 @@ class PlayerStats extends Component {
             onLoad={this.handleImageLoaded}
             src={this.state.playerImageLink} 
             style={{width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 0%'}} 
-            // style={{width: this.state.image.displayW, height: this.state.image.displayH, objectFit:'contain'}}
             loading='lazy'
             alt = "brb using imagination since no pics"
           />
@@ -249,8 +235,13 @@ class PlayerStats extends Component {
     )
   }
 
-  renderNoStatsPage = () => 
-      <NoStats/>
+  renderNoStatsPage = () => {
+    return (
+      <NoStats playerName = {this.props.playerName}/>
+    )
+  }
+      
+      
 
   render() {
     return (
