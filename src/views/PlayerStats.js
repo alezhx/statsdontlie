@@ -10,10 +10,11 @@ import {
 import PlayerSearch from '../components/PlayerSearch';
 import StatsTable from '../components/StatsTable';
 import axios from 'axios'
-import _, { keys } from 'lodash'
+import _ from 'lodash'
 import LoadingSpinner from '../components/LoadingSpinner';
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
 import NoStats from '../components/NoStats';
+import UtilTools from '../utils/UtilTools';
 
 class PlayerStats extends Component {
   constructor(props) {
@@ -53,10 +54,13 @@ class PlayerStats extends Component {
         per_page: 100
       }
     })
+<<<<<<< Updated upstream
     
     this.setState({preStats:this.getStatAverages(data)})
+=======
+    this.setState({preStats:UtilTools.getStatAverages(data)})
+>>>>>>> Stashed changes
   }
-
 
   loadBubbleStats = async(player_id) => {
     const { data } = await axios.get('https://www.balldontlie.io/api/v1/stats', {
@@ -69,46 +73,13 @@ class PlayerStats extends Component {
       }
     })
 
-    this.setState({postStats:this.getStatAverages(data)}, () => {
+    this.setState({postStats:UtilTools.getStatAverages(data)}, () => {
       if (!(_.isEmpty(this.state.postStats))) {
         this.getPlayerImage(this.props.playerName)
         this.getPlayerHighlights(this.props.playerName)
       }
       // this.setState({isLoading:false})
     })
-  }
-
-  getStatAverages = (response) => {
-      let onlyStats = response.data;
-      let compressedStats = {}
-    
-      for (let i = 0; i < onlyStats.length; i++){
-        for (const key in onlyStats[i]) {
-          if (key !== 'game' && key !== 'min' && key !== 'player' && key !== 'team' && key !== 'id') {
-            compressedStats[key] = compressedStats[key] ? (compressedStats[key] + onlyStats[i][key]) : onlyStats[i][key]
-          }
-        }
-      }
-      let totalfgm = compressedStats['fgm'];
-      let totalfga = compressedStats['fga'];
-      let totalfg3a = compressedStats['fg3a'];
-      let totalfg3m = compressedStats['fg3m'];
-      let totalfta = compressedStats['fta'];
-      let totalftm = compressedStats['ftm'];
-      
-      for (const key in compressedStats) {
-        compressedStats[key] = (compressedStats[key] / onlyStats.length).toFixed(1);
-        if (key === 'fg_pct') {
-          compressedStats[key] = ((totalfgm / totalfga) * 100).toFixed(1);
-        }
-        if (key === 'fg3_pct') {
-          compressedStats[key] = ((totalfg3m / totalfg3a) * 100).toFixed(1);
-        }
-        if (key === 'ft_pct') {
-          compressedStats[key] = ((totalftm / totalfta) * 100).toFixed(1);
-        }
-      }
-      return compressedStats;
   }
 
   renderSearchBar = () => {
