@@ -4,7 +4,8 @@ import React, { Component } from 'react'
 import {
   Table,
   Header,
-  Container
+  Container,
+  Icon
 } from 'semantic-ui-react'
 import PlayerSearch from '../components/PlayerSearch';
 import StatsTable from '../components/StatsTable';
@@ -23,13 +24,6 @@ class PlayerStats extends Component {
       playerImageLink: '',
       playerHighlights: '',
       isLoading: true,
-      imageLoaded: false,
-      image: {
-        height: null,
-        width: null,
-        displayH: '100%',
-        displayW: '100%'
-      }
     }
   };
 
@@ -39,7 +33,6 @@ class PlayerStats extends Component {
 
   loadAllStatActions = () => {
     this.setState({isLoading:true, playerImageLink:""})
-    this.deloadImage()
     this.loadBubbleStats(this.props.playerId)
     this.loadPreBubbleStats(this.props.playerId)
   }
@@ -60,6 +53,7 @@ class PlayerStats extends Component {
         per_page: 100
       }
     })
+    
     this.setState({preStats:this.getStatAverages(data)})
   }
 
@@ -80,7 +74,7 @@ class PlayerStats extends Component {
         this.getPlayerImage(this.props.playerName)
         this.getPlayerHighlights(this.props.playerName)
       }
-      this.setState({isLoading:false})
+      // this.setState({isLoading:false})
     })
   }
 
@@ -120,15 +114,17 @@ class PlayerStats extends Component {
   renderSearchBar = () => {
     return (
       <Container style={{position:'static', paddingTop:20, paddingBottom:25, display:'flex', justifyContent:'center'}}>
-        <div 
-          style={{
-            display:'block',
-            color:'white', 
-            fontSize:'2em'
-          }}
-        >
-          stats don't lie <span role="img" aria-label="baskeball">🏀</span>
-        </div>
+        <a href="" style={{display:'flex', alignItems:'center', paddingRight:10}}>
+          <div 
+            style={{
+              display:'block',
+              color:'white', 
+              fontSize:'2em'
+            }}
+          >
+            stats don't lie <span role="img" aria-label="baskeball">🏀</span>
+          </div>
+        </a>
 
         <div style={{width:'80%', display:'inline-block'}}>
         <PlayerSearch addPlayerId={this.props.changePlayerId}/>
@@ -176,35 +172,11 @@ class PlayerStats extends Component {
     this.setState({playerHighlights: "www.youtube.com/watch?v=" + data.items[0].id.videoId})
   }
 
-  handleImageLoaded = () => {
-    if(this.state.image.height > this.state.image.width) {
-      this.setState({image:{
-        displayH: 'auto',
-        displayW: '100%'
-      }})
-    } else {
-      this.setState({image:{
-        displayH: '100%',
-        displayW: 'auto'
-      }})
-    }
-  }
-
-  deloadImage = () => {
-    this.setState({ imageLoaded: false });
-  }
-
-
   renderPlayerStats = () => {
-    // let statCategories = Object.keys(this.state.preStats);
-    // ["ast", "blk", "dreb", "fg3_pct", "fg3a", "fg3m", "fg_pct", "fga", "fgm", "ft_pct", "fta", "ftm", "oreb", "pf", "pts", "reb", "stl", "turnover"]
     let statCategories = ["fga", "fgm", "fg_pct", "fg3a", "fg3m", "fg3_pct", "fta", "ftm", "ft_pct", "oreb", "reb", "ast", "blk", "stl", "pf", "turnover", "pts"]
     console.log('keys',statCategories)
     return (
       <div>
-        {/* <div>
-          <img src={this.state.playerImageLink} loading='lazy'/>
-        </div> */}
         {this.renderImageQuickStats()}
         <div>
           <StatsTable statKeys={statCategories} preStats={this.state.preStats} postStats={this.state.postStats}/>
@@ -216,22 +188,80 @@ class PlayerStats extends Component {
   }
 
   renderImageQuickStats = () => {
+    let {preStats, postStats} = this.state
+
+    let differences = {
+      pts: postStats.pts - preStats.pts,
+      reb: postStats.reb - preStats.reb,
+      ast: postStats.ast - preStats.ast,
+      fg_pct: postStats.fg_pct - preStats.fg_pct,
+      to: postStats.turnover - preStats.turnover
+    }
+
+    const IncreaseIcon = () => <Icon name="caret up" color="green"/>
+    const DecreaseIcon = () => <Icon name="caret down" color="red"/>
+
     return (
-      <Container style={{width:'80%', display:'flex', justifyContent:'center'}}>
-        <div style={{width:'30%', backgroundColor:'red'}}>
-          {JSON.stringify(this.state.preStats)}
+      <Container style={{width:'80%', display:'flex', justifyContent:'center', marginTop:20, marginBottom:50}}>
+        <div style={{
+          width:'30%', 
+          backgroundColor:'#EEB238FF', 
+          display:'flex', justifyContent:'space-around', alignItems:'center', 
+          flexDirection:'column',
+          color:'white',
+          fontSize: '2em'
+        }}>
+          <div>Pre-bubble (2019-20)</div>
+          <div>PTS {preStats.pts}</div>
+          <div>REB {preStats.reb}</div>
+          <div>AST {preStats.ast}</div>
+          <div>FG {preStats.fg_pct}%</div>
+          <div>TO {preStats.turnover}</div>
         </div>
         <div style={{width:'40%', textAlign:'center', height:'70vh', verticalAlign:'top'}}>
           <img 
-            onLoad={this.handleImageLoaded}
+            onLoad={() => this.state.playerImageLink && this.setState({isLoading:false})}
             src={this.state.playerImageLink} 
-            style={{width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 0%'}} 
+            style={{display:'block', width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 0%'}} 
             loading='lazy'
             alt = "brb using imagination since no pics"
           />
         </div>
-        <div style={{width:'30%', backgroundColor:'red'}}>
-          {JSON.stringify(this.state.postStats)}
+        <div style={{
+          width:'30%', 
+          backgroundColor:'#EEB238FF', 
+          display:'flex', justifyContent:'space-around', alignItems:'center', 
+          flexDirection:'column',
+          color:'white',
+          fontSize: '2em'
+        }}>        
+          <div>Bubble (2020)</div>
+          <div>
+            PTS {postStats.pts}
+            &nbsp;
+            {differences.pts>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+            {console.log('differences', differences)}
+          </div>
+          <div>
+            REB {postStats.reb}
+            &nbsp;
+            {differences.reb>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+          </div>
+          <div>
+            AST {postStats.ast}
+            &nbsp;
+            {differences.ast>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+          </div>
+          <div>
+            FG {postStats.fg_pct}%
+            &nbsp;
+            {differences.fg_pct>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+          </div>
+          <div>
+            TO {postStats.turnover}
+            &nbsp;
+            {differences.to>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+          </div>
         </div>
       </Container>
     )
@@ -241,9 +271,7 @@ class PlayerStats extends Component {
     return (
       <NoStats playerName = {this.props.playerName}/>
     )
-  }
-      
-      
+  }   
 
   render() {
     return (
@@ -252,11 +280,14 @@ class PlayerStats extends Component {
         style={{backgroundColor:'#1b1c1d'}}
       >
         {this.renderSearchBar()}
-        {this.state.isLoading ? <LoadingSpinner /> :        
           <div>
-            {_.isEmpty(this.state.postStats) ? this.renderNoStatsPage() : this.renderPlayerStats()}
+            {_.isEmpty(this.state.postStats) ? 
+            <div>
+              {this.state.isLoading ? <LoadingSpinner /> :        
+                <div>{this.renderNoStatsPage()}</div>}
+            </div> 
+            : this.renderPlayerStats()}
           </div>
-        }
       </div>
     )
   }
