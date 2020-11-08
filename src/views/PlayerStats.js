@@ -60,7 +60,6 @@ class PlayerStats extends Component {
         per_page: 100
       }
     })
-    
     this.setState({preStats:this.getStatAverages(data)})
   }
 

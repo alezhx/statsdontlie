@@ -21,18 +21,6 @@ class PlayerSearch extends Component {
     this.props.addPlayerId(playerId, playerName)
   }
 
-  loadPreBubbleStats = async(player_id) => {
-    const { data } = await axios.get('https://www.balldontlie.io/api/v1/stats', {
-      params: {
-        seasons: 2019,
-        player_ids: [player_id],
-        start_date: "2019-10-22",
-        end_date: "2020-03-12",
-        per_page: 100
-      }
-    })
-  }
-
   handleSearchChange = (e, data) => {
     this.setState({value:data.value})
     this.searchPlayers()
