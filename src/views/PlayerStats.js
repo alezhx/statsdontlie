@@ -54,12 +54,7 @@ class PlayerStats extends Component {
         per_page: 100
       }
     })
-<<<<<<< Updated upstream
-    
-    this.setState({preStats:this.getStatAverages(data)})
-=======
     this.setState({preStats:UtilTools.getStatAverages(data)})
->>>>>>> Stashed changes
   }
 
   loadBubbleStats = async(player_id) => {
@@ -144,7 +139,7 @@ class PlayerStats extends Component {
   }
 
   renderPlayerStats = () => {
-    let statCategories = ["fga", "fgm", "fg_pct", "fg3a", "fg3m", "fg3_pct", "fta", "ftm", "ft_pct", "oreb", "reb", "ast", "blk", "stl", "pf", "turnover", "pts"]
+    let statCategories = ["fga", "fgm", "fg_pct", "fg3a", "fg3m", "fg3_pct", "fta", "ftm", "ft_pct", "oreb", "DREB" ,"reb", "ast", "blk", "stl", "pf", "turnover", "pts"]
     console.log('keys',statCategories)
     return (
       <div>

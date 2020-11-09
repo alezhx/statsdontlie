@@ -28,6 +28,7 @@ const UtilTools = {
         compressedStats[key] = ((totalftm / totalfta) * 100).toFixed(1);
       }
     }
+    compressedStats['DREB'] = compressedStats['reb'] - compressedStats['oreb']
     return compressedStats;
   }
 }

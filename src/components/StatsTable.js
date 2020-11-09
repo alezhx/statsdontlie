@@ -37,8 +37,6 @@ const StatsTable = ({statKeys, preStats, postStats}) => {
   postStats["FG"] = `${postStats["fgm"]} / ${postStats["fga"]}`
   postStats["FG3"] = `${postStats["fg3m"]} / ${postStats["fg3a"]}`
   postStats["FT"] = `${postStats["ftm"]} / ${postStats["fta"]}`
-
-  console.log(preStats)
   return (
     <Table celled color={'black'} inverted selectable>
       <Table.Header>
