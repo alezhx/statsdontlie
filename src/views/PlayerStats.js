@@ -79,7 +79,7 @@ class PlayerStats extends Component {
 
   renderSearchBar = () => {
     return (
-      <Container style={{position:'static', paddingTop:20, paddingBottom:25, display:'flex', justifyContent:'center'}}>
+      <Container style={{position:'sticky', paddingTop:20, paddingBottom:15, display:'flex', justifyContent:'center', top:'0px', backgroundColor:'#1c1c1c', width:'100%'}}>
         <a href="" style={{display:'flex', alignItems:'center', paddingRight:10}}>
           <div 
             style={{
