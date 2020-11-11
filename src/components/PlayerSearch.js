@@ -55,14 +55,16 @@ class PlayerSearch extends Component {
 
   render () {
     return (
+      <div>
       <Search
         fluid
-        input={{ fluid: true, icon: ''}}
+        input={{ fluid: true }}
         onSearchChange={this.handleSearchChange}
         results={this.sanitizeResults(this.state.results)}
         value={this.state.value || ""}
         onResultSelect={this.handleResultSelect}
-      />    
+      />   
+      </div> 
     )
   }
 }

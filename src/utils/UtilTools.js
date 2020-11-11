@@ -29,6 +29,7 @@ const UtilTools = {
       }
     }
     compressedStats['DREB'] = compressedStats['reb'] - compressedStats['oreb']
+
     return compressedStats;
   }
 }

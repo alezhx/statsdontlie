@@ -54,7 +54,14 @@ class PlayerStats extends Component {
         per_page: 100
       }
     })
-    this.setState({preStats:UtilTools.getStatAverages(data)})
+
+    let cleanStats = {}
+
+    if (!(_.isEmpty(data.data))) {
+      cleanStats = UtilTools.getStatAverages(data)
+    }
+
+    this.setState({preStats:cleanStats})
   }
 
   loadBubbleStats = async(player_id) => {
@@ -68,12 +75,19 @@ class PlayerStats extends Component {
       }
     })
 
-    this.setState({postStats:UtilTools.getStatAverages(data)}, () => {
+    let cleanStats = {}
+
+    if (!(_.isEmpty(data.data))) {
+      console.log("reaced block")
+      cleanStats = UtilTools.getStatAverages(data)
+    }
+
+    this.setState({postStats:cleanStats}, () => {
       if (!(_.isEmpty(this.state.postStats))) {
         this.getPlayerImage(this.props.playerName)
         this.getPlayerHighlights(this.props.playerName)
       }
-      // this.setState({isLoading:false})
+      this.setState({isLoading:false})
     })
   }
 
@@ -145,7 +159,7 @@ class PlayerStats extends Component {
 
   renderPlayerStats = () => {
     let statCategories = ["fga", "fgm", "fg_pct", "fg3a", "fg3m", "fg3_pct", "fta", "ftm", "ft_pct", "oreb", "DREB" ,"reb", "ast", "blk", "stl", "pf", "turnover", "pts"]
-    
+
     return (
       <div>
         {this.renderImageQuickStats()}
@@ -153,13 +167,37 @@ class PlayerStats extends Component {
           <div style={{display:'flex', justifyContent:'center'}}>
             <StatsTable statKeys={statCategories} preStats={this.state.preStats} postStats={this.state.postStats}/>
           </div>
-          <div style={{display:'flex', justifyContent:'center'}}>
-            <h3> Player Highlights </h3>
-            { this.state.playerHighlights ? <ReactPlayer url = {this.state.playerHighlights}/> : <div/> }
-          </div>
+          {this.renderVideoHighlights()}
         </Container>
       </div>
     )
+  }
+
+  renderVideoHighlights = () => {
+    if (this.state.playerHighlights) {
+      return (
+        <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', marginTop:30, marginBottom:60}}>
+          <div 
+            style={{
+              padding:36,
+              backgroundColor:'#02326e',
+              textAlign:'center',
+              color:'white',
+              paddingTop:20,
+              borderRadius:15,
+              boxShadow: "5px 5px 5px #000000"
+            }}
+          >
+            <h2>Player Highlights</h2>
+            <ReactPlayer url = {this.state.playerHighlights}/> 
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div style={{height:60}}/>
+      )
+    }
   }
 
   renderImageQuickStats = () => {
@@ -255,12 +293,17 @@ class PlayerStats extends Component {
       >
         {this.renderSearchBar()}
           <div>
-            {_.isEmpty(this.state.postStats) ? 
+          {/* {_.isEmpty(this.state.postStats) ? 
             <div>
               {this.state.isLoading ? <LoadingSpinner /> :        
                 <div>{this.renderNoStatsPage()}</div>}
             </div> 
-            : this.renderPlayerStats()}
+            : this.renderPlayerStats()} */}
+          {this.state.isLoading ? <LoadingSpinner /> :
+            <div>
+              {_.isEmpty(this.state.postStats) ? this.renderNoStatsPage() : this.renderPlayerStats()}
+            </div>
+          }
           </div>
       </div>
     )
