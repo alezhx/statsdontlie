@@ -144,7 +144,8 @@ class PlayerStats extends Component {
   }
 
   renderPlayerStats = () => {
-    let statCategories = ["fga", "fgm", "fg_pct", "fg3a", "fg3m", "fg3_pct", "fta", "ftm", "ft_pct", "oreb", "reb", "ast", "blk", "stl", "pf", "turnover", "pts"]
+    let statCategories = ["fga", "fgm", "fg_pct", "fg3a", "fg3m", "fg3_pct", "fta", "ftm", "ft_pct", "oreb", "DREB" ,"reb", "ast", "blk", "stl", "pf", "turnover", "pts"]
+    
     return (
       <div>
         {this.renderImageQuickStats()}
