@@ -54,12 +54,7 @@ class PlayerStats extends Component {
         per_page: 100
       }
     })
-<<<<<<< Updated upstream
-    
-    this.setState({preStats:this.getStatAverages(data)})
-=======
     this.setState({preStats:UtilTools.getStatAverages(data)})
->>>>>>> Stashed changes
   }
 
   loadBubbleStats = async(player_id) => {
@@ -118,6 +113,7 @@ class PlayerStats extends Component {
           dateRestrict: "m[6]"
         }
       }) 
+      console.log('DATA', data)
       this.setState({playerImageLink: data.items[0].link,
         image: {
           height: data.items[0].image.height,
@@ -130,30 +126,37 @@ class PlayerStats extends Component {
   }
 
   getPlayerHighlights = async(playerName) => {
-    const {data} = await axios.get('https://www.googleapis.com/youtube/v3/search', {
-      params: {
-        key: process.env.REACT_APP_GOOGLE_API_KEY,
-        part: "snippet",
-        maxResults: 5,
-        q: playerName + " Highlights",
-        publishedBefore: "2020-10-26T00:00:00Z",
-        publishedAfter: "2020-01-01T00:00:00Z"
-      }
-    })
-    this.setState({playerHighlights: "www.youtube.com/watch?v=" + data.items[0].id.videoId})
+    try {
+      const {data} = await axios.get('https://www.googleapis.com/youtube/v3/search', {
+        params: {
+          key: process.env.REACT_APP_GOOGLE_API_KEY,
+          part: "snippet",
+          maxResults: 5,
+          q: playerName + " Highlights",
+          publishedBefore: "2020-10-26T00:00:00Z",
+          publishedAfter: "2020-01-01T00:00:00Z"
+        }
+      })
+      this.setState({playerHighlights: "www.youtube.com/watch?v=" + data.items[0].id.videoId})
+    } catch(error) {
+      console.log('Video API error', error)
+    }
   }
 
   renderPlayerStats = () => {
     let statCategories = ["fga", "fgm", "fg_pct", "fg3a", "fg3m", "fg3_pct", "fta", "ftm", "ft_pct", "oreb", "reb", "ast", "blk", "stl", "pf", "turnover", "pts"]
-    console.log('keys',statCategories)
     return (
       <div>
         {this.renderImageQuickStats()}
-        <div>
-          <StatsTable statKeys={statCategories} preStats={this.state.preStats} postStats={this.state.postStats}/>
-          <h3> Player Highlights </h3>
-          { this.state.playerHighlights ? <ReactPlayer url = {this.state.playerHighlights}/> : <div/> }
-        </div>
+        <Container>
+          <div style={{display:'flex', justifyContent:'center'}}>
+            <StatsTable statKeys={statCategories} preStats={this.state.preStats} postStats={this.state.postStats}/>
+          </div>
+          <div style={{display:'flex', justifyContent:'center'}}>
+            <h3> Player Highlights </h3>
+            { this.state.playerHighlights ? <ReactPlayer url = {this.state.playerHighlights}/> : <div/> }
+          </div>
+        </Container>
       </div>
     )
   }
@@ -176,13 +179,13 @@ class PlayerStats extends Component {
       <Container style={{width:'80%', display:'flex', justifyContent:'center', marginTop:20, marginBottom:50}}>
         <div style={{
           width:'30%', 
-          backgroundColor:'#EEB238FF', 
+          backgroundColor:'#02326e', 
           display:'flex', justifyContent:'space-around', alignItems:'center', 
           flexDirection:'column',
           color:'white',
           fontSize: '2em'
         }}>
-          <div>Pre-bubble (2019-20)</div>
+          <div style={{fontWeight:'bold', fontSize:36}}>Pre-bubble '19-20</div>
           <div>PTS {preStats.pts}</div>
           <div>REB {preStats.reb}</div>
           <div>AST {preStats.ast}</div>
@@ -200,18 +203,17 @@ class PlayerStats extends Component {
         </div>
         <div style={{
           width:'30%', 
-          backgroundColor:'#EEB238FF', 
+          backgroundColor:'#02326e', 
           display:'flex', justifyContent:'space-around', alignItems:'center', 
           flexDirection:'column',
           color:'white',
           fontSize: '2em'
         }}>        
-          <div>Bubble (2020)</div>
+          <div style={{fontWeight:'bold', fontSize:36}}>Bubble '20</div>
           <div>
             PTS {postStats.pts}
             &nbsp;
             {differences.pts>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
-            {console.log('differences', differences)}
           </div>
           <div>
             REB {postStats.reb}

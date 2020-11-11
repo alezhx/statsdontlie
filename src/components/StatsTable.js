@@ -38,9 +38,8 @@ const StatsTable = ({statKeys, preStats, postStats}) => {
   postStats["FG3"] = `${postStats["fg3m"]} / ${postStats["fg3a"]}`
   postStats["FT"] = `${postStats["ftm"]} / ${postStats["fta"]}`
 
-  console.log(preStats)
   return (
-    <Table celled color={'black'} inverted selectable>
+    <Table celled color={'black'} inverted selectable collapsing>
       <Table.Header>
         <Table.Row textAlign='center'>
           <Table.HeaderCell inverted collapsing></Table.HeaderCell>
