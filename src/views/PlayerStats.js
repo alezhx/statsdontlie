@@ -93,7 +93,7 @@ class PlayerStats extends Component {
 
   renderSearchBar = () => {
     return (
-      <Container style={{position:'sticky', paddingTop:20, paddingBottom:15, display:'flex', justifyContent:'center', top:'0px', backgroundColor:'#1c1c1c', width:'100%'}}>
+      <Container style={{position:'sticky', paddingTop:20, paddingBottom:15, display:'flex', justifyContent:'center', top:'0px', backgroundColor:'#1c1c1c', width:'100%', borderBottom:'3px solid #02326E'}}>
         <a href="" style={{display:'flex', alignItems:'center', paddingRight:10}}>
           <div 
             style={{
@@ -127,7 +127,6 @@ class PlayerStats extends Component {
           dateRestrict: "m[6]"
         }
       }) 
-      console.log('DATA', data)
       this.setState({playerImageLink: data.items[0].link,
         image: {
           height: data.items[0].image.height,
@@ -213,69 +212,83 @@ class PlayerStats extends Component {
 
     const IncreaseIcon = () => <Icon name="caret up" color="green"/>
     const DecreaseIcon = () => <Icon name="caret down" color="red"/>
-
     return (
-      <Container style={{width:'80%', display:'flex', justifyContent:'center', marginTop:20, marginBottom:50}}>
-        <div style={{
-          width:'30%', 
-          backgroundColor:'#02326e', 
-          display:'flex', justifyContent:'space-around', alignItems:'center', 
-          flexDirection:'column',
-          color:'white',
-          fontSize: '2em'
-        }}>
-          <div style={{fontWeight:'bold', fontSize:36}}>Pre-bubble '19-20</div>
-          <div>PTS {preStats.pts}</div>
-          <div>REB {preStats.reb}</div>
-          <div>AST {preStats.ast}</div>
-          <div>FG {preStats.fg_pct}%</div>
-          <div>TO {preStats.turnover}</div>
-        </div>
-        <div style={{width:'40%', textAlign:'center', height:'70vh', verticalAlign:'top'}}>
-          <img 
-            onLoad={() => this.state.playerImageLink && this.setState({isLoading:false})}
-            src={this.state.playerImageLink} 
-            style={{display:'block', width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 0%'}} 
-            loading='lazy'
-            alt = "brb using imagination since no pics"
+      <div>
+        <Container style={{ width:'80%',paddingBottom:'1em'}}>
+          <Header
+            as='h1'
+            content={this.props.playerName}
+            inverted
+            style={{
+              fontSize: '4em',
+              fontWeight: 'bold',
+              marginTop: '.5em',
+              borderBottom: '1px solid white',
+            }}
           />
-        </div>
-        <div style={{
-          width:'30%', 
-          backgroundColor:'#02326e', 
-          display:'flex', justifyContent:'space-around', alignItems:'center', 
-          flexDirection:'column',
-          color:'white',
-          fontSize: '2em'
-        }}>        
-          <div style={{fontWeight:'bold', fontSize:36}}>Bubble '20</div>
-          <div>
-            PTS {postStats.pts}
-            &nbsp;
-            {differences.pts>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+        </Container>
+        <Container style={{width:'80%', display:'flex', justifyContent:'center', marginTop:20, marginBottom:50}}>
+          <div style={{
+            width:'30%', 
+            backgroundColor:'#02326e', 
+            display:'flex', justifyContent:'space-around', alignItems:'center', 
+            flexDirection:'column',
+            color:'white',
+            fontSize: '2em'
+          }}>
+            <div style={{fontWeight:'bold', fontSize:36}}>Pre-bubble '19-20</div>
+            <div>PTS {preStats.pts}</div>
+            <div>REB {preStats.reb}</div>
+            <div>AST {preStats.ast}</div>
+            <div>FG {preStats.fg_pct}%</div>
+            <div>TO {preStats.turnover}</div>
           </div>
-          <div>
-            REB {postStats.reb}
-            &nbsp;
-            {differences.reb>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+          <div style={{width:'40%', textAlign:'center', height:'70vh', verticalAlign:'top'}}>
+            <img 
+              onLoad={() => this.state.playerImageLink && this.setState({isLoading:false})}
+              src={this.state.playerImageLink} 
+              style={{display:'block', width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 0%'}} 
+              loading='lazy'
+              alt = "brb using imagination since no pics"
+            />
           </div>
-          <div>
-            AST {postStats.ast}
-            &nbsp;
-            {differences.ast>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+          <div style={{
+            width:'30%', 
+            backgroundColor:'#02326e', 
+            display:'flex', justifyContent:'space-around', alignItems:'center', 
+            flexDirection:'column',
+            color:'white',
+            fontSize: '2em'
+          }}>        
+            <div style={{fontWeight:'bold', fontSize:36}}>Bubble '20</div>
+            <div>
+              PTS {postStats.pts}
+              &nbsp;
+              {differences.pts>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+            </div>
+            <div>
+              REB {postStats.reb}
+              &nbsp;
+              {differences.reb>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+            </div>
+            <div>
+              AST {postStats.ast}
+              &nbsp;
+              {differences.ast>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+            </div>
+            <div>
+              FG {postStats.fg_pct}%
+              &nbsp;
+              {differences.fg_pct>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+            </div>
+            <div>
+              TO {postStats.turnover}
+              &nbsp;
+              {differences.to>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+            </div>
           </div>
-          <div>
-            FG {postStats.fg_pct}%
-            &nbsp;
-            {differences.fg_pct>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
-          </div>
-          <div>
-            TO {postStats.turnover}
-            &nbsp;
-            {differences.to>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
-          </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
     )
   }
 

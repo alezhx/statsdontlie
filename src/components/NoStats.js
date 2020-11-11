@@ -27,6 +27,7 @@ const NoStats = (props) => {
           style={{
             fontSize: '3em',
             fontWeight: 'normal',
+            marginTop: '.5em'
           }}
           textAlign = 'center'
         />
