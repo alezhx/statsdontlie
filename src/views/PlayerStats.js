@@ -93,13 +93,14 @@ class PlayerStats extends Component {
 
   renderSearchBar = () => {
     return (
-      <Container style={{position:'sticky', paddingTop:20, paddingBottom:15, display:'flex', justifyContent:'center', top:'0px', backgroundColor:'#1c1c1c', width:'100%', borderBottom:'3px solid #02326E'}}>
+      <Container style={{position:'sticky', paddingTop:15, paddingBottom:15, display:'flex', justifyContent:'center', top:'0px', backgroundColor:'#7285a5', width:'100%', boxShadow: "2px 2px 15px black"}}>
         <a href="" style={{display:'flex', alignItems:'center', paddingRight:10}}>
           <div 
             style={{
               display:'block',
-              color:'white', 
-              fontSize:'2em'
+              color:'#fff', 
+              fontSize:'2em',
+              textShadow: '1px 1px 3px black'
             }}
           >
             stats don't lie <span role="img" aria-label="baskeball">🏀</span>
@@ -163,7 +164,7 @@ class PlayerStats extends Component {
       <div>
         {this.renderImageQuickStats()}
         <Container>
-          <div style={{display:'flex', justifyContent:'center'}}>
+          <div style={{display:'flex', justifyContent:'center', boxShadow: "3px 3px 3px #000000",}}>
             <StatsTable statKeys={statCategories} preStats={this.state.preStats} postStats={this.state.postStats}/>
           </div>
           {this.renderVideoHighlights()}
@@ -187,7 +188,15 @@ class PlayerStats extends Component {
               boxShadow: "5px 5px 5px #000000"
             }}
           >
-            <h2>Player Highlights</h2>
+            <Header
+              as='h2'
+              content="Player Highlights"
+              inverted
+              style={{
+                fontSize: '3em',
+                textShadow: "2px 2px 2px black",
+              }}
+            />
             <ReactPlayer url = {this.state.playerHighlights}/> 
           </div>
         </div>
@@ -220,7 +229,7 @@ class PlayerStats extends Component {
             content={this.props.playerName}
             inverted
             style={{
-              fontSize: '4em',
+              fontSize: '3em',
               fontWeight: 'bold',
               marginTop: '.5em',
               borderBottom: '1px solid white',

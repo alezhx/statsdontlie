@@ -50,11 +50,11 @@ const StatsTable = ({statKeys, preStats, postStats}) => {
       </Table.Header>
       <Table.Body>
         <Table.Row textAlign='center'>
-          <Table.Cell>
+          <Table.Cell singleLine>
             Pre-Bubble
           </Table.Cell>
           {cleanedStatKeys.map((key) => {
-              return <Table.HeaderCell collapsing> {preStats[key]} </Table.HeaderCell>
+              return <Table.Cell collapsing> {preStats[key]} </Table.Cell>
           })}
         </Table.Row>
         <Table.Row textAlign='center'>
@@ -62,7 +62,7 @@ const StatsTable = ({statKeys, preStats, postStats}) => {
             In Bubble
           </Table.Cell>
           {cleanedStatKeys.map((key) => {
-            return <Table.HeaderCell collapsing> {postStats[key]} </Table.HeaderCell>
+            return <Table.Cell collapsing> {postStats[key]} </Table.Cell>
           })}
         </Table.Row>
       </Table.Body>
