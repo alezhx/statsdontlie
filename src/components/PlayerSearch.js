@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import axios from 'axios'
-import { Search, Grid, Header, } from 'semantic-ui-react'
-import { debounce, isEmpty} from 'lodash'
+import axios from 'axios';
+import { Search, } from 'semantic-ui-react';
+import { debounce, isEmpty} from 'lodash';
 
 class PlayerSearch extends Component {
   constructor(props) {

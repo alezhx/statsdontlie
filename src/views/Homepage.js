@@ -1,20 +1,11 @@
-import { createMedia } from '@artsy/fresnel'
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import { createMedia } from '@artsy/fresnel';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import {
-  Button,
   Container,
-  Divider,
-  Grid,
   Header,
-  Icon,
-  Image,
-  List,
   Menu,
-  Segment,
-  Visibility,
-} from 'semantic-ui-react'
-// import Search from '../components/Search'
+} from 'semantic-ui-react';
 import PlayerSearch from '../components/PlayerSearch';
 
 const { MediaContextProvider, Media } = createMedia({

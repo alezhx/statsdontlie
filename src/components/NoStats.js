@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import {
   Container,
   Header
-} from 'semantic-ui-react'
-import jordan from '../static/jordan-crying.jpg'
-import kobepic from '../static/kobe.jpg'
+} from 'semantic-ui-react';
+import jordan from 'static/jordan-crying.jpg';
+import kobepic from 'static/kobe.jpg';
 
 const NoStats = (props) => {
   let kobe = {

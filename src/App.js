@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import 'semantic-ui-css/semantic.min.css'
-import HomepageLayout from './views/Homepage'
-import PlayerStats from './views/PlayerStats'
+import 'semantic-ui-css/semantic.min.css';
+import HomepageLayout from 'views/Homepage';
+import PlayerStats from 'views/PlayerStats';
 
 class App extends Component {
   constructor(props) {
