@@ -5,16 +5,17 @@ import {
   Table,
   Header,
   Container,
-  Icon
+  Icon,
+  Grid
 } from 'semantic-ui-react'
-import PlayerSearch from '../components/PlayerSearch';
-import StatsTable from '../components/StatsTable';
+import PlayerSearch from 'components/PlayerSearch';
+import StatsTable from 'components/StatsTable';
 import axios from 'axios'
 import _ from 'lodash'
-import LoadingSpinner from '../components/LoadingSpinner';
+import LoadingSpinner from 'components/LoadingSpinner';
 import ReactPlayer from 'react-player';
-import NoStats from '../components/NoStats';
-import UtilTools from '../utils/UtilTools';
+import NoStats from 'components/NoStats';
+import UtilTools from 'utils/UtilTools';
 
 class PlayerStats extends Component {
   constructor(props) {
@@ -181,7 +182,7 @@ class PlayerStats extends Component {
             style={{
               padding:36,
               backgroundColor:'#02326e',
-              textAlign:'center',
+              // textAlign:'center',
               color:'white',
               paddingTop:20,
               borderRadius:15,
@@ -193,7 +194,7 @@ class PlayerStats extends Component {
               content="Player Highlights"
               inverted
               style={{
-                fontSize: '3em',
+                fontSize: '2em',
                 textShadow: "2px 2px 2px black",
               }}
             />
@@ -222,8 +223,23 @@ class PlayerStats extends Component {
     const IncreaseIcon = () => <Icon name="caret up" color="green"/>
     const DecreaseIcon = () => <Icon name="caret down" color="red"/>
     return (
-      <div>
-        <Container style={{ width:'80%',paddingBottom:'1em'}}>
+      // <div>
+      //   <Container style={{ width:'80%',paddingBottom:'1em'}}>
+      //     <Header
+      //       as='h1'
+      //       content={this.props.playerName}
+      //       inverted
+      //       style={{
+      //         fontSize: '3em',
+      //         fontWeight: 'bold',
+      //         marginTop: '.5em',
+      //         borderBottom: '1px solid white',
+      //       }}
+      //     />
+      //   </Container>
+      <div style={{minHeight:600}}>
+      <Container>
+        <div style={{paddingBottom:'1em'}}>
           <Header
             as='h1'
             content={this.props.playerName}
@@ -235,22 +251,31 @@ class PlayerStats extends Component {
               borderBottom: '1px solid white',
             }}
           />
-        </Container>
-        <Container style={{width:'80%', display:'flex', justifyContent:'center', marginTop:20, marginBottom:50}}>
+        </div>
+        <div style={{display:'flex', justifyContent:'center', marginTop:20, marginBottom:50}}>
           <div style={{
             width:'30%', 
             backgroundColor:'#02326e', 
-            display:'flex', justifyContent:'space-around', alignItems:'center', 
-            flexDirection:'column',
-            color:'white',
-            fontSize: '2em'
           }}>
-            <div style={{fontWeight:'bold', fontSize:36}}>Pre-bubble '19-20</div>
-            <div>PTS {preStats.pts}</div>
-            <div>REB {preStats.reb}</div>
+            <Grid columns={4} centered>
+              <Grid.Row style={{fontWeight:'bold', fontSize: '2em', color:'white'}}>
+                Pre-bubble '19-20
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column/>
+                <Grid.Column>
+                  PTS
+                </Grid.Column>
+                <Grid.Column>
+                  {preStats.pts}
+                </Grid.Column>
+                <Grid.Column/>
+              </Grid.Row>
+            </Grid>
+            {/* <div>REB {preStats.reb}</div>
             <div>AST {preStats.ast}</div>
             <div>FG {preStats.fg_pct}%</div>
-            <div>TO {preStats.turnover}</div>
+            <div>TO {preStats.turnover}</div> */}
           </div>
           <div style={{width:'40%', textAlign:'center', height:'70vh', verticalAlign:'top'}}>
             <img 
@@ -296,8 +321,9 @@ class PlayerStats extends Component {
               {differences.to>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
             </div>
           </div>
+        </div>
         </Container>
-      </div>
+        </div>
     )
   }
 
