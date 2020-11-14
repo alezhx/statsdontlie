@@ -1,5 +1,5 @@
-import React from 'react'
-import {Table} from'semantic-ui-react'
+import React from 'react';
+import {Table} from'semantic-ui-react';
 
 const StatsTable = ({statKeys, preStats, postStats}) => {
   let cleanedStatKeys = statKeys.flatMap( (key) => 

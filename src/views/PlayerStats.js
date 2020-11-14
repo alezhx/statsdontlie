@@ -1,21 +1,21 @@
-import { createMedia } from '@artsy/fresnel'
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import { createMedia } from '@artsy/fresnel';
+import React, { Component } from 'react';
 import {
   Table,
   Header,
   Container,
   Icon,
   Grid
-} from 'semantic-ui-react'
+} from 'semantic-ui-react';
+import axios from 'axios';
+import _ from 'lodash';
+import ReactPlayer from 'react-player';
 import PlayerSearch from 'components/PlayerSearch';
 import StatsTable from 'components/StatsTable';
-import axios from 'axios'
-import _ from 'lodash'
-import LoadingSpinner from 'components/LoadingSpinner';
-import ReactPlayer from 'react-player';
 import NoStats from 'components/NoStats';
+import LoadingSpinner from 'components/LoadingSpinner';
 import UtilTools from 'utils/UtilTools';
+
 
 class PlayerStats extends Component {
   constructor(props) {
