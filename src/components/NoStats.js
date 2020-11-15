@@ -18,7 +18,7 @@ const NoStats = (props) => {
       imgSrc: jordan
     }
     return (
-    <Container style={{width:'80%', display:'flex', justifyContent:'center'}}>
+    <Container style={{width:'80%', display:'flex', justifyContent:'center',}}>
       <div> 
         <Header
           as='h1'
@@ -27,7 +27,8 @@ const NoStats = (props) => {
           style={{
             fontSize: '3em',
             fontWeight: 'normal',
-            marginTop: '.5em'
+            marginTop: '.5em',
+            fontFamily: 'ProximaBold',
           }}
           textAlign = 'center'
         />
@@ -50,6 +51,7 @@ const NoStats = (props) => {
           style={{
             fontSize: '3em',
             fontWeight: 'normal',
+            fontFamily: 'ProximaBold',
           }}
           textAlign = 'center'
         />

@@ -12,9 +12,6 @@ class App extends Component {
     }
   };
 
-  componentDidMount = () => {
-  }
-
   renderHomePage = () => {
     return <HomepageLayout addPlayerId = {this.addPlayerId} />
   }
