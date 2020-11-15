@@ -100,7 +100,7 @@ class PlayerStats extends Component {
             style={{
               display:'block',
               color:'#fff', 
-              fontSize:'2em',
+              fontSize:'2.5em',
               textShadow: '1px 1px 1px black',
               fontFamily: 'Proxima, serif',
             }}
@@ -178,7 +178,7 @@ class PlayerStats extends Component {
   renderVideoHighlights = () => {
     if (this.state.playerHighlights) {
       return (
-        <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', marginTop:30, marginBottom:60}}>
+        <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', marginTop:60, marginBottom:60}}>
           <div 
             style={{
               padding:36,
@@ -191,11 +191,12 @@ class PlayerStats extends Component {
             }}
           >
             <Header
-              content="Player Highlights"
+              content="PLAYER HIGHLIGHTS"
               inverted
               style={{
-                fontSize: '2em',
+                fontSize: '2.5em',
                 textShadow: "2px 2px 2px black",
+                fontFamily: 'ProximaSemiBold'
               }}
             />
             <ReactPlayer url = {this.state.playerHighlights}/> 
@@ -254,13 +255,19 @@ class PlayerStats extends Component {
                 fontSize: '3em',
                 textShadow: "2px 2px 2px black",
                 fontFamily: 'ProximaSemiBold, serif',
+                paddingTop:30,
+                borderBottom:'1px solid white'
               }}
             />
-            <div>PTS {preStats.pts}</div>
-            <div>REB {preStats.reb}</div>
-            <div>AST {preStats.ast}</div>
-            <div>FG {preStats.fg_pct}%</div>
-            <div>TO {preStats.turnover}</div>
+            <div
+              style={{padding:30, display:'flex', justifyContent:'space-between', alignItems:'center', flexDirection:'column', fontSize:'2em', fontFamily:'ProximaBold', height:'100%'}}
+            >
+              <div>PTS {preStats.pts}</div>
+              <div>REB {preStats.reb}</div>
+              <div>AST {preStats.ast}</div>
+              <div>FG {preStats.fg_pct}%</div>
+              <div>TO {preStats.turnover}</div>
+            </div>
           </div>
           <div style={{width:'40%', textAlign:'center', height:500,}}>
             <img 
@@ -274,7 +281,7 @@ class PlayerStats extends Component {
           <div style={{
             width:'30%', 
             backgroundColor:'#02326e', 
-            display:'flex', justifyContent:'space-around', alignItems:'center', 
+            display:'flex', justifyContent:'center', alignItems:'center', 
             flexDirection:'column',
             color:'white',
             // fontSize: '2em'
@@ -286,32 +293,37 @@ class PlayerStats extends Component {
                 fontSize: '3em',
                 textShadow: "2px 2px 2px black",
                 fontFamily: 'ProximaSemiBold, serif',
+                paddingTop:30
               }}
             />
-            <div>
-              PTS {postStats.pts}
-              &nbsp;
-              {differences.pts>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
-            </div>
-            <div>
-              REB {postStats.reb}
-              &nbsp;
-              {differences.reb>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
-            </div>
-            <div>
-              AST {postStats.ast}
-              &nbsp;
-              {differences.ast>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
-            </div>
-            <div>
-              FG {postStats.fg_pct}%
-              &nbsp;
-              {differences.fg_pct>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
-            </div>
-            <div>
-              TO {postStats.turnover}
-              &nbsp;
-              {differences.to>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+            <div
+              style={{padding:30, display:'flex', justifyContent:'space-between', alignItems:'center', flexDirection:'column', fontSize:'2em', fontFamily:'ProximaBold', height:'100%'}}
+            >
+              <div>
+                PTS {postStats.pts}
+                &nbsp;
+                {differences.pts>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+              </div>
+              <div>
+                REB {postStats.reb}
+                &nbsp;
+                {differences.reb>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+              </div>
+              <div>
+                AST {postStats.ast}
+                &nbsp;
+                {differences.ast>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+              </div>
+              <div>
+                FG {postStats.fg_pct}%
+                &nbsp;
+                {differences.fg_pct>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+              </div>
+              <div>
+                TO {postStats.turnover}
+                &nbsp;
+                {differences.to>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+              </div>
             </div>
           </div>
         </div>
