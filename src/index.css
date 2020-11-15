@@ -8,6 +8,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: 'Proxima';
+  src: local('Proxima'), url(./style/fonts/Proxima-Nova.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'ProximaBold';
+  src: local('ProximaBold'), url(./style/fonts/Proxima-Nova-Bold.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'ProximaSemiBold';
+  src: local('ProximaSemiBold'), url(./style/fonts/Proxima-Nova-SemiBold.otf) format('opentype');
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -66,23 +66,25 @@ class Homepage extends Component {
         <div>
           <Container text>
             <Header
-              as='h1'
-              content="stats don't lie 🏀"
+              content="STATS DON'T LIE 🏀"
               inverted
               style={{
-                fontSize: '4em',
+                fontSize: '5em',
                 fontWeight: 'normal',
+                fontFamily: 'Proxima, serif',
+                margin:0
               }}
               textAlign = 'center'
             />
             <Header
-              as='h2'
               content="Search for a player's stats inside and out the NBA bubble"
               inverted
               style={{
-                fontSize: '1.7em',
+                fontSize: '1.75em',
                 fontWeight: 'normal',
-                marginTop: '.5em',
+                marginBottom: 15,
+                marginTop:0,
+                fontStyle: 'italic'
               }}
               textAlign = 'center'
             />

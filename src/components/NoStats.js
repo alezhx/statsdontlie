@@ -34,6 +34,7 @@ const NoStats = (props) => {
         <div style={{display:'flex', justifyContent:'center'}}>
             <div style={{display:'flex', justifyContent:'center', height:500, width:500}}>
               <img
+                onLoad={()=>props.onLoadDone()}
                 style={{
                   objectFit : 'contain',
                 }}

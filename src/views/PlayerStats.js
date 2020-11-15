@@ -22,7 +22,7 @@ class PlayerStats extends Component {
     super(props);
     this.state = {
       preStats: {},
-      postStats: {},
+      postStats: {stats:0},
       playerImageLink: '',
       playerHighlights: '',
       isLoading: true,
@@ -88,7 +88,7 @@ class PlayerStats extends Component {
         this.getPlayerImage(this.props.playerName)
         this.getPlayerHighlights(this.props.playerName)
       }
-      this.setState({isLoading:false})
+      // this.setState({isLoading:false})
     })
   }
 
@@ -101,10 +101,11 @@ class PlayerStats extends Component {
               display:'block',
               color:'#fff', 
               fontSize:'2em',
-              textShadow: '1px 1px 3px black'
+              textShadow: '1px 1px 1px black',
+              fontFamily: 'Proxima, serif',
             }}
           >
-            stats don't lie <span role="img" aria-label="baskeball">🏀</span>
+            STATS DON'T LIE <span role="img" aria-label="baskeball">🏀</span>
           </div>
         </a>
 
@@ -190,7 +191,6 @@ class PlayerStats extends Component {
             }}
           >
             <Header
-              as='h2'
               content="Player Highlights"
               inverted
               style={{
@@ -223,22 +223,7 @@ class PlayerStats extends Component {
     const IncreaseIcon = () => <Icon name="caret up" color="green"/>
     const DecreaseIcon = () => <Icon name="caret down" color="red"/>
     return (
-      // <div>
-      //   <Container style={{ width:'80%',paddingBottom:'1em'}}>
-      //     <Header
-      //       as='h1'
-      //       content={this.props.playerName}
-      //       inverted
-      //       style={{
-      //         fontSize: '3em',
-      //         fontWeight: 'bold',
-      //         marginTop: '.5em',
-      //         borderBottom: '1px solid white',
-      //       }}
-      //     />
-      //   </Container>
-      <div style={{minHeight:600}}>
-      <Container>
+      <Container style={{minHeight:500}}>
         <div style={{paddingBottom:'1em'}}>
           <Header
             as='h1'
@@ -249,35 +234,35 @@ class PlayerStats extends Component {
               fontWeight: 'bold',
               marginTop: '.5em',
               borderBottom: '1px solid white',
+              fontFamily: 'ProximaBold, serif',
             }}
           />
         </div>
         <div style={{display:'flex', justifyContent:'center', marginTop:20, marginBottom:50}}>
           <div style={{
-            width:'30%', 
-            backgroundColor:'#02326e', 
+            width:'30%',
+            backgroundColor:'#02326e',
+            display:'flex', justifyContent:'space-around', alignItems:'center',
+            flexDirection:'column',
+            color:'white',
+            // fontSize: '2em'
           }}>
-            <Grid columns={4} centered>
-              <Grid.Row style={{fontWeight:'bold', fontSize: '2em', color:'white'}}>
-                Pre-bubble '19-20
-              </Grid.Row>
-              <Grid.Row>
-                <Grid.Column/>
-                <Grid.Column>
-                  PTS
-                </Grid.Column>
-                <Grid.Column>
-                  {preStats.pts}
-                </Grid.Column>
-                <Grid.Column/>
-              </Grid.Row>
-            </Grid>
-            {/* <div>REB {preStats.reb}</div>
+            <Header
+              content="PRE-BUBBLE '19-20"
+              inverted
+              style={{
+                fontSize: '3em',
+                textShadow: "2px 2px 2px black",
+                fontFamily: 'ProximaSemiBold, serif',
+              }}
+            />
+            <div>PTS {preStats.pts}</div>
+            <div>REB {preStats.reb}</div>
             <div>AST {preStats.ast}</div>
             <div>FG {preStats.fg_pct}%</div>
-            <div>TO {preStats.turnover}</div> */}
+            <div>TO {preStats.turnover}</div>
           </div>
-          <div style={{width:'40%', textAlign:'center', height:'70vh', verticalAlign:'top'}}>
+          <div style={{width:'40%', textAlign:'center', height:500,}}>
             <img 
               onLoad={() => this.state.playerImageLink && this.setState({isLoading:false})}
               src={this.state.playerImageLink} 
@@ -292,9 +277,17 @@ class PlayerStats extends Component {
             display:'flex', justifyContent:'space-around', alignItems:'center', 
             flexDirection:'column',
             color:'white',
-            fontSize: '2em'
+            // fontSize: '2em'
           }}>        
-            <div style={{fontWeight:'bold', fontSize:36}}>Bubble '20</div>
+            <Header
+              content="BUBBLE '20"
+              inverted
+              style={{
+                fontSize: '3em',
+                textShadow: "2px 2px 2px black",
+                fontFamily: 'ProximaSemiBold, serif',
+              }}
+            />
             <div>
               PTS {postStats.pts}
               &nbsp;
@@ -323,15 +316,30 @@ class PlayerStats extends Component {
           </div>
         </div>
         </Container>
-        </div>
     )
+  }
+
+  onLoadDone = () => {
+    this.setState({isLoading:false})
   }
 
   renderNoStatsPage = () => {
     return (
-      <NoStats playerName = {this.props.playerName}/>
+      <NoStats 
+        playerName = {this.props.playerName} 
+        onLoadDone = {this.onLoadDone}
+      />
     )
   }   
+
+  renderLogic = () => {
+    console.log(this.state.postStats, "hello");
+    if(_.isEmpty(this.state.postStats)) {
+      return this.renderNoStatsPage()
+    } else {
+      return this.renderPlayerStats()
+    }
+  }
 
   render() {
     return (
@@ -341,17 +349,19 @@ class PlayerStats extends Component {
       >
         {this.renderSearchBar()}
           <div>
+            <LoadingSpinner active={this.state.isLoading}/>
+            {this.renderLogic()}
           {/* {_.isEmpty(this.state.postStats) ? 
             <div>
               {this.state.isLoading ? <LoadingSpinner /> :        
                 <div>{this.renderNoStatsPage()}</div>}
             </div> 
             : this.renderPlayerStats()} */}
-          {this.state.isLoading ? <LoadingSpinner /> :
+          {/* {this.state.isLoading ? <LoadingSpinner /> :
             <div>
               {_.isEmpty(this.state.postStats) ? this.renderNoStatsPage() : this.renderPlayerStats()}
             </div>
-          }
+          } */}
           </div>
       </div>
     )

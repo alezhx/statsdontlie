@@ -1,8 +1,8 @@
 import React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
-const LoadingSpinner = () => (
-  <Dimmer active page>
+const LoadingSpinner = ({active}) => (
+  <Dimmer active={active} page>
     <Loader />
   </Dimmer>
 )
