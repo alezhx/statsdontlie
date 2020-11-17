@@ -266,19 +266,19 @@ class PlayerStats extends Component {
                 <div style={{width:'50%', textAlign:'end', paddingRight:15}}>PTS</div>
                 <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.pts}</div>
               </div>
-              <div style={{display:'flex', flexDirection:'row'}}>
+              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'50%', textAlign:'end', paddingRight:15}}>REB</div>
                 <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.reb}</div>
               </div>
-              <div style={{display:'flex', flexDirection:'row'}}>
+              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'50%', textAlign:'end', paddingRight:15}}>AST</div>
                 <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.ast}</div>
               </div>
-              <div style={{display:'flex', flexDirection:'row'}}>
+              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'50%', textAlign:'end', paddingRight:15}}>FG</div>
                 <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.fg_pct}%</div>
               </div>
-              <div style={{display:'flex', flexDirection:'row'}}>
+              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'50%', textAlign:'end', paddingRight:15}}>TO</div>
                 <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.turnover}</div>
               </div>
@@ -312,32 +312,27 @@ class PlayerStats extends Component {
               }}
             />
             <div
-              style={{padding:30, display:'flex', justifyContent:'space-between', alignItems:'center', flexDirection:'column', fontSize:'2em', fontFamily:'ProximaBold', height:'100%'}}
+              style={{width:'100%', padding:30, display:'flex', justifyContent:'space-between', alignItems:'center', flexDirection:'column', fontSize:'2em', fontFamily:'ProximaRegular', height:'100%'}}
             >
-              <div>
-                PTS {postStats.pts}
-                &nbsp;
-                {differences.pts>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
+                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>PTS</div>
+                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.pts}{differences.pts>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
               </div>
-              <div>
-                REB {postStats.reb}
-                &nbsp;
-                {differences.reb>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
+                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>REB</div>
+                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.reb}{differences.reb>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
               </div>
-              <div>
-                AST {postStats.ast}
-                &nbsp;
-                {differences.ast>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
+                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>AST</div>
+                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.ast}{differences.ast>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
               </div>
-              <div>
-                FG {postStats.fg_pct}%
-                &nbsp;
-                {differences.fg_pct>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
+                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>FG</div>
+                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.fg_pct}%{differences.fg_pct>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
               </div>
-              <div>
-                TO {postStats.turnover}
-                &nbsp;
-                {differences.to>0 ? <IncreaseIcon/> : <DecreaseIcon/>}
+              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
+                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>TO</div>
+                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.turnover}{differences.to>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
               </div>
             </div>
           </div>
