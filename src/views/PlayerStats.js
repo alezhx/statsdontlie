@@ -194,9 +194,10 @@ class PlayerStats extends Component {
               content="PLAYER HIGHLIGHTS"
               inverted
               style={{
-                fontSize: '2.5em',
+                fontSize: '3em',
                 textShadow: "2px 2px 2px black",
-                fontFamily: 'ProximaSemiBold'
+                fontFamily: 'ProximaSemiBold',
+                margin:0
               }}
             />
             <ReactPlayer url = {this.state.playerHighlights}/> 
@@ -225,7 +226,7 @@ class PlayerStats extends Component {
     const DecreaseIcon = () => <Icon name="caret down" color="red"/>
     return (
       <Container style={{minHeight:500}}>
-        <div style={{paddingBottom:'1em'}}>
+        <div>
           <Header
             as='h1'
             content={this.props.playerName}
@@ -256,17 +257,31 @@ class PlayerStats extends Component {
                 textShadow: "2px 2px 2px black",
                 fontFamily: 'ProximaSemiBold, serif',
                 paddingTop:30,
-                borderBottom:'1px solid white'
               }}
             />
             <div
-              style={{padding:30, display:'flex', justifyContent:'space-between', alignItems:'center', flexDirection:'column', fontSize:'2em', fontFamily:'ProximaBold', height:'100%'}}
+              style={{width:'100%', padding:30, display:'flex', justifyContent:'space-between', alignItems:'center', flexDirection:'column', fontSize:'2em', fontFamily:'ProximaRegular', height:'100%'}}
             >
-              <div>PTS {preStats.pts}</div>
-              <div>REB {preStats.reb}</div>
-              <div>AST {preStats.ast}</div>
-              <div>FG {preStats.fg_pct}%</div>
-              <div>TO {preStats.turnover}</div>
+              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
+                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>PTS</div>
+                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.pts}</div>
+              </div>
+              <div style={{display:'flex', flexDirection:'row'}}>
+                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>REB</div>
+                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.reb}</div>
+              </div>
+              <div style={{display:'flex', flexDirection:'row'}}>
+                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>AST</div>
+                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.ast}</div>
+              </div>
+              <div style={{display:'flex', flexDirection:'row'}}>
+                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>FG</div>
+                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.fg_pct}%</div>
+              </div>
+              <div style={{display:'flex', flexDirection:'row'}}>
+                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>TO</div>
+                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.turnover}</div>
+              </div>
             </div>
           </div>
           <div style={{width:'40%', textAlign:'center', height:500,}}>

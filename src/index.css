@@ -23,6 +23,11 @@ body {
   src: local('ProximaSemiBold'), url(./style/fonts/Proxima-Nova-SemiBold.otf) format('opentype');
 }
 
+@font-face {
+  font-family: 'ProximaRegular';
+  src: local('ProximaRegular'), url(./style/fonts/Proxima-Nova-Reg.ttf) format('truetype');
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
