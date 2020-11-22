@@ -9,7 +9,7 @@ import MobilePlayerStats from 'views/mobile/MobilePlayerStats'
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
     sm: 0,
-    // md: 768,
+    md: 768,
     lg: 1024,
   },
 })
@@ -71,6 +71,9 @@ class App extends Component {
     return (
       <MediaContextProvider>
         <Media at="sm">
+          {this.renderMobileApp()}
+        </Media>
+        <Media at="md">
           {this.renderMobileApp()}
         </Media>
         <Media greaterThanOrEqual="lg">

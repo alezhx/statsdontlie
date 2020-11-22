@@ -8,15 +8,8 @@ import {
 } from 'semantic-ui-react';
 import PlayerSearch from 'components/PlayerSearch';
 
-const { MediaContextProvider, Media } = createMedia({
-  breakpoints: {
-    mobile: 0,
-    tablet: 768,
-    computer: 1024,
-  },
-})
 
-class Homepage extends Component {
+class MobileHomepage extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -68,7 +61,7 @@ class Homepage extends Component {
               content="STATS DON'T LIE 🏀"
               inverted
               style={{
-                fontSize: '5em',
+                fontSize: '12vw',
                 fontWeight: 'normal',
                 fontFamily: 'Proxima, serif',
                 margin:0
@@ -79,7 +72,7 @@ class Homepage extends Component {
               content="Search for a player's stats inside and out the NBA bubble"
               inverted
               style={{
-                fontSize: '1.75em',
+                fontSize: '5vw',
                 fontWeight: 'normal',
                 marginBottom: 15,
                 marginTop:0,
@@ -95,4 +88,4 @@ class Homepage extends Component {
   }
 }
   
-export default Homepage;
+export default MobileHomepage;

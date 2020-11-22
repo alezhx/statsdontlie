@@ -8,6 +8,7 @@ import {
 } from 'semantic-ui-react';
 import PlayerSearch from 'components/PlayerSearch';
 
+
 class Homepage extends Component {
   constructor(props){
     super(props);
