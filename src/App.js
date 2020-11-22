@@ -2,6 +2,17 @@ import React, {Component} from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import HomepageLayout from 'views/Homepage';
 import PlayerStats from 'views/PlayerStats';
+import { createMedia } from "@artsy/fresnel";
+import MobileHomepage from 'views/mobile/MobileHomepage'
+import MobilePlayerStats from 'views/mobile/MobilePlayerStats'
+
+const { MediaContextProvider, Media } = createMedia({
+  breakpoints: {
+    sm: 0,
+    // md: 768,
+    lg: 1024,
+  },
+})
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +24,7 @@ class App extends Component {
   };
 
   renderHomePage = () => {
-    return <HomepageLayout addPlayerId = {this.addPlayerId} />
+    return <HomepageLayout addPlayerId = {this.addPlayerId}/>
   }
 
   addPlayerId = (playerId, playerName) => {
@@ -29,15 +40,43 @@ class App extends Component {
             playerId = {playerId} 
             playerName = {playerName}
             removePlayerId = {this.removePlayerId} 
-            changePlayerId = {this.addPlayerId} 
+            changePlayerId = {this.addPlayerId}
           />
+  }
+
+  renderDesktopApp = () =>
+  <div>
+    {this.state.playerId ? this.renderStatsPage(this.state.playerId, this.state.playerName) : this.renderHomePage()}
+  </div>
+
+  renderMobileApp = () => 
+  <div>
+    {this.state.playerId ? this.renderMobileStatsPage(this.state.playerId, this.state.playerName) : this.renderMobileHomePage()}
+  </div>
+
+  renderMobileStatsPage = (playerId, playerName) => {
+    return <MobilePlayerStats 
+            playerId = {playerId} 
+            playerName = {playerName}
+            removePlayerId = {this.removePlayerId} 
+            changePlayerId = {this.addPlayerId}
+          />
+  }
+
+  renderMobileHomePage = () => {
+    return <MobileHomepage addPlayerId = {this.addPlayerId}/>
   }
 
   render () {
     return (
-    <div>
-      {this.state.playerId ? this.renderStatsPage(this.state.playerId, this.state.playerName) : this.renderHomePage()}
-    </div>
+      <MediaContextProvider>
+        <Media at="sm">
+          {this.renderMobileApp()}
+        </Media>
+        <Media greaterThanOrEqual="lg">
+          {this.renderDesktopApp()}
+        </Media>
+      </MediaContextProvider>
     )
   }
 }

@@ -8,6 +8,14 @@ import {
 } from 'semantic-ui-react';
 import PlayerSearch from 'components/PlayerSearch';
 
+const { MediaContextProvider, Media } = createMedia({
+  breakpoints: {
+    mobile: 0,
+    tablet: 768,
+    computer: 1024,
+  },
+})
+
 class Homepage extends Component {
   constructor(props){
     super(props);
