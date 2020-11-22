@@ -28,7 +28,7 @@ const NoStats = (props) => {
             fontSize: '3em',
             fontWeight: 'normal',
             marginTop: '.5em',
-            fontFamily: 'ProximaBold',
+            fontFamily: 'ProximaBold, serif',
           }}
           textAlign = 'center'
         />
@@ -51,7 +51,7 @@ const NoStats = (props) => {
           style={{
             fontSize: '3em',
             fontWeight: 'normal',
-            fontFamily: 'ProximaBold',
+            fontFamily: 'ProximaBold, serif',
           }}
           textAlign = 'center'
         />

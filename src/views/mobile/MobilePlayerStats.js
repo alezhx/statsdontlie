@@ -100,7 +100,7 @@ class PlayerStats extends Component {
             style={{
               display:'block',
               color:'#fff', 
-              fontSize:'2.5em',
+              fontSize:'3vw',
               textShadow: '1px 1px 1px black',
               fontFamily: 'Proxima, serif',
             }}
@@ -166,7 +166,7 @@ class PlayerStats extends Component {
       <div>
         {this.renderImageQuickStats()}
         <Container>
-          <div style={{display:'flex', justifyContent:'center', boxShadow: "3px 3px 3px #000000",}}>
+          <div style={{display:'flex', justifyContent:'center', boxShadow: "3px 3px 3px #000000", position: 'relative', overflow: 'auto',}}>
             <StatsTable statKeys={statCategories} preStats={this.state.preStats} postStats={this.state.postStats}/>
           </div>
           {this.renderVideoHighlights()}

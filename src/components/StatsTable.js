@@ -38,7 +38,7 @@ const StatsTable = ({statKeys, preStats, postStats}) => {
   postStats["FG3"] = `${postStats["fg3m"]} / ${postStats["fg3a"]}`
   postStats["FT"] = `${postStats["ftm"]} / ${postStats["fta"]}`
   return (
-    <Table celled color={'black'} inverted selectable collapsing style={{width:'100%'}}>
+    <Table unstackable celled color={'black'} inverted selectable collapsing style={{width:'100%'}}>
       <Table.Header>
         <Table.Row textAlign='center'>
           <Table.HeaderCell inverted collapsing></Table.HeaderCell>
