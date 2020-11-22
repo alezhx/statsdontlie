@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import 'semantic-ui-css/semantic.min.css';
-import HomepageLayout from 'views/Homepage';
-import PlayerStats from 'views/PlayerStats';
+import HomepageLayout from 'views/desktop/Homepage';
+import PlayerStats from 'views/desktop/PlayerStats';
 import { createMedia } from "@artsy/fresnel";
 import MobileHomepage from 'views/mobile/MobileHomepage'
 import MobilePlayerStats from 'views/mobile/MobilePlayerStats'
