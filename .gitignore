@@ -26,3 +26,4 @@ yarn-error.log*
 .DS_Store*
 .env
 .env_alex
+.env_victor

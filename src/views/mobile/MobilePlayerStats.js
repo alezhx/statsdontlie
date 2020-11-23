@@ -95,22 +95,25 @@ class PlayerStats extends Component {
 
   renderSearchBar = () => {
     return (
-      <Container style={{position:'sticky', paddingTop:15, paddingBottom:15, display:'flex', justifyContent:'center', top:'0px', backgroundColor:'#7285a5', width:'100%', boxShadow: "2px 2px 15px black", flexDirection:'row'}}>
-        <div style={{width:'20%',}}>
-          <a href="" style={{display:'flex', alignItems:'center', paddingRight:8,}}> 
+      <div style={{position:'sticky', paddingTop:15, paddingBottom:15, display:'flex', justifyContent:'center', top:'0px', backgroundColor:'#7285a5', width:'100%', boxShadow: "2px 2px 15px black", padding:8, alignItems:'center'}}>
+        <div style={{width:'35%', height:'100%', paddingRight:8}}>
+          <a href=""> 
+
               <img
                   style={{
                     objectFit : 'contain',
+                    width:'100%',
+                    height:'100%'
                   }}
                   src = {ResultsLogo}
                   alt = "sad Jordan"
               />
           </a>
         </div>
-        <div style={{width:'80%', display:'inline-block'}}>
+        <div style={{width:'65%', display:'inline-block'}}>
           <PlayerSearch addPlayerId={this.props.changePlayerId}/>
         </div>
-      </Container>
+      </div>
     )
   }
 
@@ -163,12 +166,12 @@ class PlayerStats extends Component {
     return (
       <div>
         {this.renderImageQuickStats()}
-        <Container>
-          <div style={{display:'flex', boxShadow: "3px 3px 3px #000000", position: 'relative', overflow: 'auto',}}>
+        <div style={{marginTop:30}}>
+          <div style={{display:'flex', borderBottom:'5px solid white', borderTop:'5px solid white', position: 'relative', overflow: 'auto',}}>
             <StatsTable statKeys={statCategories} preStats={this.state.preStats} postStats={this.state.postStats}/>
           </div>
           {this.renderVideoHighlights()}
-        </Container>
+        </div>
       </div>
     )
   }
@@ -176,31 +179,33 @@ class PlayerStats extends Component {
   renderVideoHighlights = () => {
     if (this.state.playerHighlights) {
       return (
-        <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', marginTop:60, marginBottom:60}}>
+        <Container style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', marginTop:30, marginBottom:60, width:'100%'}}>
           <div 
             style={{
-              padding:36,
+              padding:12,
               backgroundColor:'#02326e',
               // textAlign:'center',
               color:'white',
               paddingTop:20,
+              paddingBottom:30,
               borderRadius:15,
-              boxShadow: "5px 5px 5px #000000"
+              boxShadow: "5px 5px 5px #000000",
+              width:'100%'
             }}
           >
             <Header
               content="PLAYER HIGHLIGHTS"
               inverted
               style={{
-                fontSize: '3em',
+                fontSize: '8vw',
                 textShadow: "2px 2px 2px black",
                 fontFamily: 'ProximaSemiBold',
                 margin:0
               }}
             />
-            <ReactPlayer url = {this.state.playerHighlights}/> 
+            <ReactPlayer url = {this.state.playerHighlights} width={'100%'} height={'30vh'}/> 
           </div>
-        </div>
+        </Container>
       )
     } else {
       return (
@@ -210,27 +215,15 @@ class PlayerStats extends Component {
   }
 
   renderImageQuickStats = () => {
-    let {preStats, postStats} = this.state
 
-    let differences = {
-      pts: postStats.pts - preStats.pts,
-      reb: postStats.reb - preStats.reb,
-      ast: postStats.ast - preStats.ast,
-      fg_pct: postStats.fg_pct - preStats.fg_pct,
-      to: postStats.turnover - preStats.turnover
-    }
-
-    const IncreaseIcon = () => <Icon name="caret up" color="green"/>
-    const DecreaseIcon = () => <Icon name="caret down" color="red"/>
     return (
-      <Container style={{minHeight:500}}>
-        <div>
+      <div>
+        <div style={{marginLeft:'1em', marginRight:'1em'}}>
           <Header
-            as='h1'
             content={this.props.playerName}
             inverted
             style={{
-              fontSize: '3em',
+              fontSize: '9vw',
               fontWeight: 'bold',
               marginTop: '.5em',
               borderBottom: '1px solid white',
@@ -238,104 +231,16 @@ class PlayerStats extends Component {
             }}
           />
         </div>
-        <div style={{display:'flex', justifyContent:'center', marginTop:20, marginBottom:50}}>
-          <div style={{
-            width:'30%',
-            backgroundColor:'#02326e',
-            display:'flex', justifyContent:'space-around', alignItems:'center',
-            flexDirection:'column',
-            color:'white',
-            // fontSize: '2em'
-          }}>
-            <Header
-              content="PRE-BUBBLE '19-20"
-              inverted
-              style={{
-                fontSize: '3em',
-                textShadow: "2px 2px 2px black",
-                fontFamily: 'ProximaSemiBold, serif',
-                paddingTop:30,
-              }}
-            />
-            <div
-              style={{width:'100%', padding:30, display:'flex', justifyContent:'space-between', alignItems:'center', flexDirection:'column', fontSize:'2em', fontFamily:'ProximaRegular', height:'100%'}}
-            >
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>PTS</div>
-                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.pts}</div>
-              </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>REB</div>
-                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.reb}</div>
-              </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>AST</div>
-                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.ast}</div>
-              </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>FG</div>
-                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.fg_pct}%</div>
-              </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>TO</div>
-                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.turnover}</div>
-              </div>
-            </div>
-          </div>
-          <div style={{width:'40%', textAlign:'center', height:500,}}>
-            <img 
-              onLoad={() => this.state.playerImageLink && this.setState({isLoading:false})}
-              src={this.state.playerImageLink} 
-              style={{display:'block', width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 0%'}} 
-              loading='lazy'
-              alt = "brb using imagination since no pics"
-            />
-          </div>
-          <div style={{
-            width:'30%', 
-            backgroundColor:'#02326e', 
-            display:'flex', justifyContent:'center', alignItems:'center', 
-            flexDirection:'column',
-            color:'white',
-            // fontSize: '2em'
-          }}>        
-            <Header
-              content="BUBBLE '20"
-              inverted
-              style={{
-                fontSize: '3em',
-                textShadow: "2px 2px 2px black",
-                fontFamily: 'ProximaSemiBold, serif',
-                paddingTop:30
-              }}
-            />
-            <div
-              style={{width:'100%', padding:30, display:'flex', justifyContent:'space-between', alignItems:'center', flexDirection:'column', fontSize:'2em', fontFamily:'ProximaRegular', height:'100%'}}
-            >
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>PTS</div>
-                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.pts}{differences.pts>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
-              </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>REB</div>
-                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.reb}{differences.reb>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
-              </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>AST</div>
-                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.ast}{differences.ast>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
-              </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>FG</div>
-                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.fg_pct}%{differences.fg_pct>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
-              </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>TO</div>
-                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.turnover}{differences.to>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
-              </div>
-            </div>
-          </div>
+        <div style={{width:'100%', textAlign:'center', height:'45vh', marginTop:15}}>
+          <img 
+            onLoad={() => this.state.playerImageLink && this.setState({isLoading:false})}
+            src={this.state.playerImageLink} 
+            style={{display:'block', width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 0%'}} 
+            loading='lazy'
+            alt = "brb using imagination since no pics"
+          />
         </div>
-        </Container>
+        </div>
     )
   }
 
@@ -365,23 +270,13 @@ class PlayerStats extends Component {
     return (
       <div 
         key={this.props.playerId + this.props.playerName} 
-        style={{backgroundColor:'#1b1c1d'}}
+        style={{width:'100vw'}}
+        // style={{backgroundColor:'#1b1c1d', width}}
       >
         {this.renderSearchBar()}
           <div>
             <LoadingSpinner active={this.state.isLoading}/>
             {this.renderLogic()}
-          {/* {_.isEmpty(this.state.postStats) ? 
-            <div>
-              {this.state.isLoading ? <LoadingSpinner /> :        
-                <div>{this.renderNoStatsPage()}</div>}
-            </div> 
-            : this.renderPlayerStats()} */}
-          {/* {this.state.isLoading ? <LoadingSpinner /> :
-            <div>
-              {_.isEmpty(this.state.postStats) ? this.renderNoStatsPage() : this.renderPlayerStats()}
-            </div>
-          } */}
           </div>
       </div>
     )
