@@ -15,7 +15,7 @@ import StatsTable from 'components/StatsTable';
 import NoStats from 'components/NoStats';
 import LoadingSpinner from 'components/LoadingSpinner';
 import UtilTools from 'utils/UtilTools';
-import ResultsLogo from 'static/ResultsLogo.png';
+import ResultsLogo from 'static/Logo.png';
 
 
 class PlayerStats extends Component {
@@ -95,22 +95,33 @@ class PlayerStats extends Component {
 
   renderSearchBar = () => {
     return (
-      <div style={{position:'sticky', paddingTop:15, paddingBottom:15, display:'flex', justifyContent:'center', top:'0px', backgroundColor:'#7285a5', width:'100%', boxShadow: "2px 2px 15px black", padding:8, alignItems:'center'}}>
-        <div style={{width:'35%', height:'100%', paddingRight:8}}>
+      <div style={{
+        position:'sticky', 
+        paddingTop:15, 
+        paddingBottom:15, 
+        display:'flex', 
+        justifyContent:'center', 
+        top:'0px', 
+        backgroundColor:'white', 
+        width:'100%', 
+        // boxShadow: "2px 2px 15px black", 
+        // borderBottom: '1px solid white',
+        padding:8, 
+        alignItems:'center'}}>
+        <div style={{width:'40%', height:'100%', paddingRight:8}}>
           <a href=""> 
-
-              <img
-                  style={{
-                    objectFit : 'contain',
-                    width:'100%',
-                    height:'100%'
-                  }}
-                  src = {ResultsLogo}
-                  alt = "sad Jordan"
-              />
+            <img
+                style={{
+                  objectFit : 'contain',
+                  width:'100%',
+                  height:'100%'
+                }}
+                src = {ResultsLogo}
+                alt = "sad Jordan"
+            />
           </a>
         </div>
-        <div style={{width:'65%', display:'inline-block'}}>
+        <div style={{width:'60%', display:'inline-block'}}>
           <PlayerSearch addPlayerId={this.props.changePlayerId}/>
         </div>
       </div>
@@ -167,8 +178,8 @@ class PlayerStats extends Component {
       <div>
         {this.renderImageQuickStats()}
         <div style={{marginTop:30}}>
-          <div style={{display:'flex', borderBottom:'5px solid white', borderTop:'5px solid white', position: 'relative', overflow: 'auto',}}>
-            <StatsTable statKeys={statCategories} preStats={this.state.preStats} postStats={this.state.postStats}/>
+          <div style={{display:'flex', boxShadow: "1px 1px 1px #000000", position: 'relative', overflow: 'auto',}}>
+            <StatsTable mobile statKeys={statCategories} preStats={this.state.preStats} postStats={this.state.postStats}/>
           </div>
           {this.renderVideoHighlights()}
         </div>
