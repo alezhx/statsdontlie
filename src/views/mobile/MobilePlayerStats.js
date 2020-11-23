@@ -165,7 +165,7 @@ class PlayerStats extends Component {
         {this.renderImageQuickStats()}
         <Container>
           <div style={{display:'flex', boxShadow: "3px 3px 3px #000000", position: 'relative', overflow: 'auto',}}>
-            <StatsTable statKeys={statCategories} preStats={this.state.preStats} postStats={this.state.postStats}/>
+            <StatsTable mobile statKeys={statCategories} preStats={this.state.preStats} postStats={this.state.postStats}/>
           </div>
           {this.renderVideoHighlights()}
         </Container>
