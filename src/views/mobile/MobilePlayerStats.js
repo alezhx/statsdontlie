@@ -104,7 +104,7 @@ class PlayerStats extends Component {
         top:'0px', 
         backgroundColor:'white', 
         width:'100%', 
-        // boxShadow: "2px 2px 15px black", 
+        boxShadow: "2px 2px 15px black", 
         // borderBottom: '1px solid white',
         padding:8, 
         alignItems:'center'}}>

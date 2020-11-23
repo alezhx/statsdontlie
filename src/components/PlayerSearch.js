@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { Search, } from 'semantic-ui-react';
 import { debounce, isEmpty} from 'lodash';
+import './PlayerSearch.css'
 
 class PlayerSearch extends Component {
   constructor(props) {
@@ -57,7 +58,7 @@ class PlayerSearch extends Component {
     return (
       <div>
       <Search
-        style = {{backgroundColor: this.props.search ? '#f5f5f5' : 'white'}}
+        // style = {{backgroundColor: this.props.search ? '#f5f5f5' : 'white'}}
         fluid
         input={{ fluid: true }}
         onSearchChange={this.handleSearchChange}
