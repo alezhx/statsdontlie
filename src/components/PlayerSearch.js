@@ -57,6 +57,7 @@ class PlayerSearch extends Component {
     return (
       <div>
       <Search
+        style = {{backgroundColor: this.props.search ? '#f5f5f5' : 'white'}}
         fluid
         input={{ fluid: true }}
         onSearchChange={this.handleSearchChange}

@@ -15,7 +15,7 @@ import StatsTable from 'components/StatsTable';
 import NoStats from 'components/NoStats';
 import LoadingSpinner from 'components/LoadingSpinner';
 import UtilTools from 'utils/UtilTools';
-import ResultsLogo from 'static/Logo.png';
+import ResultsLogo from 'static/ResultsLogo.png';
 
 
 class PlayerStats extends Component {
@@ -122,7 +122,7 @@ class PlayerStats extends Component {
           </a>
         </div>
         <div style={{width:'60%', display:'inline-block'}}>
-          <PlayerSearch addPlayerId={this.props.changePlayerId}/>
+          <PlayerSearch search addPlayerId={this.props.changePlayerId}/>
         </div>
       </div>
     )
