@@ -15,6 +15,7 @@ import StatsTable from 'components/StatsTable';
 import NoStats from 'components/NoStats';
 import LoadingSpinner from 'components/LoadingSpinner';
 import UtilTools from 'utils/UtilTools';
+import ResultsLogo from 'static/ResultsLogo.png';
 
 
 class PlayerStats extends Component {
@@ -94,23 +95,20 @@ class PlayerStats extends Component {
 
   renderSearchBar = () => {
     return (
-      <Container style={{position:'sticky', paddingTop:15, paddingBottom:15, display:'flex', justifyContent:'center', top:'0px', backgroundColor:'#7285a5', width:'100%', boxShadow: "2px 2px 15px black"}}>
-        <a href="" style={{display:'flex', alignItems:'center', paddingRight:10}}>
-          <div 
-            style={{
-              display:'block',
-              color:'#fff', 
-              fontSize:'3vw',
-              textShadow: '1px 1px 1px black',
-              fontFamily: 'Proxima, serif',
-            }}
-          >
-            STATS DON'T LIE <span role="img" aria-label="baskeball">🏀</span>
-          </div>
-        </a>
-
+      <Container style={{position:'sticky', paddingTop:15, paddingBottom:15, display:'flex', justifyContent:'center', top:'0px', backgroundColor:'#7285a5', width:'100%', boxShadow: "2px 2px 15px black", flexDirection:'row'}}>
+        <div style={{width:'20%',}}>
+          <a href="" style={{display:'flex', alignItems:'center', paddingRight:8,}}> 
+              <img
+                  style={{
+                    objectFit : 'contain',
+                  }}
+                  src = {ResultsLogo}
+                  alt = "sad Jordan"
+              />
+          </a>
+        </div>
         <div style={{width:'80%', display:'inline-block'}}>
-        <PlayerSearch addPlayerId={this.props.changePlayerId}/>
+          <PlayerSearch addPlayerId={this.props.changePlayerId}/>
         </div>
       </Container>
     )
