@@ -103,21 +103,23 @@ class PlayerStats extends Component {
         top:'0px', 
         backgroundColor:'white', 
         width:'100%', 
-        boxShadow: "2px 2px 15px black"}}>
-        <div style={{width:'20%', height:'100%', paddingRight:8}}>
+        boxShadow: "2px 2px 15px black",
+        alignItems:'center'  
+      }}>
+        <div style={{height:'100%', paddingRight:10}}>
           <a href="">            
-                <img
-                  style={{
-                    objectFit : 'contain',
-                    width:'100%',
-                    height:'100%'
-                  }}
-                  src = {ResultsLogo}
-                  alt = "Logo"
-              />
+            <img
+              style={{
+                objectFit : 'contain',
+                width: 225,
+                height:'100%'
+              }}
+              src = {ResultsLogo}
+              alt = "Logo"
+            />
           </a>
         </div>
-        <div style={{width:'80%', display:'inline-block'}}>
+        <div style={{width:'100%', display:'inline-block'}}>
         <PlayerSearch addPlayerId={this.props.changePlayerId}/>
         </div>
       </Container>
@@ -272,23 +274,23 @@ class PlayerStats extends Component {
             >
               <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'50%', textAlign:'end', paddingRight:15}}>PTS</div>
-                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.pts}</div>
+                <div style={{width:'50%', fontSize:'1.125em', fontWeight:'bold'}}>{preStats.pts}</div>
               </div>
               <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'50%', textAlign:'end', paddingRight:15}}>REB</div>
-                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.reb}</div>
+                <div style={{width:'50%', fontSize:'1.125em', fontWeight:'bold'}}>{preStats.reb}</div>
               </div>
               <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'50%', textAlign:'end', paddingRight:15}}>AST</div>
-                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.ast}</div>
+                <div style={{width:'50%', fontSize:'1.125em', fontWeight:'bold'}}>{preStats.ast}</div>
               </div>
               <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'50%', textAlign:'end', paddingRight:15}}>FG</div>
-                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.fg_pct}%</div>
+                <div style={{width:'50%', fontSize:'1.125em', fontWeight:'bold'}}>{preStats.fg_pct}%</div>
               </div>
               <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'50%', textAlign:'end', paddingRight:15}}>TO</div>
-                <div style={{width:'50%', fontSize:'1.325em', fontWeight:'bold'}}>{preStats.turnover}</div>
+                <div style={{width:'50%', fontSize:'1.125em', fontWeight:'bold'}}>{preStats.turnover}</div>
               </div>
             </div>
           </div>
@@ -324,23 +326,23 @@ class PlayerStats extends Component {
             >
               <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'40%', textAlign:'end', paddingRight:15}}>PTS</div>
-                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.pts}{differences.pts>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
+                <div style={{width:'60%', fontSize:'1.125em', fontWeight:'bold'}}>{postStats.pts}{differences.pts>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
               </div>
               <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'40%', textAlign:'end', paddingRight:15}}>REB</div>
-                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.reb}{differences.reb>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
+                <div style={{width:'60%', fontSize:'1.125em', fontWeight:'bold'}}>{postStats.reb}{differences.reb>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
               </div>
               <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'40%', textAlign:'end', paddingRight:15}}>AST</div>
-                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.ast}{differences.ast>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
+                <div style={{width:'60%', fontSize:'1.125em', fontWeight:'bold'}}>{postStats.ast}{differences.ast>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
               </div>
               <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'40%', textAlign:'end', paddingRight:15}}>FG</div>
-                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.fg_pct}%{differences.fg_pct>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
+                <div style={{width:'60%', fontSize:'1.125em', fontWeight:'bold'}}>{postStats.fg_pct}%{differences.fg_pct>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
               </div>
               <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'40%', textAlign:'end', paddingRight:15}}>TO</div>
-                <div style={{width:'60%', fontSize:'1.325em', fontWeight:'bold'}}>{postStats.turnover}{differences.to>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
+                <div style={{width:'60%', fontSize:'1.125em', fontWeight:'bold'}}>{postStats.turnover}{differences.to>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
               </div>
             </div>
           </div>

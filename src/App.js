@@ -10,7 +10,8 @@ const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
     sm: 0,
     md: 768,
-    lg: 1024,
+    // lg: 1024,
+    lg: 992
   },
 })
 
@@ -54,6 +55,11 @@ class App extends Component {
     {this.state.playerId ? this.renderMobileStatsPage(this.state.playerId, this.state.playerName) : this.renderMobileHomePage()}
   </div>
 
+  renderTabletApp = () => 
+  <div>
+    {this.state.playerId ? this.renderTabletStatsPage(this.state.playerId, this.state.playerName) : this.renderHomePage()}
+  </div>
+
   renderMobileStatsPage = (playerId, playerName) => {
     return <MobilePlayerStats 
             playerId = {playerId} 
@@ -74,7 +80,7 @@ class App extends Component {
           {this.renderMobileApp()}
         </Media>
         <Media at="md">
-          {this.renderMobileApp()}
+          {this.renderDesktopApp()}
         </Media>
         <Media greaterThanOrEqual="lg">
           {this.renderDesktopApp()}
