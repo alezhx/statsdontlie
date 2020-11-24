@@ -226,7 +226,7 @@ class PlayerStats extends Component {
   renderImageQuickStats = () => {
     return (
       <div>
-        <div style={{marginLeft:'1em', marginRight:'1em'}}>
+        <div>
           <Header
             content={this.props.playerName}
             inverted
