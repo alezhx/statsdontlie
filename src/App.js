@@ -5,6 +5,8 @@ import PlayerStats from 'views/desktop/PlayerStats';
 import { createMedia } from "@artsy/fresnel";
 import MobileHomepage from 'views/mobile/MobileHomepage'
 import MobilePlayerStats from 'views/mobile/MobilePlayerStats'
+import TabletPlayerStats from 'views/tablet/TabletPlayerStats'
+
 
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
@@ -69,6 +71,15 @@ class App extends Component {
           />
   }
 
+  renderTabletStatsPage = (playerId, playerName) => {
+    return <TabletPlayerStats 
+            playerId = {playerId} 
+            playerName = {playerName}
+            removePlayerId = {this.removePlayerId} 
+            changePlayerId = {this.addPlayerId}
+          />
+  }
+
   renderMobileHomePage = () => {
     return <MobileHomepage addPlayerId = {this.addPlayerId}/>
   }
@@ -80,7 +91,7 @@ class App extends Component {
           {this.renderMobileApp()}
         </Media>
         <Media at="md">
-          {this.renderDesktopApp()}
+          {this.renderTabletApp()}
         </Media>
         <Media greaterThanOrEqual="lg">
           {this.renderDesktopApp()}

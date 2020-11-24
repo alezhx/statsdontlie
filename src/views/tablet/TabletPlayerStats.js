@@ -31,7 +31,6 @@ class PlayerStats extends Component {
   };
 
   componentDidMount = () => {
-    window.scrollTo(0, 0)
     this.loadAllStatActions()
   }
 
@@ -114,7 +113,7 @@ class PlayerStats extends Component {
             <img
                 style={{
                   objectFit : 'contain',
-                  width: 150,
+                  width: 200,
                   height:'100%'
                 }}
                 src = {ResultsLogo}
@@ -176,48 +175,46 @@ class PlayerStats extends Component {
     let statCategories = ["fga", "fgm", "fg_pct", "fg3a", "fg3m", "fg3_pct", "fta", "ftm", "ft_pct", "oreb", "DREB" ,"reb", "ast", "blk", "stl", "pf", "turnover", "pts"]
 
     return (
-      <div>
+      <Container>
         {this.renderImageQuickStats()}
-        <div style={{marginTop:30}}>
+        <div style={{marginTop:45}}>
           <div style={{display:'flex', boxShadow: "1px 1px 1px #000000", position: 'relative', overflow: 'auto',}}>
             <StatsTable mobile statKeys={statCategories} preStats={this.state.preStats} postStats={this.state.postStats}/>
           </div>
           {this.renderVideoHighlights()}
         </div>
-      </div>
+      </Container>
     )
   }
 
   renderVideoHighlights = () => {
     if (this.state.playerHighlights) {
       return (
-        <Container style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', marginTop:30, marginBottom:60, width:'100%'}}>
+        <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', marginTop:45, marginBottom:60}}>
           <div 
             style={{
-              padding:12,
+              padding:36,
               backgroundColor:'#02326e',
               // textAlign:'center',
               color:'white',
               paddingTop:20,
-              paddingBottom:30,
               borderRadius:15,
-              boxShadow: "5px 5px 5px #000000",
-              width:'100%'
+              boxShadow: "5px 5px 5px #000000"
             }}
           >
             <Header
               content="PLAYER HIGHLIGHTS"
               inverted
               style={{
-                fontSize: '8vw',
+                fontSize: '3em',
                 textShadow: "2px 2px 2px black",
                 fontFamily: 'ProximaSemiBold',
                 margin:0
               }}
             />
-            <ReactPlayer url = {this.state.playerHighlights} width={'100%'} height={'30vh'}/> 
+            <ReactPlayer url = {this.state.playerHighlights}/> 
           </div>
-        </Container>
+        </div>
       )
     } else {
       return (
@@ -227,7 +224,6 @@ class PlayerStats extends Component {
   }
 
   renderImageQuickStats = () => {
-
     return (
       <div>
         <div style={{marginLeft:'1em', marginRight:'1em'}}>
@@ -235,7 +231,7 @@ class PlayerStats extends Component {
             content={this.props.playerName}
             inverted
             style={{
-              fontSize: '9vw',
+              fontSize: '3em',
               fontWeight: 'bold',
               marginTop: '.5em',
               borderBottom: '1px solid white',
@@ -243,7 +239,7 @@ class PlayerStats extends Component {
             }}
           />
         </div>
-        <div style={{width:'100%', textAlign:'center', height:'45vh', marginTop:15}}>
+        <div style={{width:'100%', textAlign:'center', height:450, marginTop:15}}>
           <img 
             onLoad={() => this.state.playerImageLink && this.setState({isLoading:false})}
             src={this.state.playerImageLink} 
@@ -281,9 +277,7 @@ class PlayerStats extends Component {
   render() {
     return (
       <div 
-        key={this.props.playerId + this.props.playerName} 
-        style={{width:'100vw'}}
-        // style={{backgroundColor:'#1b1c1d', width}}
+        key={this.props.playerId + this.props.playerName}
       >
         {this.renderSearchBar()}
           <div>
