@@ -12,13 +12,13 @@ import _ from 'lodash';
 import ReactPlayer from 'react-player';
 import PlayerSearch from 'components/PlayerSearch';
 import StatsTable from 'components/StatsTable';
-import NoStats from 'components/NoStats';
+import MobileNoStats from './MobileNoStats';
 import LoadingSpinner from 'components/LoadingSpinner';
 import UtilTools from 'utils/UtilTools';
 import ResultsLogo from 'static/ResultsLogo.png';
 
 
-class PlayerStats extends Component {
+class MobilePlayerStats extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -262,10 +262,12 @@ class PlayerStats extends Component {
 
   renderNoStatsPage = () => {
     return (
-      <NoStats 
-        playerName = {this.props.playerName} 
-        onLoadDone = {this.onLoadDone}
-      />
+      <div style={{maxWidth:'100vw'}}>
+        <MobileNoStats 
+          playerName = {this.props.playerName} 
+          onLoadDone = {this.onLoadDone}
+        />
+      </div>
     )
   }   
 
@@ -282,8 +284,6 @@ class PlayerStats extends Component {
     return (
       <div 
         key={this.props.playerId + this.props.playerName} 
-        style={{width:'100vw'}}
-        // style={{backgroundColor:'#1b1c1d', width}}
       >
         {this.renderSearchBar()}
           <div>
@@ -295,4 +295,4 @@ class PlayerStats extends Component {
   }
 }
 
-export default PlayerStats
+export default MobilePlayerStats

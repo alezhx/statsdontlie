@@ -18,7 +18,7 @@ import UtilTools from 'utils/UtilTools';
 import ResultsLogo from 'static/ResultsLogo.png';
 
 
-class PlayerStats extends Component {
+class TabletPlayerStats extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -289,4 +289,4 @@ class PlayerStats extends Component {
   }
 }
 
-export default PlayerStats
+export default TabletPlayerStats
