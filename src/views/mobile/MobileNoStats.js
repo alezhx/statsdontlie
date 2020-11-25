@@ -18,8 +18,8 @@ const MobileNoStats = (props) => {
       imgSrc: jordan
     }
     return (
-    <div style={{ display:'flex', justifyContent:'center',}}>
-      <div> 
+    <Container style={{ display:'flex', justifyContent:'center', alignItems:'center', height:'100%', overflow:'hidden'}}>
+      <div style={{width:'100%'}}> 
         <Header
           content={props.playerName === "Kobe Bryant" ? kobe.h1 : noStats.h1}
           inverted
@@ -31,7 +31,7 @@ const MobileNoStats = (props) => {
           }}
           textAlign = 'center'
         />
-        <div style={{display:'flex', justifyContent:'center'}}>
+        <div style={{display:'flex', justifyContent:'center',width:'100%'}}>
             <div style={{display:'flex', justifyContent:'center', height:'45vh', width:'100%'}}>
               <img
                 onLoad={()=>props.onLoadDone()}
@@ -54,7 +54,7 @@ const MobileNoStats = (props) => {
           textAlign = 'center'
         />
       </div>
-    </div>
+    </Container>
   )
 }
 

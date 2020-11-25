@@ -262,12 +262,10 @@ class MobilePlayerStats extends Component {
 
   renderNoStatsPage = () => {
     return (
-      <div style={{maxWidth:'100vw'}}>
-        <MobileNoStats 
-          playerName = {this.props.playerName} 
-          onLoadDone = {this.onLoadDone}
-        />
-      </div>
+      <MobileNoStats 
+        playerName = {this.props.playerName} 
+        onLoadDone = {this.onLoadDone}
+      />
     )
   }   
 
