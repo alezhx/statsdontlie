@@ -226,8 +226,12 @@ class PlayerStats extends Component {
       to: postStats.turnover - preStats.turnover
     }
 
-    const IncreaseIcon = () => <Icon name="caret up" color="green"/>
+    const IncreaseIcon = () => <Icon name="caret up" style={{color:"#00ff00"}}/>
     const DecreaseIcon = () => <Icon name="caret down" color="red"/>
+
+    const TO_IncreaseIcon = () => <Icon name="caret up" color="red"/>
+    const TO_DecreaseIcon = () => <Icon name="caret down" style={{color:"#00ff00"}}/>
+
     return (
       <Container style={{minHeight:500}}>
         <div>
@@ -342,7 +346,7 @@ class PlayerStats extends Component {
               </div>
               <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'40%', textAlign:'end', paddingRight:15}}>TO</div>
-                <div style={{width:'60%', fontSize:'1.125em', fontWeight:'bold'}}>{postStats.turnover}{differences.to>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
+                <div style={{width:'60%', fontSize:'1.125em', fontWeight:'bold'}}>{postStats.turnover}{differences.to>0 ? <TO_IncreaseIcon/> : <TO_DecreaseIcon/>}</div>
               </div>
             </div>
           </div>
