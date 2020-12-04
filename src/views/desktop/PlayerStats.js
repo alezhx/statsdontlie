@@ -1,11 +1,8 @@
-import { createMedia } from '@artsy/fresnel';
 import React, { Component } from 'react';
 import {
-  Table,
   Header,
   Container,
   Icon,
-  Grid
 } from 'semantic-ui-react';
 import axios from 'axios';
 import _ from 'lodash';
@@ -88,7 +85,6 @@ class PlayerStats extends Component {
         this.getPlayerImage(this.props.playerName)
         this.getPlayerHighlights(this.props.playerName)
       }
-      // this.setState({isLoading:false})
     })
   }
 
@@ -192,7 +188,6 @@ class PlayerStats extends Component {
             style={{
               padding:36,
               backgroundColor:'#0984e3',
-              // textAlign:'center',
               color:'white',
               paddingTop:20,
               borderRadius:15,
@@ -307,7 +302,9 @@ class PlayerStats extends Component {
           <div style={{
             width:'30%', 
             backgroundColor:'#0984e3', 
-            display:'flex', justifyContent:'center', alignItems:'center', 
+            display:'flex',
+            justifyContent:'center',
+            alignItems:'center',
             flexDirection:'column',
             color:'white',
             borderBottomRightRadius: 15,

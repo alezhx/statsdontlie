@@ -1,7 +1,7 @@
 import React from 'react';
 import {Table} from'semantic-ui-react';
 
-const StatsTable = ({statKeys, preStats, postStats, mobile}) => {
+const StatsTable = ({statKeys, preStats, postStats,}) => {
   let cleanedStatKeys = statKeys.flatMap( (key) => 
     key.includes("_") ? [key.replace("_","").toUpperCase()] :
     (key === "turnover") ? ["TO"] :
