@@ -1,6 +1,5 @@
 const UtilTools = {
   getStatAverages(response) {
-    console.log(response);
     let onlyStats = response.data;
     let compressedStats = {}
     for (let i = 0; i < onlyStats.length; i++){

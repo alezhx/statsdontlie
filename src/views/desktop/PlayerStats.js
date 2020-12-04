@@ -80,7 +80,6 @@ class PlayerStats extends Component {
     let cleanStats = {}
 
     if (!(_.isEmpty(data.data))) {
-      console.log("reaced block")
       cleanStats = UtilTools.getStatAverages(data)
     }
 
@@ -365,7 +364,6 @@ class PlayerStats extends Component {
   }   
 
   renderLogic = () => {
-    console.log(this.state.postStats, "hello");
     if(_.isEmpty(this.state.postStats)) {
       return this.renderNoStatsPage()
     } else {
@@ -383,17 +381,6 @@ class PlayerStats extends Component {
           <div>
             <LoadingSpinner active={this.state.isLoading}/>
             {this.renderLogic()}
-          {/* {_.isEmpty(this.state.postStats) ? 
-            <div>
-              {this.state.isLoading ? <LoadingSpinner /> :        
-                <div>{this.renderNoStatsPage()}</div>}
-            </div> 
-            : this.renderPlayerStats()} */}
-          {/* {this.state.isLoading ? <LoadingSpinner /> :
-            <div>
-              {_.isEmpty(this.state.postStats) ? this.renderNoStatsPage() : this.renderPlayerStats()}
-            </div>
-          } */}
           </div>
       </div>
     )

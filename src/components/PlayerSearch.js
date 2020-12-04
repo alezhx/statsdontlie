@@ -23,6 +23,10 @@ class PlayerSearch extends Component {
   }
 
   handleSearchChange = (e, data) => {
+    console.log("event", e, "data", data) 
+    if(data.value === "") {
+      this.setState({results:[]})
+    }
     this.setState({value:data.value})
     this.searchPlayers()
   }
@@ -37,6 +41,7 @@ class PlayerSearch extends Component {
         search: value
       }
     })
+
     this.setState({ results: data.data })
   }, 350)
 
@@ -58,13 +63,13 @@ class PlayerSearch extends Component {
     return (
       <div>
       <Search
-        // style = {{backgroundColor: this.props.search ? '#f5f5f5' : 'white'}}
         fluid
         input={{ fluid: true }}
-        onSearchChange={this.handleSearchChange}
+        onSearchChange={(event, data) => this.handleSearchChange(event, data)}
         results={this.sanitizeResults(this.state.results)}
         value={this.state.value || ""}
         onResultSelect={this.handleResultSelect}
+        noResultsMessage="No players with that name found."
       />   
       </div> 
     )

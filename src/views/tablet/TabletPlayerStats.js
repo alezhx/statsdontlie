@@ -80,7 +80,6 @@ class TabletPlayerStats extends Component {
     let cleanStats = {}
 
     if (!(_.isEmpty(data.data))) {
-      console.log("reaced block")
       cleanStats = UtilTools.getStatAverages(data)
     }
 
@@ -266,7 +265,6 @@ class TabletPlayerStats extends Component {
   }   
 
   renderLogic = () => {
-    console.log(this.state.postStats, "hello");
     if(_.isEmpty(this.state.postStats)) {
       return this.renderNoStatsPage()
     } else {

@@ -19,10 +19,13 @@ class MobileHomepage extends Component {
   render () {
     return (
       <div style = {{
-        minHeight: "100vh",
+        minHeight: "90vh",
+        maxHeight: "100vh",
+        position:'fixed',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        overflowY: 'hidden',
       }}>
         <Menu inverted secondary style={{position:'absolute', top:0, right:10}}>
           <Menu.Item

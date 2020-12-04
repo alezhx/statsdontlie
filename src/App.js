@@ -30,12 +30,12 @@ class App extends Component {
     return <HomepageLayout addPlayerId = {this.addPlayerId}/>
   }
 
-  addPlayerId = (playerId, playerName) => {
-    this.setState({playerId, playerName})
+  addPlayerId = (playerId, playerName, cb) => {
+    this.setState({playerId, playerName}, () => cb && cb)
   }
 
-  removePlayerId = () => {
-    this.setState({playerId : null, playerName: ''})
+  removePlayerId = (cb) => {
+    this.setState({playerId : null, playerName: ''}, () => cb && cb)
   }
 
   renderStatsPage = (playerId, playerName) => {

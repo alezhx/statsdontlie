@@ -6,3 +6,8 @@
   background-color: #e4e6eb;
   border-color: #000000
 }
+
+.results {
+  max-height: 200px;
+  overflow-y: auto;
+}
