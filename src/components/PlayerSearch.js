@@ -70,6 +70,7 @@ class PlayerSearch extends Component {
         value={this.state.value || ""}
         onResultSelect={this.handleResultSelect}
         noResultsMessage="No players with that name found."
+        placeholder={"Type a player's name e.g. James Harden"}
       />   
       </div> 
     )

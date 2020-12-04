@@ -1,5 +1,3 @@
-import { createMedia } from '@artsy/fresnel';
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
   Container,
@@ -37,7 +35,7 @@ class Homepage extends Component {
           <Menu.Item 
             as='a'
             name="Alex"
-            href=""
+            href="https://github.com/alezhx/"
             fitted
           />
           <Menu.Item
@@ -51,7 +49,7 @@ class Homepage extends Component {
           <Menu.Item
               name= "Victor"
               as='a'
-              href="https://www.google.com"
+              href="https://github.com/koipondkeepers"
               fitted
           />
         </Menu>

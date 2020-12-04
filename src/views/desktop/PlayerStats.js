@@ -100,7 +100,7 @@ class PlayerStats extends Component {
         display:'flex', 
         justifyContent:'center', 
         top:'0px', 
-        backgroundColor:'white', 
+        backgroundColor:'#dfe6e9', 
         width:'100%', 
         boxShadow: "2px 2px 15px black",
         alignItems:'center'  
@@ -191,7 +191,7 @@ class PlayerStats extends Component {
           <div 
             style={{
               padding:36,
-              backgroundColor:'#02326e',
+              backgroundColor:'#0984e3',
               // textAlign:'center',
               color:'white',
               paddingTop:20,
@@ -252,7 +252,7 @@ class PlayerStats extends Component {
         <div style={{display:'flex', justifyContent:'center', marginTop:20, marginBottom:50}}>
           <div style={{
             width:'30%',
-            backgroundColor:'#02326e',
+            backgroundColor:'#0984e3',
             display:'flex', justifyContent:'space-around', alignItems:'center',
             flexDirection:'column',
             color:'white',
@@ -304,7 +304,7 @@ class PlayerStats extends Component {
           </div>
           <div style={{
             width:'30%', 
-            backgroundColor:'#02326e', 
+            backgroundColor:'#0984e3', 
             display:'flex', justifyContent:'center', alignItems:'center', 
             flexDirection:'column',
             color:'white',
@@ -375,7 +375,7 @@ class PlayerStats extends Component {
     return (
       <div 
         key={this.props.playerId + this.props.playerName} 
-        style={{backgroundColor:'#1b1c1d'}}
+        style={{backgroundColor:'#2d3436'}}
       >
         {this.renderSearchBar()}
           <div>
