@@ -1,4 +1,3 @@
-import { createMedia } from '@artsy/fresnel';
 import React, { Component } from 'react';
 import {
   Table,
@@ -101,7 +100,7 @@ class TabletPlayerStats extends Component {
         display:'flex', 
         justifyContent:'center', 
         top:'0px', 
-        backgroundColor:'white', 
+        backgroundColor:'#dfe6e9', 
         width:'100%', 
         boxShadow: "2px 2px 15px black", 
         padding:8, 
@@ -193,7 +192,7 @@ class TabletPlayerStats extends Component {
           <div 
             style={{
               padding:36,
-              backgroundColor:'#02326e',
+              backgroundColor:'#0984e3',
               // textAlign:'center',
               color:'white',
               paddingTop:20,

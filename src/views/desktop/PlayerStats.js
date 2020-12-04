@@ -256,7 +256,9 @@ class PlayerStats extends Component {
             display:'flex', justifyContent:'space-around', alignItems:'center',
             flexDirection:'column',
             color:'white',
-            // fontSize: '2em'
+            borderBottomLeftRadius: 15,
+            borderTopLeftRadius: 15,
+            boxShadow: "3px 3px 3px #000000",
           }}>
             <Header
               content="PRE-BUBBLE '19-20"
@@ -269,7 +271,7 @@ class PlayerStats extends Component {
               }}
             />
             <div
-              style={{width:'100%', padding:30, display:'flex', justifyContent:'space-between', alignItems:'center', flexDirection:'column', fontSize:'2em', fontFamily:'ProximaRegular', height:'100%'}}
+              style={{width:'100%', padding:30, display:'flex', justifyContent:'space-between', alignItems:'center', flexDirection:'column', fontSize:'2em', fontFamily:'ProximaRegular', height:'100%',}}
             >
               <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'50%', textAlign:'end', paddingRight:15}}>PTS</div>
@@ -297,7 +299,7 @@ class PlayerStats extends Component {
             <img 
               onLoad={() => this.state.playerImageLink && this.setState({isLoading:false})}
               src={this.state.playerImageLink} 
-              style={{display:'block', width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 0%'}} 
+              style={{display:'block', width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 0%', boxShadow: "3px 3px 3px #000000",}} 
               loading='lazy'
               alt = "brb using imagination since no pics"
             />
@@ -308,7 +310,9 @@ class PlayerStats extends Component {
             display:'flex', justifyContent:'center', alignItems:'center', 
             flexDirection:'column',
             color:'white',
-            // fontSize: '2em'
+            borderBottomRightRadius: 15,
+            borderTopRightRadius: 15,
+            boxShadow: "3px 3px 3px #000000",
           }}>        
             <Header
               content="BUBBLE '20"
@@ -321,7 +325,7 @@ class PlayerStats extends Component {
               }}
             />
             <div
-              style={{width:'100%', padding:30, display:'flex', justifyContent:'space-between', alignItems:'center', flexDirection:'column', fontSize:'2em', fontFamily:'ProximaRegular', height:'100%'}}
+              style={{width:'100%', padding:30, display:'flex', justifyContent:'space-between', alignItems:'center', flexDirection:'column', fontSize:'2em', fontFamily:'ProximaRegular', height:'100%',}}
             >
               <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <div style={{width:'40%', textAlign:'end', paddingRight:15}}>PTS</div>

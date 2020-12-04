@@ -102,7 +102,7 @@ class MobilePlayerStats extends Component {
         display:'flex', 
         justifyContent:'center', 
         top:'0px', 
-        backgroundColor:'white', 
+        backgroundColor:'#dfe6e9', 
         width:'100%', 
         boxShadow: "2px 2px 15px black", 
         padding:8, 
@@ -194,7 +194,7 @@ class MobilePlayerStats extends Component {
           <div 
             style={{
               padding:12,
-              backgroundColor:'#02326e',
+              backgroundColor:'#0984e3',
               // textAlign:'center',
               color:'white',
               paddingTop:20,
