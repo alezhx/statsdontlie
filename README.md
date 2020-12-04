@@ -18,5 +18,5 @@ Homepage view
 ![Homepage](src/static/Homepage.jpeg)
 
 Example view
-![Example](src/static/Example.jpeg)
+![Example](src/static/Example.png)
 
