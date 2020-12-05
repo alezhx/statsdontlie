@@ -8,6 +8,24 @@ import {
   Icon
 } from 'semantic-ui-react';
 import PlayerSearch from 'components/PlayerSearch';
+import { StyleSheet, css } from 'aphrodite';
+
+const styles = StyleSheet.create({
+  main: {
+    minHeight: "100vh",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  large: {
+      height: 20,
+      width: 20
+  },
+
+  marker: {
+      backgroundColor: 'blue'
+  }
+});
 
 
 class Homepage extends Component {
@@ -31,14 +49,11 @@ class Homepage extends Component {
         vertical
         visible={this.state.sideBarOpened}
       >
-        {/* <a onClick={() => this.toggleSideBar(false)}> */}
         <a compact onClick={() => this.toggleSideBar(false)} style={{position:'absolute', top:15,right:10,color:'white', zIndex:999, backgroundColor:'transparent'}} >
           <Icon 
             name="times circle" 
-            // style={{position:'absolute', top:15,right:10,color:'white'}} 
             fitted 
             size="large"
-            // onClick={() => this.toggleSideBar(false)}
           />
         </a>
         <Menu.Item active style={{padding:20, fontSize:'1.5em'}}>
@@ -51,12 +66,7 @@ class Homepage extends Component {
 
   render () {
     return (
-      <div style = {{
-        minHeight: "100vh",
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
+      <div className={css(styles.main)}>
         <Button 
           compact
           inverted
