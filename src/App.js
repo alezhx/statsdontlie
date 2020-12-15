@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import 'semantic-ui-css/semantic.min.css';
-import HomepageLayout from 'views/desktop/Homepage';
+import Homepage from 'views/desktop/Homepage';
 import PlayerStats from 'views/desktop/PlayerStats';
 import { createMedia } from "@artsy/fresnel";
 import MobileHomepage from 'views/mobile/MobileHomepage'
 import MobilePlayerStats from 'views/mobile/MobilePlayerStats'
 import TabletPlayerStats from 'views/tablet/TabletPlayerStats'
+import { MediaTypes } from 'utils/Enum';
 
 
 const { MediaContextProvider, Media } = createMedia({
@@ -26,8 +27,18 @@ class App extends Component {
     }
   };
 
-  renderHomePage = () => {
-    return <HomepageLayout addPlayerId = {this.addPlayerId}/>
+  componentDidMount = () => {
+    this.getList()
+  }
+
+  getList = () => {
+    fetch('/api/getList')
+    .then(res => res.json())
+    .then(list => console.log(list))
+  }
+
+  renderHomePage = (media) => {
+    return <Homepage addPlayerId = {this.addPlayerId} media={media}/>
   }
 
   addPlayerId = (playerId, playerName, cb) => {
@@ -62,6 +73,12 @@ class App extends Component {
     {this.state.playerId ? this.renderTabletStatsPage(this.state.playerId, this.state.playerName) : this.renderHomePage()}
   </div>
 
+  renderApp = (media) => 
+    <div>
+      {this.state.playerId ? this.renderStatsPage(this.state.playerId, this.state.playerName, media) : this.renderHomePage(media)}
+    </div>
+
+
   renderMobileStatsPage = (playerId, playerName) => {
     return <MobilePlayerStats 
             playerId = {playerId} 
@@ -88,13 +105,13 @@ class App extends Component {
     return (
       <MediaContextProvider>
         <Media at="sm">
-          {this.renderMobileApp()}
+          {this.renderApp(MediaTypes.mobile)}
         </Media>
         <Media at="md">
           {this.renderTabletApp()}
         </Media>
         <Media greaterThanOrEqual="lg">
-          {this.renderDesktopApp()}
+          {this.renderApp(MediaTypes.desktop)}
         </Media>
       </MediaContextProvider>
     )

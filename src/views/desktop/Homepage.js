@@ -9,6 +9,7 @@ import {
 } from 'semantic-ui-react';
 import PlayerSearch from 'components/PlayerSearch';
 import { StyleSheet, css } from 'aphrodite';
+import { MediaTypes } from 'utils/Enum';
 
 const styles = StyleSheet.create({
   main: {
@@ -56,6 +57,31 @@ const styles = StyleSheet.create({
   }
 });
 
+const mobileStyles = StyleSheet.create({
+  main: {
+    minHeight: "90vh",
+    maxHeight: "100vh",
+    position:'fixed',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflowY: 'hidden',
+  },
+  header1: {
+    fontSize: '12vw',
+    fontWeight: 'normal',
+    fontFamily: 'Proxima, serif',
+    margin:0
+  },
+  header2: {
+    fontSize: '5vw',
+    fontWeight: 'normal',
+    marginBottom: 15,
+    marginTop:0,
+    fontStyle: 'italic'
+  }
+});
+
 
 class Homepage extends Component {
   constructor(props){
@@ -93,18 +119,21 @@ class Homepage extends Component {
         </Menu.Item>
       </Sidebar>
 
+  renderAboutButton = () => 
+    <Button 
+      className={css(styles.aboutButton)}
+      compact
+      inverted
+      onClick={()=>this.toggleSideBar(true)}
+    >
+      About
+    </Button>
+
   render () {
     return (
-      <div className={css(styles.main)}>
-        <Button 
-          className={css(styles.aboutButton)}
-          compact
-          inverted
-          onClick={()=>this.toggleSideBar(true)}
-        >
-          About
-        </Button>
-        {this.renderSideBar()}
+      <div className={css(this.props.media === MediaTypes.desktop ? styles.main : mobileStyles.main)}>
+        {this.props.media === MediaTypes.desktop && this.renderAboutButton()}
+        {this.props.media === MediaTypes.desktop && this.renderSideBar()}
         <Menu inverted secondary className={css(styles.menu)}>
           <Menu.Item className={css(styles.fitted)}>
             Made by
@@ -128,13 +157,13 @@ class Homepage extends Component {
         <div>
           <Container text>
             <Header
-              className={css(styles.header1)}
+              className={css(this.props.media === MediaTypes.desktop ? styles.header1 : mobileStyles.header1)}
               content="STATS DON'T LIE 🏀"
               inverted
               textAlign = 'center'
             />
             <Header
-              className={css(styles.header2)}
+              className={css(this.props.media === MediaTypes.desktop ? styles.header2 : mobileStyles.header2)}
               content="Search for a player's stats inside and out the NBA bubble"
               inverted
               textAlign = 'center'

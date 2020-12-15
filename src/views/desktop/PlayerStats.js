@@ -9,7 +9,7 @@ import _ from 'lodash';
 import ReactPlayer from 'react-player';
 import PlayerSearch from 'components/PlayerSearch';
 import StatsTable from 'components/StatsTable';
-import NoStats from 'components/NoStats';
+import NoStats from 'views/desktop/NoStats';
 import LoadingSpinner from 'components/LoadingSpinner';
 import UtilTools from 'utils/UtilTools';
 import ResultsLogo from 'static/ResultsLogo.png';
@@ -252,7 +252,7 @@ class PlayerStats extends Component {
           <div style={{
             width:'30%',
             backgroundColor:'#0984e3',
-            display:'flex', justifyContent:'space-around', alignItems:'center',
+            display:'flex', alignItems:'center',
             flexDirection:'column',
             color:'white',
             borderBottomLeftRadius: 15,
@@ -307,7 +307,6 @@ class PlayerStats extends Component {
             width:'30%', 
             backgroundColor:'#0984e3', 
             display:'flex',
-            justifyContent:'center',
             alignItems:'center',
             flexDirection:'column',
             color:'white',

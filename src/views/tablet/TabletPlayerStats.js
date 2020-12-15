@@ -11,7 +11,7 @@ import _ from 'lodash';
 import ReactPlayer from 'react-player';
 import PlayerSearch from 'components/PlayerSearch';
 import StatsTable from 'components/StatsTable';
-import NoStats from 'components/NoStats';
+import NoStats from 'views/desktop/NoStats';
 import LoadingSpinner from 'components/LoadingSpinner';
 import UtilTools from 'utils/UtilTools';
 import ResultsLogo from 'static/ResultsLogo.png';

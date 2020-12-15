@@ -62,16 +62,16 @@ class PlayerSearch extends Component {
   render () {
     return (
       <div>
-      <Search
-        fluid
-        input={{ fluid: true }}
-        onSearchChange={(event, data) => this.handleSearchChange(event, data)}
-        results={this.sanitizeResults(this.state.results)}
-        value={this.state.value || ""}
-        onResultSelect={this.handleResultSelect}
-        noResultsMessage="No players with that name found."
-        placeholder={"Type a player's name e.g. James Harden"}
-      />   
+        <Search
+          fluid
+          input={{ fluid: true }}
+          onSearchChange={(event, data) => this.handleSearchChange(event, data)}
+          results={this.sanitizeResults(this.state.results)}
+          value={this.state.value || ""}
+          onResultSelect={this.handleResultSelect}
+          noResultsMessage="No players with that name found."
+          placeholder={"Type a player's name e.g. James Harden"}
+        />   
       </div> 
     )
   }
