@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     borderBottom: '1px solid white',
     fontFamily: 'ProximaBold, serif',
   },
-  quickStatsOutterDiv: {
+  quickStatsOuterDiv: {
     display:'flex', 
     justifyContent:'center', 
     marginTop:20, 
@@ -337,7 +337,7 @@ class PlayerStats extends Component {
             className={css(styles.quickStatsName)}
           />
         </div>
-        <div className={css(styles.quickStatsOutterDiv)}>
+        <div className={css(styles.quickStatsOuterDiv)}>
           <div 
             className={css(styles.quickStatsDivs)}
             style={{
