@@ -13,8 +13,128 @@ import NoStats from 'components/NoStats';
 import LoadingSpinner from 'components/LoadingSpinner';
 import UtilTools from 'utils/UtilTools';
 import ResultsLogo from 'static/ResultsLogo.png';
+import { StyleSheet, css } from 'aphrodite';
 
+const styles = StyleSheet.create({
+  searchBarOutterContainer: {
+    position:'sticky',
+    padding: 15,
+    display:'flex', 
+    justifyContent:'center', 
+    top:'0px', 
+    backgroundColor:'#dfe6e9', 
+    width:'100%', 
+    boxShadow: "2px 2px 15px black",
+    alignItems:'center'
+  },
+  searchBarInnerDiv: {
+    height:'100%',
+    paddingRight:10
+  },
+  logo: {
+    objectFit : 'contain',
+    width: 225,
+    height:'100%'
+  },
+  searchBar: {
+    width:'100%', 
+    display:'inline-block'
+  },
+  playerStatsContainer: {
+    display:'flex',
+    justifyContent:'center', 
+    boxShadow: "3px 3px 3px #000000",
+  },
+  videoHighlightsMainDiv: {
+    display:'flex', 
+    flexDirection:'column', 
+    justifyContent:'center', 
+    alignItems:'center', 
+    marginTop:60,
+  },
+  videoHighlightsDiv: {
+    padding:36,
+    backgroundColor:'#0984e3',
+    color:'white',
+    paddingTop:20,
+    borderRadius:15,
+    boxShadow: "5px 5px 5px #000000",
+  },
+  videoHeader: {
+    fontSize: '3em',
+    textShadow: "2px 2px 2px black",
+    fontFamily: 'ProximaSemiBold',
+    margin:0
+  },
+  quickStatsName: {
+    fontSize: '3em',
+    fontWeight: 'bold',
+    marginTop: '.5em',
+    borderBottom: '1px solid white',
+    fontFamily: 'ProximaBold, serif',
+  },
+  quickStatsOutterDiv: {
+    display:'flex', 
+    justifyContent:'center', 
+    marginTop:20, 
+    marginBottom:50,
+  },
+  quickStatsDivs: {
+    width:'30%',
+    backgroundColor:'#0984e3',
+    display:'flex', 
+    alignItems:'center',
+    flexDirection:'column',
+    color:'white',
+    boxShadow: "3px 3px 3px #000000",
+  },
+  quickStatsTitles: {
+    fontSize: '3em',
+    textShadow: "2px 2px 2px black",
+    fontFamily: 'ProximaSemiBold, serif',
+    paddingTop:30,
+  },
+  statsDiv: {
+    width:'100%', 
+    padding:30, 
+    display:'flex', 
+    justifyContent:'space-between', 
+    alignItems:'center', 
+    flexDirection:'column', 
+    fontSize:'2em', 
+    fontFamily:'ProximaRegular', 
+    height:'100%',
+  },
+  statDiv: {
+    display:'flex', 
+    flexDirection:'row', 
+    width:'100%'
+  },
+  statLabel: {
+    width:'50%', 
+    textAlign:'end', 
+    paddingRight:15
+  },
+  stat: {
+    width:'50%', 
+    fontSize:'1.125em', 
+    fontWeight:'bold'
+  },
+  quickStatsImgDiv: {
+    width:'40%', 
+    textAlign:'center', 
+    height:500,
+  },
+  quickStatsImg: {
+    display:'block', 
+    width:'100%', 
+    height:'100%', 
+    objectFit:'cover', 
+    objectPosition:'50% 0%', 
+    boxShadow: "3px 3px 3px #000000",
+  },
 
+})
 class PlayerStats extends Component {
   constructor(props) {
     super(props);
@@ -90,31 +210,17 @@ class PlayerStats extends Component {
 
   renderSearchBar = () => {
     return (
-      <Container style={{
-        position:'sticky',
-        padding: 15,
-        display:'flex', 
-        justifyContent:'center', 
-        top:'0px', 
-        backgroundColor:'#dfe6e9', 
-        width:'100%', 
-        boxShadow: "2px 2px 15px black",
-        alignItems:'center'  
-      }}>
-        <div style={{height:'100%', paddingRight:10}}>
+      <Container className={css(styles.searchBarOutterContainer)}>
+        <div className={css(styles.searchBarInnerDiv)}>
           <a href="">            
-            <img
-              style={{
-                objectFit : 'contain',
-                width: 225,
-                height:'100%'
-              }}
+            <img 
+              className={css(styles.logo)}
               src = {ResultsLogo}
               alt = "Logo"
             />
           </a>
         </div>
-        <div style={{width:'100%', display:'inline-block'}}>
+        <div className={css(styles.searchBar)}>
         <PlayerSearch addPlayerId={this.props.changePlayerId}/>
         </div>
       </Container>
@@ -171,7 +277,7 @@ class PlayerStats extends Component {
       <div>
         {this.renderImageQuickStats()}
         <Container>
-          <div style={{display:'flex', justifyContent:'center', boxShadow: "3px 3px 3px #000000",}}>
+          <div className={css(styles.playerStatsContainer)}>
             <StatsTable statKeys={statCategories} preStats={this.state.preStats} postStats={this.state.postStats}/>
           </div>
           {this.renderVideoHighlights()}
@@ -183,29 +289,18 @@ class PlayerStats extends Component {
   renderVideoHighlights = () => {
     if (this.state.playerHighlights) {
       return (
-        <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', marginTop:60, marginBottom:60}}>
+        <div className={css(styles.videoHighlightsMainDiv)}>
           <div 
-            style={{
-              padding:36,
-              backgroundColor:'#0984e3',
-              color:'white',
-              paddingTop:20,
-              borderRadius:15,
-              boxShadow: "5px 5px 5px #000000"
-            }}
+            className={css(styles.videoHighlightsDiv)}
           >
             <Header
               content="PLAYER HIGHLIGHTS"
               inverted
-              style={{
-                fontSize: '3em',
-                textShadow: "2px 2px 2px black",
-                fontFamily: 'ProximaSemiBold',
-                margin:0
-              }}
+              className={css(styles.videoHeader)}
             />
             <ReactPlayer url = {this.state.playerHighlights}/> 
           </div>
+          <div style={{height:60}}/>
         </div>
       )
     } else {
@@ -239,114 +334,90 @@ class PlayerStats extends Component {
             as='h1'
             content={this.props.playerName}
             inverted
-            style={{
-              fontSize: '3em',
-              fontWeight: 'bold',
-              marginTop: '.5em',
-              borderBottom: '1px solid white',
-              fontFamily: 'ProximaBold, serif',
-            }}
+            className={css(styles.quickStatsName)}
           />
         </div>
-        <div style={{display:'flex', justifyContent:'center', marginTop:20, marginBottom:50}}>
-          <div style={{
-            width:'30%',
-            backgroundColor:'#0984e3',
-            display:'flex', justifyContent:'space-around', alignItems:'center',
-            flexDirection:'column',
-            color:'white',
-            borderBottomLeftRadius: 15,
-            borderTopLeftRadius: 15,
-            boxShadow: "3px 3px 3px #000000",
-          }}>
+        <div className={css(styles.quickStatsOutterDiv)}>
+          <div 
+            className={css(styles.quickStatsDivs)}
+            style={{
+              borderBottomLeftRadius: 15,
+              borderTopLeftRadius: 15,
+            }}
+            >
             <Header
               content="PRE-BUBBLE '19-20"
               inverted
-              style={{
-                fontSize: '3em',
-                textShadow: "2px 2px 2px black",
-                fontFamily: 'ProximaSemiBold, serif',
-                paddingTop:30,
-              }}
+              className={css(styles.quickStatsTitles)}
             />
             <div
-              style={{width:'100%', padding:30, display:'flex', justifyContent:'space-between', alignItems:'center', flexDirection:'column', fontSize:'2em', fontFamily:'ProximaRegular', height:'100%',}}
+              className={css(styles.statsDiv)}
             >
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>PTS</div>
-                <div style={{width:'50%', fontSize:'1.125em', fontWeight:'bold'}}>{preStats.pts}</div>
+              <div className={css(styles.statDiv)}>
+                <div className={css(styles.statLabel)}>PTS</div>
+                <div className={css(styles.stat)}>{preStats.pts}</div>
               </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>REB</div>
-                <div style={{width:'50%', fontSize:'1.125em', fontWeight:'bold'}}>{preStats.reb}</div>
+              <div className={css(styles.statDiv)}>
+                <div className={css(styles.statLabel)}>REB</div>
+                <div className={css(styles.stat)}>{preStats.reb}</div>
               </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>AST</div>
-                <div style={{width:'50%', fontSize:'1.125em', fontWeight:'bold'}}>{preStats.ast}</div>
+              <div className={css(styles.statDiv)}>
+                <div className={css(styles.statLabel)}>AST</div>
+                <div className={css(styles.stat)}>{preStats.ast}</div>
               </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>FG</div>
-                <div style={{width:'50%', fontSize:'1.125em', fontWeight:'bold'}}>{preStats.fg_pct}%</div>
+              <div className={css(styles.statDiv)}>
+                <div className={css(styles.statLabel)}>FG</div>
+                <div className={css(styles.stat)}>{preStats.fg_pct}%</div>
               </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'50%', textAlign:'end', paddingRight:15}}>TO</div>
-                <div style={{width:'50%', fontSize:'1.125em', fontWeight:'bold'}}>{preStats.turnover}</div>
+              <div className={css(styles.statDiv)}>
+                <div className={css(styles.statLabel)}>TO</div>
+                <div className={css(styles.stat)}>{preStats.turnover}</div>
               </div>
             </div>
           </div>
-          <div style={{width:'40%', textAlign:'center', height:500,}}>
+          <div className={css(styles.quickStatsImgDiv)}>
             <img 
               onLoad={() => this.state.playerImageLink && this.setState({isLoading:false})}
               src={this.state.playerImageLink} 
-              style={{display:'block', width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 0%', boxShadow: "3px 3px 3px #000000",}} 
+              className={css(styles.quickStatsImg)}
               loading='lazy'
               alt = "brb using imagination since no pics"
             />
           </div>
-          <div style={{
-            width:'30%', 
-            backgroundColor:'#0984e3', 
-            display:'flex',
-            justifyContent:'center',
-            alignItems:'center',
-            flexDirection:'column',
-            color:'white',
-            borderBottomRightRadius: 15,
-            borderTopRightRadius: 15,
-            boxShadow: "3px 3px 3px #000000",
-          }}>        
+          <div 
+            className={css(styles.quickStatsDivs)}
+            style={{
+              borderBottomRightRadius: 15,
+              borderTopRightRadius: 15,
+            }}
+          >        
             <Header
               content="BUBBLE '20"
               inverted
-              style={{
-                fontSize: '3em',
-                textShadow: "2px 2px 2px black",
-                fontFamily: 'ProximaSemiBold, serif',
-                paddingTop:30
-              }}
+              className={css(styles.quickStatsTitles)}
             />
             <div
-              style={{width:'100%', padding:30, display:'flex', justifyContent:'space-between', alignItems:'center', flexDirection:'column', fontSize:'2em', fontFamily:'ProximaRegular', height:'100%',}}
+              className={css(styles.statsDiv)}
             >
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>PTS</div>
-                <div style={{width:'60%', fontSize:'1.125em', fontWeight:'bold'}}>{postStats.pts}{differences.pts>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
+              <div className={css(styles.statDiv)}>
+                <div className={css(styles.statLabel)}>PTS</div>
+                <div className={css(styles.stat)}>{postStats.pts}{differences.pts>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
               </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>REB</div>
-                <div style={{width:'60%', fontSize:'1.125em', fontWeight:'bold'}}>{postStats.reb}{differences.reb>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
+              <div className={css(styles.statDiv)}>
+                <div className={css(styles.statLabel)}>REB</div>
+                <div className={css(styles.stat)}>{postStats.reb}{differences.reb>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
               </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>AST</div>
-                <div style={{width:'60%', fontSize:'1.125em', fontWeight:'bold'}}>{postStats.ast}{differences.ast>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
+              <div className={css(styles.statDiv)}>
+                <div className={css(styles.statLabel)}>AST</div>
+                <div className={css(styles.stat)}>{postStats.ast}{differences.ast>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
               </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>FG</div>
-                <div style={{width:'60%', fontSize:'1.125em', fontWeight:'bold'}}>{postStats.fg_pct}%{differences.fg_pct>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
+              <div className={css(styles.statDiv)}>
+                <div className={css(styles.statLabel)}>FG</div>
+                <div className={css(styles.stat)}>{postStats.fg_pct}%{differences.fg_pct>0 ? <IncreaseIcon/> : <DecreaseIcon/>}</div>
               </div>
-              <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
-                <div style={{width:'40%', textAlign:'end', paddingRight:15}}>TO</div>
-                <div style={{width:'60%', fontSize:'1.125em', fontWeight:'bold'}}>{postStats.turnover}{differences.to>0 ? <TO_IncreaseIcon/> : <TO_DecreaseIcon/>}</div>
+              <div className={css(styles.statDiv)}>
+                <div className={css(styles.statLabel)}>TO</div>
+                <div className={css(styles.stat)}>{postStats.turnover}{differences.to>0 ? <TO_IncreaseIcon/> : <TO_DecreaseIcon/>}</div>
               </div>
             </div>
           </div>
