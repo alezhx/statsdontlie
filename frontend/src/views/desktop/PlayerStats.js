@@ -229,18 +229,8 @@ class PlayerStats extends Component {
 
   getPlayerImage = async(playerName) => {
     try {
-      const {data} = await axios.get('https://www.googleapis.com/customsearch/v1?', {
-        params: {
-          key: process.env.REACT_APP_GOOGLE_API_KEY,
-          cx: process.env.REACT_APP_GOOGLE_CX,
-          imgSize: "XLARGE",
-          num: 5,
-          q: playerName,
-          safe: "active",
-          searchType: "image",
-          dateRestrict: "m[6]"
-        }
-      }) 
+      const {data} = await axios.post('/api/getPlayerImage', {PlayerName: playerName})
+
       this.setState({playerImageLink: data.items[0].link,
         image: {
           height: data.items[0].image.height,
@@ -254,16 +244,8 @@ class PlayerStats extends Component {
 
   getPlayerHighlights = async(playerName) => {
     try {
-      const {data} = await axios.get('https://www.googleapis.com/youtube/v3/search', {
-        params: {
-          key: process.env.REACT_APP_GOOGLE_API_KEY,
-          part: "snippet",
-          maxResults: 5,
-          q: playerName + " Highlights",
-          publishedBefore: "2020-10-26T00:00:00Z",
-          publishedAfter: "2020-01-01T00:00:00Z"
-        }
-      })
+      const {data} = await axios.post('/api/getPlayerHighlights', {PlayerName: playerName})
+
       this.setState({playerHighlights: "www.youtube.com/watch?v=" + data.items[0].id.videoId})
     } catch(error) {
       console.log('Video API error', error)

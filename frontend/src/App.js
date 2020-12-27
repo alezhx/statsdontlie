@@ -4,6 +4,7 @@ import Homepage from 'views/desktop/Homepage';
 import PlayerStats from 'views/desktop/PlayerStats';
 import { createMedia } from "@artsy/fresnel";
 import { MediaTypes } from 'utils/Enum';
+import axios from 'axios';
 
 
 const { MediaContextProvider, Media } = createMedia({
@@ -25,13 +26,11 @@ class App extends Component {
   };
 
   componentDidMount = () => {
-    this.getList()
+    this.expressTest()
   }
 
-  getList = () => {
-    fetch('/api/getList')
-    .then(res => res.json())
-    .then(list => console.log(list))
+  expressTest = () => {
+    axios.post('/api/getPlayerImage', {PlayerName: 'Lebron James'}).then(data=>console.log('expressdata', data))
   }
 
   renderHomePage = (media) => {
