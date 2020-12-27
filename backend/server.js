@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+require('dotenv').config();
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -24,8 +26,8 @@ app.post('/api/getPlayerImage', async (req, res) => {
 
     const {data} = await axios.get('https://www.googleapis.com/customsearch/v1?', {
       params: {
-        key: 'AIzaSyAOVnJrIjYL3O23-CgXcYIX9laBe7MdcnY',
-        cx: '6d5cc39ca7f4caaae',
+        key: process.env.REACT_APP_GOOGLE_API_KEY,
+        cx: process.env.REACT_APP_GOOGLE_CX,
         imgSize: "XLARGE",
         num: 5,
         q: PlayerName,
@@ -41,6 +43,25 @@ app.post('/api/getPlayerImage', async (req, res) => {
   }
 })
 
+app.post('/api/getPlayerHighlights', async (req,res) => {
+  try {
+    const {PlayerName} = req.body
+
+    const {data} = await axios.get('https://www.googleapis.com/youtube/v3/search', {
+      params: {
+        key: process.env.REACT_APP_GOOGLE_API_KEY,
+        part: "snippet",
+        maxResults: 5,
+        q: PlayerName + " Highlights",
+        publishedBefore: "2020-10-26T00:00:00Z",
+        publishedAfter: "2020-01-01T00:00:00Z"
+      }
+    })
+    this.setState({playerHighlights: "www.youtube.com/watch?v=" + data.items[0].id.videoId})
+  } catch(error) {
+    console.log('Video API error', error)
+  }
+})
 
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{
