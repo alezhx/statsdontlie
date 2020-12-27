@@ -3,9 +3,6 @@ import 'semantic-ui-css/semantic.min.css';
 import Homepage from 'views/desktop/Homepage';
 import PlayerStats from 'views/desktop/PlayerStats';
 import { createMedia } from "@artsy/fresnel";
-import MobileHomepage from 'views/mobile/MobileHomepage'
-import MobilePlayerStats from 'views/mobile/MobilePlayerStats'
-import TabletPlayerStats from 'views/tablet/TabletPlayerStats'
 import { MediaTypes } from 'utils/Enum';
 
 
@@ -57,49 +54,10 @@ class App extends Component {
             changePlayerId = {this.addPlayerId}
           />
   }
-
-  renderDesktopApp = () =>
-  <div>
-    {this.state.playerId ? this.renderStatsPage(this.state.playerId, this.state.playerName) : this.renderHomePage()}
-  </div>
-
-  renderMobileApp = () => 
-  <div>
-    {this.state.playerId ? this.renderMobileStatsPage(this.state.playerId, this.state.playerName) : this.renderMobileHomePage()}
-  </div>
-
-  renderTabletApp = () => 
-  <div>
-    {this.state.playerId ? this.renderTabletStatsPage(this.state.playerId, this.state.playerName) : this.renderHomePage()}
-  </div>
-
   renderApp = (media) => 
     <div>
       {this.state.playerId ? this.renderStatsPage(this.state.playerId, this.state.playerName, media) : this.renderHomePage(media)}
     </div>
-
-
-  renderMobileStatsPage = (playerId, playerName) => {
-    return <MobilePlayerStats 
-            playerId = {playerId} 
-            playerName = {playerName}
-            removePlayerId = {this.removePlayerId} 
-            changePlayerId = {this.addPlayerId}
-          />
-  }
-
-  renderTabletStatsPage = (playerId, playerName) => {
-    return <TabletPlayerStats 
-            playerId = {playerId} 
-            playerName = {playerName}
-            removePlayerId = {this.removePlayerId} 
-            changePlayerId = {this.addPlayerId}
-          />
-  }
-
-  renderMobileHomePage = () => {
-    return <MobileHomepage addPlayerId = {this.addPlayerId}/>
-  }
 
   render () {
     return (
@@ -108,7 +66,7 @@ class App extends Component {
           {this.renderApp(MediaTypes.mobile)}
         </Media>
         <Media at="md">
-          {this.renderTabletApp()}
+          {this.renderApp(MediaTypes.tablet)}
         </Media>
         <Media greaterThanOrEqual="lg">
           {this.renderApp(MediaTypes.desktop)}
