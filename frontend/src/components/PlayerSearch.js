@@ -23,7 +23,6 @@ class PlayerSearch extends Component {
   }
 
   handleSearchChange = (e, data) => {
-    console.log("event", e, "data", data) 
     if(data.value === "") {
       this.setState({results:[]})
     }

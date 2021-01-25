@@ -25,14 +25,6 @@ class App extends Component {
     }
   };
 
-  componentDidMount = () => {
-    this.expressTest()
-  }
-
-  expressTest = () => {
-    axios.post('/api/getPlayerImage', {PlayerName: 'Lebron James'}).then(data=>console.log('expressdata', data))
-  }
-
   renderHomePage = (media) => {
     return <Homepage addPlayerId = {this.addPlayerId} media={media}/>
   }
