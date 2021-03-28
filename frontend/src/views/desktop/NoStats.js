@@ -37,6 +37,22 @@ const styles = StyleSheet.create({
   }
 });
 
+const mobileStyles = StyleSheet.create({
+  main: {
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center', 
+    height:'100%', 
+    overflow:'hidden'
+  },
+  header1: {
+    fontSize: '8vw',
+    fontWeight: 'normal',
+    marginTop: '.5em',
+    fontFamily: 'ProximaBold, serif'
+  },
+});
+
 const NoStats = (props) => {
   let kobe = {
       h1: "Rest in peace Kobe & Gianna.",
