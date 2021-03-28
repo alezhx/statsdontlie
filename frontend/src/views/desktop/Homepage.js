@@ -131,7 +131,7 @@ class Homepage extends Component {
 
   render () {
     return (
-      <div className={css(this.props.media === MediaTypes.desktop ? styles.main : mobileStyles.main)}>
+      <div className={css(this.props.media === MediaTypes.desktop || this.props.media === MediaTypes.tablet ? styles.main : mobileStyles.main)}>
         {this.props.media === MediaTypes.desktop && this.renderAboutButton()}
         {this.props.media === MediaTypes.desktop && this.renderSideBar()}
         <Menu inverted secondary className={css(styles.menu)}>
@@ -157,13 +157,13 @@ class Homepage extends Component {
         <div>
           <Container text>
             <Header
-              className={css(this.props.media === MediaTypes.desktop ? styles.header1 : mobileStyles.header1)}
+              className={css(this.props.media === MediaTypes.desktop || this.props.media === MediaTypes.tablet ? styles.header1 : mobileStyles.header1)}
               content="STATS DON'T LIE 🏀"
               inverted
               textAlign = 'center'
             />
             <Header
-              className={css(this.props.media === MediaTypes.desktop ? styles.header2 : mobileStyles.header2)}
+              className={css(this.props.media === MediaTypes.desktop || this.props.media === MediaTypes.tablet ? styles.header2 : mobileStyles.header2)}
               content="Search for a player's stats inside and out the NBA bubble"
               inverted
               textAlign = 'center'

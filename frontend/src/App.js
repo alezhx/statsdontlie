@@ -37,12 +37,13 @@ class App extends Component {
     this.setState({playerId : null, playerName: ''}, () => cb && cb)
   }
 
-  renderStatsPage = (playerId, playerName) => {
+  renderStatsPage = (playerId, playerName, media) => {
     return <PlayerStats 
             playerId = {playerId} 
             playerName = {playerName}
             removePlayerId = {this.removePlayerId} 
             changePlayerId = {this.addPlayerId}
+            media = {media}
           />
   }
   renderApp = (media) => 

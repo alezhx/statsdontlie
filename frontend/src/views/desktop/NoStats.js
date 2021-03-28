@@ -6,6 +6,8 @@ import {
 import jordan from 'static/jordan-crying.jpg';
 import kobepic from 'static/kobe.jpg';
 import { StyleSheet, css } from 'aphrodite';
+import { MediaTypes } from 'utils/Enum';
+
 
 const styles = StyleSheet.create({
   main: {
@@ -13,7 +15,8 @@ const styles = StyleSheet.create({
     display: 'flex', 
     flexDirection:'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    textAlign: 'center',
   },
   imageContainer: {
     display: 'flex', 
@@ -38,19 +41,22 @@ const styles = StyleSheet.create({
 });
 
 const mobileStyles = StyleSheet.create({
-  main: {
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'center', 
-    height:'100%', 
-    overflow:'hidden'
-  },
   header1: {
     fontSize: '8vw',
     fontWeight: 'normal',
     marginTop: '.5em',
     fontFamily: 'ProximaBold, serif'
   },
+  image: {
+    display: 'flex',
+    justifyContent: 'center',
+    height:'45vh',
+  },
+  header2: {
+    fontSize: '8vw',
+    fontWeight: 'normal',
+    fontFamily: 'Proximabold,serif'
+  }
 });
 
 const NoStats = (props) => {
@@ -64,24 +70,24 @@ const NoStats = (props) => {
       h2: "There are no stats. Please search again.",
       imgSrc: jordan
     }
-
+    console.log(props.media)
     return (
-    <Container className={css(styles.main)}>
+    <Container className={css(styles.main)} >
       <Header
-        className={css(styles.header1)}
+        className={css(props.media === MediaTypes.desktop ? styles.header1 : mobileStyles.header1)}
         content={props.playerName === "Kobe Bryant" ? kobe.h1 : noStats.h1}
         inverted
       />
       <div className={css(styles.imageContainer)}>
         <img
-          className={css(styles.image)}
+          className={css(props.media === MediaTypes.desktop ? styles.image : mobileStyles.image)}
           onLoad={()=>props.onLoadDone()}
           src = {props.playerName === "Kobe Bryant" ? kobe.imgSrc : noStats.imgSrc}
           alt = "sad Jordan"
         />
       </div>
       <Header
-        className={css(styles.header2)}
+        className={css(props.media === MediaTypes.desktop ? styles.header2 : mobileStyles.header2)}
         content= {props.playerName === "Kobe Bryant" ? kobe.h2 : noStats.h2}
         inverted
       />

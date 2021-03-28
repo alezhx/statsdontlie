@@ -417,6 +417,7 @@ class PlayerStats extends Component {
       <NoStats 
         playerName = {this.props.playerName} 
         onLoadDone = {this.onLoadDone}
+        media = {this.props.media}
       />
     )
   }   
