@@ -8,6 +8,14 @@ import kobepic from 'static/kobe.jpg';
 import { StyleSheet, css } from 'aphrodite';
 import { MediaTypes } from 'utils/Enum';
 
+function getDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
+
 
 const styles = StyleSheet.create({
   main: {
@@ -17,6 +25,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
+    paddingTop: '25px'
   },
   imageContainer: {
     display: 'flex', 
@@ -42,7 +51,7 @@ const styles = StyleSheet.create({
 
 const mobileStyles = StyleSheet.create({
   header1: {
-    fontSize: '8vw',
+    fontSize: '6vw',
     fontWeight: 'normal',
     marginTop: '.5em',
     fontFamily: 'ProximaBold, serif',
@@ -53,7 +62,7 @@ const mobileStyles = StyleSheet.create({
     height:'40vh',
   },
   header2: {
-    fontSize: '8vw',
+    fontSize: '6vw',
     fontWeight: 'normal',
     fontFamily: 'Proximabold,serif',
     ustifyContent: 'center',
@@ -62,6 +71,8 @@ const mobileStyles = StyleSheet.create({
 });
 
 const NoStats = (props) => {
+  console.log('height', getDimensions().height)
+
   let kobe = {
       h1: "Rest in peace Kobe & Gianna.",
       h2: ' "You asked for my hustle, I gave you my heart." ',

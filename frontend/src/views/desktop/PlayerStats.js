@@ -434,7 +434,6 @@ class PlayerStats extends Component {
     return (
       <div 
         key={this.props.playerId + this.props.playerName} 
-        style={{backgroundColor:'#2d3436'}}
       >
         {this.renderSearchBar()}
           <div>

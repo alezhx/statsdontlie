@@ -12,7 +12,7 @@ import _ from 'lodash';
 import ReactPlayer from 'react-player';
 import PlayerSearch from 'components/PlayerSearch';
 import StatsTable from 'components/StatsTable';
-import MobileNoStats from './MobileNoStats';
+import NoStats from 'views/desktop/NoStats';
 import LoadingSpinner from 'components/LoadingSpinner';
 import UtilTools from 'utils/UtilTools';
 import ResultsLogo from 'static/ResultsLogo.png';
@@ -33,6 +33,8 @@ class MobilePlayerStats extends Component {
   componentDidMount = () => {
     window.scrollTo(0, 0)
     this.loadAllStatActions()
+
+    console.log('playerId', this.props.playerId)
   }
 
   loadAllStatActions = () => {
@@ -130,18 +132,8 @@ class MobilePlayerStats extends Component {
 
   getPlayerImage = async(playerName) => {
     try {
-      const {data} = await axios.get('https://www.googleapis.com/customsearch/v1?', {
-        params: {
-          key: process.env.REACT_APP_GOOGLE_API_KEY,
-          cx: process.env.REACT_APP_GOOGLE_CX,
-          imgSize: "XLARGE",
-          num: 5,
-          q: playerName,
-          safe: "active",
-          searchType: "image",
-          dateRestrict: "m[6]"
-        }
-      }) 
+      const {data} = await axios.post('/api/getPlayerImage', {PlayerName: playerName})
+
       this.setState({playerImageLink: data.items[0].link,
         image: {
           height: data.items[0].image.height,
@@ -155,22 +147,14 @@ class MobilePlayerStats extends Component {
 
   getPlayerHighlights = async(playerName) => {
     try {
-      const {data} = await axios.get('https://www.googleapis.com/youtube/v3/search', {
-        params: {
-          key: process.env.REACT_APP_GOOGLE_API_KEY,
-          part: "snippet",
-          maxResults: 5,
-          q: playerName + " Highlights",
-          publishedBefore: "2020-10-26T00:00:00Z",
-          publishedAfter: "2020-01-01T00:00:00Z"
-        }
-      })
+      const {data} = await axios.post('/api/getPlayerHighlights', {PlayerName: playerName})
+
       this.setState({playerHighlights: "www.youtube.com/watch?v=" + data.items[0].id.videoId})
     } catch(error) {
       console.log('Video API error', error)
     }
   }
-
+  
   renderPlayerStats = () => {
     let statCategories = ["fga", "fgm", "fg_pct", "fg3a", "fg3m", "fg3_pct", "fta", "ftm", "ft_pct", "oreb", "DREB" ,"reb", "ast", "blk", "stl", "pf", "turnover", "pts"]
 
@@ -261,9 +245,10 @@ class MobilePlayerStats extends Component {
 
   renderNoStatsPage = () => {
     return (
-      <MobileNoStats 
+      <NoStats 
         playerName = {this.props.playerName} 
         onLoadDone = {this.onLoadDone}
+        media = {this.props.media}
       />
     )
   }   

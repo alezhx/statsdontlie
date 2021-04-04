@@ -5,6 +5,7 @@ import PlayerStats from 'views/desktop/PlayerStats';
 import { createMedia } from "@artsy/fresnel";
 import { MediaTypes } from 'utils/Enum';
 import axios from 'axios';
+import MobilePlayerStats from 'views/mobile/MobilePlayerStats';
 
 
 const { MediaContextProvider, Media } = createMedia({
@@ -38,13 +39,23 @@ class App extends Component {
   }
 
   renderStatsPage = (playerId, playerName, media) => {
-    return <PlayerStats 
-            playerId = {playerId} 
-            playerName = {playerName}
-            removePlayerId = {this.removePlayerId} 
-            changePlayerId = {this.addPlayerId}
-            media = {media}
-          />
+    return ( 
+          media === MediaTypes.mobile || MediaTypes.tablet ?
+            <MobilePlayerStats
+              playerId = {playerId} 
+              playerName = {playerName}
+              removePlayerId = {this.removePlayerId} 
+              changePlayerId = {this.addPlayerId}
+              media = {media} />
+            :
+            <PlayerStats 
+              playerId = {playerId} 
+              playerName = {playerName}
+              removePlayerId = {this.removePlayerId} 
+              changePlayerId = {this.addPlayerId}
+              media = {media}
+            />
+    )
   }
   renderApp = (media) => 
     <div>
