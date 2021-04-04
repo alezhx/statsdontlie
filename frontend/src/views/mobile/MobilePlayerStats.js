@@ -33,8 +33,6 @@ class MobilePlayerStats extends Component {
   componentDidMount = () => {
     window.scrollTo(0, 0)
     this.loadAllStatActions()
-
-    console.log('playerId', this.props.playerId)
   }
 
   loadAllStatActions = () => {
@@ -192,7 +190,7 @@ class MobilePlayerStats extends Component {
               content="PLAYER HIGHLIGHTS"
               inverted
               style={{
-                fontSize: '8vw',
+                fontSize: '2em',
                 textShadow: "2px 2px 2px black",
                 fontFamily: 'ProximaSemiBold',
                 margin:0
@@ -218,7 +216,7 @@ class MobilePlayerStats extends Component {
             content={this.props.playerName}
             inverted
             style={{
-              fontSize: '9vw',
+              fontSize: '3em',
               fontWeight: 'bold',
               marginTop: '.5em',
               borderBottom: '1px solid white',
@@ -226,11 +224,11 @@ class MobilePlayerStats extends Component {
             }}
           />
         </div>
-        <div style={{width:'100%', textAlign:'center', height:'45vh', marginTop:15}}>
+        <div style={{width:'100%', textAlign:'center', height:this.props.media === 'tablet' ? 400 :'45vh', marginTop:15, justifyContent:'center', display:'flex'}}>
           <img 
             onLoad={() => this.state.playerImageLink && this.setState({isLoading:false})}
             src={this.state.playerImageLink} 
-            style={{display:'block', width:'100%', height:'100%', objectFit:'cover', objectPosition:'50% 0%'}} 
+            style={{display:'block', width:this.props.media === 'tablet' ? '70%' :'100%', height:'100%', objectFit:'cover', objectPosition:'50% 0%'}} 
             loading='lazy'
             alt = "brb using imagination since no pics"
           />

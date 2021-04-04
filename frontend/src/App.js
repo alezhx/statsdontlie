@@ -40,7 +40,7 @@ class App extends Component {
 
   renderStatsPage = (playerId, playerName, media) => {
     return ( 
-          media === MediaTypes.mobile || MediaTypes.tablet ?
+          media === (MediaTypes.mobile) || media === (MediaTypes.tablet) ?
             <MobilePlayerStats
               playerId = {playerId} 
               playerName = {playerName}
@@ -57,12 +57,16 @@ class App extends Component {
             />
     )
   }
-  renderApp = (media) => 
-    <div>
-      {this.state.playerId ? this.renderStatsPage(this.state.playerId, this.state.playerName, media) : this.renderHomePage(media)}
-    </div>
+  renderApp = (media) => {
+    return (
+      <div>
+        {this.state.playerId ? this.renderStatsPage(this.state.playerId, this.state.playerName, media) : this.renderHomePage(media)}
+      </div>
+    )
+  } 
 
   render () {
+
     return (
       <MediaContextProvider>
         <Media at="sm">

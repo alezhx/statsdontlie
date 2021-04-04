@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 
 const mobileStyles = StyleSheet.create({
   header1: {
-    fontSize: '6vw',
+    fontSize: '2em',
     fontWeight: 'normal',
     marginTop: '.5em',
     fontFamily: 'ProximaBold, serif',
@@ -62,7 +62,7 @@ const mobileStyles = StyleSheet.create({
     height:'40vh',
   },
   header2: {
-    fontSize: '6vw',
+    fontSize: '2em',
     fontWeight: 'normal',
     fontFamily: 'Proximabold,serif',
     ustifyContent: 'center',
