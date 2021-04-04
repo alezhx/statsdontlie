@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
   },
   image: {
     objectFit: 'contain',
-    height: 500, 
-    width: 500
+    height: 400, 
+    width: 400
   },
   header1: {
     fontSize: '2em',
@@ -45,17 +45,19 @@ const mobileStyles = StyleSheet.create({
     fontSize: '8vw',
     fontWeight: 'normal',
     marginTop: '.5em',
-    fontFamily: 'ProximaBold, serif'
+    fontFamily: 'ProximaBold, serif',
   },
   image: {
     display: 'flex',
     justifyContent: 'center',
-    height:'45vh',
+    height:'40vh',
   },
   header2: {
     fontSize: '8vw',
     fontWeight: 'normal',
-    fontFamily: 'Proximabold,serif'
+    fontFamily: 'Proximabold,serif',
+    ustifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
@@ -70,7 +72,6 @@ const NoStats = (props) => {
       h2: "There are no stats. Please search again.",
       imgSrc: jordan
     }
-    console.log(props.media)
     return (
     <Container className={css(styles.main)} >
       <Header
