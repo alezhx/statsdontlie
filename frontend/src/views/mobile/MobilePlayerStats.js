@@ -172,7 +172,7 @@ class MobilePlayerStats extends Component {
   renderVideoHighlights = () => {
     if (this.state.playerHighlights) {
       return (
-        <Container style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', marginTop:30, marginBottom:60, width:'100%'}}>
+        <Container style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', marginTop:30, marginBottom:60, width:this.props.media === 'tablet' ? '70%' : '100%'}}>
           <div 
             style={{
               padding:12,
