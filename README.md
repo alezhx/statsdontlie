@@ -16,8 +16,8 @@ You will also see any lint errors in the console.
 
 ## In Action
 Homepage view
-![Homepage](src/static/Homepage.jpeg)
+![Homepage](frontend/src/static/Homepage.jpeg)
 
 Example view
-![Example](src/static/Example.png)
+![Example](frontend/src/static/Example.png)
 
